@@ -1,0 +1,219 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>一道web题 - 少莽</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="zhishaomang,"> 
+    <meta name="description" content="一、一行代码首先审题：
+123456789101112131415echo !(!(include &amp;quot;flag.php&amp;quot;)||(!error_reporting(0))||str,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="少莽" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="一道web题 - 少莽"/>
+    <meta name="twitter:description" content="一、一行代码首先审题：
+123456789101112131415echo !(!(include &amp;quot;flag.php&amp;quot;)||(!error_reporting(0))||str,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="少莽"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="一道web题 - 少莽"/>
+    <meta property="og:description" content="一、一行代码首先审题：
+123456789101112131415echo !(!(include &amp;quot;flag.php&amp;quot;)||(!error_reporting(0))||str,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">少莽</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">一道web题</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">一道web题</h1>
+        <div class="stuff">
+            <span>六月 04, 2022</span>
+            
+
+        </div>
+        <div class="content markdown">
+            <h1 id="一、一行代码"><a href="#一、一行代码" class="headerlink" title="一、一行代码"></a><strong>一、一行代码</strong></h1><p>首先审题：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">echo !(!(include &quot;flag.php&quot;)</span><br><span class="line"></span><br><span class="line">||(!error_reporting(0))</span><br><span class="line"></span><br><span class="line">||stripos($_GET[&#x27;filename&#x27;],&#x27;.&#x27;)</span><br><span class="line"></span><br><span class="line">||($_GET[&#x27;id&#x27;]!=0)</span><br><span class="line"></span><br><span class="line">||(strlen($_GET[&#x27;content&#x27;])&lt;=7)</span><br><span class="line"></span><br><span class="line">||(!eregi(&quot;ctfsho&quot;.substr($_GET[&#x27;content&#x27;],0,1),&quot;ctfshow&quot;))</span><br><span class="line"></span><br><span class="line">||substr($_GET[&#x27;content&#x27;],0,1)==&#x27;w&#x27;</span><br><span class="line"></span><br><span class="line">||(file_get_contents($_GET[&#x27;filename&#x27;],&#x27;r&#x27;) !== &quot;welcome2ctfshow&quot;))?$flag:str_repeat(highlight_file(__FILE__), 0);</span><br></pre></td></tr></table></figure>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p>这个整体是三目运算符，所以需要前面的表达式为真才能返回$flag，但在开头有一个！，所以要使里面的表达式为false，但又都是 | | 连接的，所以要使表达式全为false，逐个观察。</p>
+<blockquote>
+<p>三目运算符：</p>
+<p>语法：retvalue = expression ? retvalue1 : retvalue2; </p>
+<p>说明：如果表达式 expression 的值为真，那么就返回 retvalue1，否则，就返回 retvalue2。</p>
+</blockquote>
+<p>stripos($_GET[‘filename’],’.’)：filename中不能存在小数点;</p>
+<p>($_GET[‘id’]!=0):id=0;</p>
+<p>(strlen($_GET[‘content’])&lt;=7):content的长度大于7;</p>
+<p>(!eregi(“ctfsho”.substr($_GET[‘content’],0,1),”ctfshow”)):没匹配为真,则匹配为假;content=ww</p>
+<p>substr($_GET[‘content’],0,1)==’w’:content为W</p>
+<p>(file_get_contents($_GET[‘filename’],’r’) !== “welcome2ctfshow”)):用data伪协议绕过;</p>
+<blockquote>
+<p>在网址输入:?id=0&amp;content=W1111111&amp;filename=data://text/plain,welcome2ctfshow </p>
+</blockquote>
+<p>先记录一下,以后阶段性补充,不懂的知识很多,目前只是知其然而不知所以然. </p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://dl.stream.qqmusic.qq.com/C400001OUQ6M2WeMRO.m4a?guid=8163272410&vkey=C6BFF6D45012D604172E87D65FF2374E512C935275765A15128BE77C8FB1CA7110313E815EB620C046DDFA4D4580F98DAE74B533BA12DACE&uin=1552804588&fromtag=120002"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81"><span class="toc-number">1.</span> <span class="toc-text">一、一行代码</span></a></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/live2d-widget-model-koharu/assets/koharu.model.json"},"display":{"superSample":2,"width":200,"height":400,"position":"left","hOffset":5,"vOffset":-84},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- Google Analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=zhishaomang"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'zhishaomang');
+</script>
+<!-- End Google Analytics -->
+
+
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+<!--单击显示文字-->
+<script type="text/javascript" src="/js/click_show_text.js"></script>
+<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+<script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+<script type="text/javascript" src="/js/fireworks.js"></script>
+<!--浏览器搞笑标题-->
+<script type="text/javascript" src="/js/FunnyTitle.js"></script>

@@ -1,0 +1,220 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>BUUCTFReservewp（3） - 少莽</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="zhishaomang,"> 
+    <meta name="description" content="[HDCTF2019]Maze终于找到了一道用花指令的题了先脱壳，然后进入ida参考我的这篇文章：花指令所以先把jnz给nop掉：edit &amp;gt;&amp;gt; Patch program &amp;gt;&amp;g,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="少莽" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="BUUCTFReservewp（3） - 少莽"/>
+    <meta name="twitter:description" content="[HDCTF2019]Maze终于找到了一道用花指令的题了先脱壳，然后进入ida参考我的这篇文章：花指令所以先把jnz给nop掉：edit &amp;gt;&amp;gt; Patch program &amp;gt;&amp;g,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="少莽"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="BUUCTFReservewp（3） - 少莽"/>
+    <meta property="og:description" content="[HDCTF2019]Maze终于找到了一道用花指令的题了先脱壳，然后进入ida参考我的这篇文章：花指令所以先把jnz给nop掉：edit &amp;gt;&amp;gt; Patch program &amp;gt;&amp;g,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">少莽</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">BUUCTFReservewp（3）</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">BUUCTFReservewp（3）</h1>
+        <div class="stuff">
+            <span>六月 04, 2022</span>
+            
+
+        </div>
+        <div class="content markdown">
+            <h2 id="HDCTF2019-Maze"><a href="#HDCTF2019-Maze" class="headerlink" title="[HDCTF2019]Maze"></a>[HDCTF2019]Maze</h2><p>终于找到了一道用花指令的题了<br>先脱壳，然后进入ida<br><img src="https://img-blog.csdnimg.cn/6afb34d7c490403b8f1eaefe50dc5b18.png" alt="在这里插入图片描述"><br>参考我的这篇文章：<a target="_blank" rel="noopener" href="https://blog.csdn.net/BL_zshaom/article/details/125345475">花指令</a><br>所以先把jnz给nop掉：<br>edit &gt;&gt; Patch program &gt;&gt; Change byte &gt;&gt; 前两位改为90<br><img src="https://img-blog.csdnimg.cn/fe6adbdb30af4529aabbb8d9e9bd25db.png" alt="在这里插入图片描述"></p>
+<p>将花指令nop掉后，选中红色代码段，然后键盘p一下得到main函数<br><img src="https://img-blog.csdnimg.cn/6f9bcd7e2e0a483ca1d3d613211103f4.png" alt="在这里插入图片描述"><br>可以看到，wasd四个键控制移动，并且带有–和++的效果，然后后面一个if else判断语句，要让dword_408078 = 5，dword_40807C = -4，才能得到flag<br>点进去看看dword_408078和dword_40807C<br><img src="https://img-blog.csdnimg.cn/d069802320164a83b4af4f0355e8e81e.png" alt="在这里插入图片描述"><br>那么7c初始是0，最后要等于-4，而s控制7c的–，这说明是往下走呗<br>shift + f12看字符串，然后shift+e提取数据得到：</p>
+<p><img src="https://img-blog.csdnimg.cn/8002c758da164d99b36fcc315f9ddacd.png" alt="在这里插入图片描述"><br>关于为什么是7x10，那是看大佬wp知道的，我看大佬们做过的题也是7x10，所以就7x10.。。。。。</p>
+<h2 id="相册"><a href="#相册" class="headerlink" title="相册"></a>相册</h2><p>这是个apk文件，我们需要下载一个jadk<br>下载完jadx和jadx-gui之后，用windows命令：java -jar jadx-gui.exe<br>启动jadx<br>打开apk文件，我们进行文本搜索：mail<br>找到函数：sendmail<br><img src="https://img-blog.csdnimg.cn/69ed085f7ab046af9e7f32bef895adcc.png" alt="在这里插入图片描述"><br>我们查看：查找声明<br><img src="https://img-blog.csdnimg.cn/1daa78cf9a6548f48435a010fa04eccf.png" alt="在这里插入图片描述"><br>找的是邮件，我们看通讯录<br><img src="https://img-blog.csdnimg.cn/900dd846f68b407d8cbb33aeebe6c0cb.png" alt="在这里插入图片描述"><br>发现MAILSERVER，进入跳到声明<br><img src="https://img-blog.csdnimg.cn/5d58e4672f68402d981cf98efbd772ed.png" alt="在这里插入图片描述"><br>这个就是邮件了，而要进入MAILSERVER函数，首先要对NativeMethod.m进行base64加密<br><img src="https://img-blog.csdnimg.cn/e5c306a7015040b3a9572af8cd5f1e3a.png" alt="在这里插入图片描述"><br>选中那一行继续跳到声明，发现是空的<br>而Java中的NativeMethod函数一般用于调用外部文件，所以我们ida打开so文件<br><img src="https://img-blog.csdnimg.cn/768dad49ca0140aaab3e3355d44591d9.png" alt="在这里插入图片描述"><br>我们解压apk文件，在lib文件夹里的armeabi文件夹里面有个so文件，用ida打开<br>找到字符串进行base64解密即可<br><img src="https://img-blog.csdnimg.cn/e23422572eb44013a621e341d3e33e65.png" alt="在这里插入图片描述"><br>也可以在exports里面找到NativeMethod_m<img src="https://img-blog.csdnimg.cn/d394d309d41349918c82c00610422f32.png" alt="_"><br>双击进入，发现被加密字符串<br><img src="https://img-blog.csdnimg.cn/d5d5b798361a49f884afd8d02b3e8fdb.png" alt="在这里插入图片描述"></p>
+<h2 id="MRCTF-R3-1ly-E2-R3verse"><a href="#MRCTF-R3-1ly-E2-R3verse" class="headerlink" title="MRCTF{@_R3@1ly_E2_R3verse!}"></a><strong>MRCTF{@_R3@1ly_E2_R3verse!}</strong></h2><p>进入ida，shift+f12找字符串<br><img src="https://img-blog.csdnimg.cn/91410cda13444401ac43bc5eb7079c33.png" alt="在这里插入图片描述"><br>进入，查看伪代码，但好像看不了，也没有花指令，只能看汇编了<br><img src="https://img-blog.csdnimg.cn/8fab2dcd24164301895ce2912e5906dc.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/d679e7fdf829498e94f7b0a01da86fcb.png" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/b08adf491c84400b8b6001a98f7db867.png" alt="在这里插入图片描述"><br>首先byte_4212C0是我们输入的字符串<br>edx在自增，之后跟1B（也就是27）进行比较，可以大胆猜测flag长度是27<br>然后byte_4212C0的第eax位跟al进行异或（al也就是eax的后八位，其实就是自增的位，也就是   i 了）<br>接着就和byte_41EA08的第eax位进比较（而byte_41EA08给出了字符串）<br>然后eax（可以看成 i 了）自增，继续循环<br>那么就能写出脚本：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> a[<span class="number">27</span>] = &#123;<span class="number">77</span>,  <span class="number">83</span>,  <span class="number">65</span>,  <span class="number">87</span>,  <span class="number">66</span>, <span class="number">126</span>,  <span class="number">70</span>,  <span class="number">88</span>,  <span class="number">90</span>,  <span class="number">58</span>, <span class="number">74</span>,  <span class="number">58</span>,  <span class="number">96</span>, <span class="number">116</span>,  <span class="number">81</span>,  <span class="number">74</span>,  <span class="number">34</span>,  <span class="number">78</span>,  <span class="number">64</span>,  <span class="number">32</span>, <span class="number">98</span>, <span class="number">112</span>, <span class="number">100</span>, <span class="number">100</span>, <span class="number">125</span>,  <span class="number">56</span>, <span class="number">103</span>&#125;;</span><br><span class="line">    <span class="keyword">char</span> flag[<span class="number">27</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">27</span>;i++)&#123;</span><br><span class="line">        flag[i] = a[i] ^ i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s&quot;</span>,flag);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="GWCTF-2019-xxor"><a href="#GWCTF-2019-xxor" class="headerlink" title="[GWCTF 2019]xxor"></a>[GWCTF 2019]xxor</h2><p>看ida，代码很清晰<br>首先输入六次，六个数；然后进入三次的循环：对输入数组的0，2，4位进行加密，加密过后的数组再换回来。<br><img src="https://img-blog.csdnimg.cn/59ff855498a946c0a923e9377cd6e9ba.png" alt="在这里插入图片描述"><br>进入加密函数：<br><img src="https://img-blog.csdnimg.cn/fc693f8b7dea454d8a79bb712df1a2b9.png" alt="在这里插入图片描述"><br>一个64次的循环加密（逆的时候+=变为-=，里面的顺序也要改变，然后v5开始等于64乘满），一次加密两个，然后外面是三次循环，总共六个数，那就是两两一组加密。<br>我的理解其中a1和a1[1]，就是代表v6[0]和v6[1]（因为a1本身就是v6[j]，而当时j=0，也就有a1=v6[0],但是a1是什么呢，只能是第二个v6[1]，也就有了两两一组了）<br>然后出来看if语句，可以用简单的三元一次方程解出不知道的数字<br><img src="https://img-blog.csdnimg.cn/3467260af85b418ab4dd1093da5e9c18.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/b364a7a6d32d48c49a79b6abde5a925b.png" alt="在这里插入图片描述"><br>知道结果了，知道过程了，那就开始逆了</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> a[<span class="number">6</span>] = &#123;<span class="number">3746099070</span>,<span class="number">550153460</span>,<span class="number">3774025685</span>,<span class="number">1548802262</span>,<span class="number">2652626477</span>,<span class="number">2230518816</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span> a2[<span class="number">4</span>] = &#123;<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> v3,v4;</span><br><span class="line">    <span class="keyword">int</span> v5;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;=<span class="number">4</span>;j+=<span class="number">2</span>)&#123;</span><br><span class="line">    v3 = a[j];</span><br><span class="line">    v4 = a[j+<span class="number">1</span>];</span><br><span class="line">    v5 = <span class="number">1166789954</span> * <span class="number">64</span>;</span><br><span class="line">    <span class="keyword">for</span> ( <span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">64</span>; i++ )</span><br><span class="line">  &#123;</span><br><span class="line">    v4 -= (v3 + v5 + <span class="number">20</span>) ^ ((v3 &lt;&lt; <span class="number">6</span>) + a2[<span class="number">2</span>]) ^ ((v3 &gt;&gt; <span class="number">9</span>) + a2[<span class="number">3</span>]) ^ <span class="number">0x10</span>;</span><br><span class="line">    v3 -= (v4 + v5 + <span class="number">11</span>) ^ ((v4 &lt;&lt; <span class="number">6</span>) + a2[<span class="number">0</span>]) ^ ((v4 &gt;&gt; <span class="number">9</span>) + a2[<span class="number">1</span>]) ^ <span class="number">0x20</span>;</span><br><span class="line"></span><br><span class="line">    v5 -= <span class="number">1166789954</span>;</span><br><span class="line">  &#125;</span><br><span class="line">    a[j] = v3;</span><br><span class="line">    a[j+<span class="number">1</span>] = v4;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">6</span>;i++)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%x&quot;</span>,a[i]);</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>得出的结果将16进制转为文本<br><img src="https://img-blog.csdnimg.cn/b15bf6d151034c69971ae4fffdddddea.png" alt="在这里插入图片描述"></p>
+<h2 id="MRCTF2020-hello-world-go"><a href="#MRCTF2020-hello-world-go" class="headerlink" title="[MRCTF2020]hello_world_go"></a>[MRCTF2020]hello_world_go</h2><p>无壳，进入ida看main_main函数<br><img src="https://img-blog.csdnimg.cn/416c7c84072e417fa35901e9937696bc.png" alt="在这里插入图片描述"><br>有点晦涩😓<br>再翻看函数的时候，意外看到了明文flag（按a转换字符串）<br><img src="https://img-blog.csdnimg.cn/4dedb3e994e44b609c396df19ea70cab.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>Go语言：<br>Go语言其实是Golanguage的简称，Go（又称 Golang）是 Google 的 Robert Griesemer，Rob Pike 及 Ken Thompson 开发的一种静态强类型、编译并发型语言。Go 语言语法与 C 相近。<br>可以使用</p>
+</blockquote>
+<h2 id="WUSTCTF2020-level3"><a href="#WUSTCTF2020-level3" class="headerlink" title="[WUSTCTF2020]level3"></a>[WUSTCTF2020]level3</h2><p>无壳进ida看main函数<br>说是base64加密，然后又给了一串字符串，那就直接试试用字符串解密呗<br>试过之后发现没出来flag<br><img src="https://img-blog.csdnimg.cn/d9b935da8edc45b8b363c60566a01686.png" alt="在这里插入图片描述"><br>那看看加密过程，也很正常</p>
+<p><img src="https://img-blog.csdnimg.cn/c75b9753c28f443ba2bc4718c1483d6b.png" alt="在这里插入图片描述"><br>那就可能是变表了，看看base64表的引用<br><img src="https://img-blog.csdnimg.cn/2e5b77ec0d4e401399a8e482b597f947.png" alt="在这里插入图片描述"><br>有一个look表看看，果然原先的表被改变了<br><img src="https://img-blog.csdnimg.cn/e8c2f3006c03446b956328d568112255.png" alt="在这里插入图片描述"><br>写个脚本<br><img src="https://img-blog.csdnimg.cn/7687d185e658447988888fe35a209aa3.png" alt="在这里插入图片描述"><br>再次解密得出flag<br><img src="https://img-blog.csdnimg.cn/9dc519e5e0054eb487e3fbfefc719a97.png" alt="在这里插入图片描述"></p>
+<h2 id="FlareOn4-IgniteMe"><a href="#FlareOn4-IgniteMe" class="headerlink" title="[FlareOn4]IgniteMe"></a><strong>[FlareOn4]IgniteMe</strong></h2><p>进入ida看主函数：<br>明显WriteFile函数是输入函数<br><img src="https://img-blog.csdnimg.cn/f43ac13cd27941a284146086d0440151.png" alt="在这里插入图片描述"><br>看sub_4010F0函数：<br>这个a数组是空的，应该就是我们输入的字符串，然后有个if语句，排除了hex =10和13的字符（也就是‘/n’和‘/r’）<br><img src="https://img-blog.csdnimg.cn/f60520a75b3e4d228c2ab84d20b02ed5.png" alt="在这里插入图片描述"><br>继续下一个函数sub_401050：<br>v0一看就是输入字符串的长度，然后v4不知道是啥，一个for循环，最后跟一个数组进行比较，所以最后的结果知道了<br>for循环：<br>将前一个字符与当前字符进行异或<br><img src="https://img-blog.csdnimg.cn/c5cf3bea4e2842c78207ab41bf7b4c59.png" alt="在这里插入图片描述"><br>看v4的函数：<br>__ROL4__：作用是循环左移（我其实还是不知道是啥）<br><img src="https://img-blog.csdnimg.cn/ffa3f3a3ccf14af5936996db489054e2.png" alt="在这里插入图片描述"></p>
+<p>动调一下，看看v4是啥：<br>先下个断点<br><img src="https://img-blog.csdnimg.cn/2303b42b45ac4ca391cc28995055add8.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/766422b48d104410b7c01a7f0fb2c8df.png" alt="在这里插入图片描述"><br>运行到这里能看到是4，而且不管输入什么都是4<br>脚本：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> a[] =</span><br><span class="line">&#123;</span><br><span class="line">   <span class="number">0x0D</span>,<span class="number">0x26</span>,<span class="number">0x49</span>,<span class="number">0x45</span>,<span class="number">0x2A</span>,<span class="number">0x17</span>,<span class="number">0x78</span>,<span class="number">0x44</span>,<span class="number">0x2B</span>,<span class="number">0x6C</span>,<span class="number">0x5D</span>,<span class="number">0x5E</span>,<span class="number">0x45</span>,<span class="number">0x12</span>,<span class="number">0x2F</span>,<span class="number">0x17</span>,</span><br><span class="line"><span class="number">0x2B</span>,<span class="number">0x44</span>,<span class="number">0x6F</span>,<span class="number">0x6E</span>,<span class="number">0x56</span>,<span class="number">0x09</span>,<span class="number">0x5F</span>,<span class="number">0x45</span>,<span class="number">0x47</span>,<span class="number">0x73</span>,<span class="number">0x26</span>,<span class="number">0x0A</span>,<span class="number">0x0D</span>,<span class="number">0x13</span>,<span class="number">0x17</span>,<span class="number">0x48</span>,</span><br><span class="line"><span class="number">0x42</span>,<span class="number">0x01</span>,<span class="number">0x40</span>,<span class="number">0x4D</span>,<span class="number">0x0C</span>,<span class="number">0x02</span>,<span class="number">0x69</span></span><br><span class="line">&#125;;</span><br><span class="line">    <span class="keyword">char</span> flag[<span class="number">40</span>];</span><br><span class="line">    <span class="keyword">int</span> v4 = <span class="number">4</span>;</span><br><span class="line">    <span class="keyword">int</span> v0 = <span class="built_in">strlen</span>(a);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = v0 - <span class="number">1</span>; i &gt;= <span class="number">0</span>; --i )</span><br><span class="line">  &#123;</span><br><span class="line">    flag[i] = v4 ^ a[i];</span><br><span class="line">    v4 = flag[i];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;v0;i++)&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>,flag[i]);</span><br><span class="line">  &#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="WUSTCTF2020-Cr0ssfun"><a href="#WUSTCTF2020-Cr0ssfun" class="headerlink" title="[WUSTCTF2020]Cr0ssfun"></a>[WUSTCTF2020]Cr0ssfun</h2><p>先看ida：<br>只有一个函数：check，点进去<br><img src="https://img-blog.csdnimg.cn/ff303a242d6f401998a2e8615ec3197c.png" alt="在这里插入图片描述"><br>全是这种==的，那我感觉flag不就是这个吗<br><img src="https://img-blog.csdnimg.cn/a16528c850674bd0acfce25013ebc3fa.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/ef559c8f23f24883b09a65d1f8604000.png" alt="在这里插入图片描述"></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> a[] =</span><br><span class="line">&#123;</span><br><span class="line">  <span class="number">119</span>,<span class="number">99</span>,<span class="number">116</span>,<span class="number">102</span>,<span class="number">50</span>,<span class="number">48</span>,<span class="number">50</span>,<span class="number">48</span>,<span class="number">123</span>,<span class="number">99</span>,<span class="number">112</span>,<span class="number">112</span>,<span class="number">95</span>,<span class="number">64</span>,<span class="number">110</span>,<span class="number">100</span>,<span class="number">95</span>,<span class="number">114</span>,<span class="number">51</span>,<span class="number">118</span>,<span class="number">101</span>,<span class="number">114</span>,<span class="number">115</span>,<span class="number">101</span>,<span class="number">95</span>,<span class="number">64</span>,<span class="number">114</span>,<span class="number">101</span>,<span class="number">95</span>,<span class="number">102</span>,<span class="number">117</span>,<span class="number">110</span>,<span class="number">125</span></span><br><span class="line">&#125;;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">33</span>;i++)&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>,a[i]);</span><br><span class="line">  &#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>得到flag：<img src="https://img-blog.csdnimg.cn/db75251eeeb746c08175ff892513da2a.png" alt="在这里插入图片描述"></p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://dl.stream.qqmusic.qq.com/C400001OUQ6M2WeMRO.m4a?guid=8163272410&vkey=C6BFF6D45012D604172E87D65FF2374E512C935275765A15128BE77C8FB1CA7110313E815EB620C046DDFA4D4580F98DAE74B533BA12DACE&uin=1552804588&fromtag=120002"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HDCTF2019-Maze"><span class="toc-number">1.</span> <span class="toc-text">[HDCTF2019]Maze</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%86%8C"><span class="toc-number">2.</span> <span class="toc-text">相册</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MRCTF-R3-1ly-E2-R3verse"><span class="toc-number">3.</span> <span class="toc-text">MRCTF{@_R3@1ly_E2_R3verse!}</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GWCTF-2019-xxor"><span class="toc-number">4.</span> <span class="toc-text">[GWCTF 2019]xxor</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MRCTF2020-hello-world-go"><span class="toc-number">5.</span> <span class="toc-text">[MRCTF2020]hello_world_go</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WUSTCTF2020-level3"><span class="toc-number">6.</span> <span class="toc-text">[WUSTCTF2020]level3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FlareOn4-IgniteMe"><span class="toc-number">7.</span> <span class="toc-text">[FlareOn4]IgniteMe</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WUSTCTF2020-Cr0ssfun"><span class="toc-number">8.</span> <span class="toc-text">[WUSTCTF2020]Cr0ssfun</span></a></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/live2d-widget-model-koharu/assets/koharu.model.json"},"display":{"superSample":2,"width":200,"height":400,"position":"left","hOffset":5,"vOffset":-84},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- Google Analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=zhishaomang"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'zhishaomang');
+</script>
+<!-- End Google Analytics -->
+
+
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+<!--单击显示文字-->
+<script type="text/javascript" src="/js/click_show_text.js"></script>
+<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+<script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+<script type="text/javascript" src="/js/fireworks.js"></script>
+<!--浏览器搞笑标题-->
+<script type="text/javascript" src="/js/FunnyTitle.js"></script>

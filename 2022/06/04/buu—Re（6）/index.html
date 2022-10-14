@@ -1,0 +1,204 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>buu—Re（6） - 少莽</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="zhishaomang,"> 
+    <meta name="description" content="不一样的flag看主函数：一个迷宫题目。到最后面，走到#才是flag，走到1就停止了，所以0才是通道，1是墙壁，#是终点然后是25个字符，用5x5的地图得到flag
+SimpleRev看主函数：唯一,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="少莽" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="buu—Re（6） - 少莽"/>
+    <meta name="twitter:description" content="不一样的flag看主函数：一个迷宫题目。到最后面，走到#才是flag，走到1就停止了，所以0才是通道，1是墙壁，#是终点然后是25个字符，用5x5的地图得到flag
+SimpleRev看主函数：唯一,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="少莽"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="buu—Re（6） - 少莽"/>
+    <meta property="og:description" content="不一样的flag看主函数：一个迷宫题目。到最后面，走到#才是flag，走到1就停止了，所以0才是通道，1是墙壁，#是终点然后是25个字符，用5x5的地图得到flag
+SimpleRev看主函数：唯一,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">少莽</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">buu—Re（6）</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">buu—Re（6）</h1>
+        <div class="stuff">
+            <span>六月 04, 2022</span>
+            
+
+        </div>
+        <div class="content markdown">
+            <h2 id="不一样的flag"><a href="#不一样的flag" class="headerlink" title="不一样的flag"></a>不一样的flag</h2><p>看主函数：一个迷宫题目。到最后面，走到#才是flag，走到1就停止了，所以0才是通道，1是墙壁，#是终点<br><img src="https://img-blog.csdnimg.cn/064a47c24d7c4bb2854c991e2e4c0fca.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/0aa8788cd80a48bea1a0f62d208cc79b.png" alt="在这里插入图片描述"><br>然后是25个字符，用5x5的地图<br>得到flag<br><img src="https://img-blog.csdnimg.cn/9f301178ebf0407082405614fd82c995.png" alt="在这里插入图片描述"></p>
+<h2 id="SimpleRev"><a href="#SimpleRev" class="headerlink" title="SimpleRev"></a>SimpleRev</h2><p>看主函数：唯一特别的就是那个Decry函数了<br><img src="https://img-blog.csdnimg.cn/720c8ea1d5af4e19a1e1848575a561b6.png" alt="在这里插入图片描述"><br>看Decry函数：v9是因为小端存储所以是倒着的，后面的以此类推（理解不深）<br>key是key1跟src拼接的，之后经历了大小写的转换（固定用法）<br>text是join函数里面由key3跟v9拼接的<br>最后是text跟着str2数组进行比较。<br>str是由key数组经过加密过程得到的<br>这里v1是输入的flag<br><img src="https://img-blog.csdnimg.cn/86ecb5dc4b67496788712ee28ee812c8.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/4f9de5d7472b4801987d53a25943ce60.png" alt="在这里插入图片描述"><br>问题出在如何处理%26这个取余运算的逆运算：<br>这里我借鉴了别的大佬的wp：用j*26（遍历，相当于爆破吧，符合要求的字符串留下）    </p>
+<h2 id="GXYCTF2019-luck-guy"><a href="#GXYCTF2019-luck-guy" class="headerlink" title="[GXYCTF2019]luck_guy"></a>[GXYCTF2019]luck_guy</h2><p>看主函数：其中s的十六进制为：0x69,0x63,0x75,0x67,0x60,0x6f,0x66,0x7f,0<br>看switch的内容，条件是个随机数，那我们直接看case<br>梳理一下看的出来：先4再5最后1<br><img src="https://img-blog.csdnimg.cn/b5fd561cf77945e79364bf5132bf0030.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/b78e1239a50e43c5881ae12632bd560d.png" alt="在这里插入图片描述"><br>写出脚本：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> f1[] = &#123;<span class="number">0x69</span>,<span class="number">0x63</span>,<span class="number">0x75</span>,<span class="number">0x67</span>,<span class="number">0x60</span>,<span class="number">0x6f</span>,<span class="number">0x66</span>,<span class="number">0x7f</span>,<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="keyword">char</span> flag1 []=&#123;&#125;;</span><br><span class="line">    <span class="keyword">char</span> flag2 [] = &#123;&#125;;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">8</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i%<span class="number">2</span>==<span class="number">1</span>)&#123;</span><br><span class="line">            flag1[i] = f1[i] + i - <span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            &#123;flag1[i] = f1[i] + i - <span class="number">1</span>;&#125;</span><br><span class="line">        f1[i] = flag1[i]-i;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s&quot;</span>,f1);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>得到后半段：hate_me}</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://dl.stream.qqmusic.qq.com/C400001OUQ6M2WeMRO.m4a?guid=8163272410&vkey=C6BFF6D45012D604172E87D65FF2374E512C935275765A15128BE77C8FB1CA7110313E815EB620C046DDFA4D4580F98DAE74B533BA12DACE&uin=1552804588&fromtag=120002"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8D%E4%B8%80%E6%A0%B7%E7%9A%84flag"><span class="toc-number">1.</span> <span class="toc-text">不一样的flag</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SimpleRev"><span class="toc-number">2.</span> <span class="toc-text">SimpleRev</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GXYCTF2019-luck-guy"><span class="toc-number">3.</span> <span class="toc-text">[GXYCTF2019]luck_guy</span></a></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/live2d-widget-model-koharu/assets/koharu.model.json"},"display":{"superSample":2,"width":200,"height":400,"position":"left","hOffset":5,"vOffset":-84},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- Google Analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=zhishaomang"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'zhishaomang');
+</script>
+<!-- End Google Analytics -->
+
+
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+<!--单击显示文字-->
+<script type="text/javascript" src="/js/click_show_text.js"></script>
+<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+<script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+<script type="text/javascript" src="/js/fireworks.js"></script>
+<!--浏览器搞笑标题-->
+<script type="text/javascript" src="/js/FunnyTitle.js"></script>

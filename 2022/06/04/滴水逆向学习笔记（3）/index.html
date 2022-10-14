@@ -1,0 +1,202 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>滴水逆向学习笔记（3） - 少莽</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="zhishaomang,"> 
+    <meta name="description" content="只能push16位或者32位的寄存器或者内存。栈顶在push或者pop之后加几，取决于指令之后是多少位的寄存器或者内存，比如push eax ，ac转为a8，之后pop ax，a8转为aa
+push,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="少莽" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="滴水逆向学习笔记（3） - 少莽"/>
+    <meta name="twitter:description" content="只能push16位或者32位的寄存器或者内存。栈顶在push或者pop之后加几，取决于指令之后是多少位的寄存器或者内存，比如push eax ，ac转为a8，之后pop ax，a8转为aa
+push,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="少莽"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="滴水逆向学习笔记（3） - 少莽"/>
+    <meta property="og:description" content="只能push16位或者32位的寄存器或者内存。栈顶在push或者pop之后加几，取决于指令之后是多少位的寄存器或者内存，比如push eax ，ac转为a8，之后pop ax，a8转为aa
+push,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">少莽</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">滴水逆向学习笔记（3）</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">滴水逆向学习笔记（3）</h1>
+        <div class="stuff">
+            <span>六月 04, 2022</span>
+            
+
+        </div>
+        <div class="content markdown">
+            <p>只能push16位或者32位的寄存器或者内存。<br><img src="https://img-blog.csdnimg.cn/eaedec0ec5184bbab4a2858921af3a2f.png" alt="在这里插入图片描述"><br>栈顶在push或者pop之后加几，取决于指令之后是多少位的寄存器或者内存，比如push eax ，ac转为a8，之后pop ax，a8转为aa</p>
+<h2 id="pushad指令"><a href="#pushad指令" class="headerlink" title="pushad指令"></a>pushad指令</h2><p>ebp（栈底）esp（栈顶）的值不能乱改，因为里面的内存是系统分配的。<br><img src="https://img-blog.csdnimg.cn/b0172296f08b4b4aa94dbb87185427c5.png" alt="在这里插入图片描述"><br>将六个寄存器的值改的明显一点，使用pushad指令<br>    <img src="https://img-blog.csdnimg.cn/f0e4e57ca60a4dfdb3448eb4424bef19.png" alt="在这里插入图片描述"><br>pushad指令就将八个寄存器的值存入了堆栈中。然后我们就可以更改寄存器里的值，改完之后，通过popad还原原本寄存器里的值</p>
+<h2 id="标志寄存器"><a href="#标志寄存器" class="headerlink" title="标志寄存器"></a>标志寄存器</h2><p><img src="https://img-blog.csdnimg.cn/94a3bc014d3a4bf982f02b2d60891038.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br><strong>1、进位标志CF</strong><br>如果运算结果的最高位产生了一个进位或者借位，那么，其值为1，否则其值为0.<br><img src="https://img-blog.csdnimg.cn/c4794e39b54e4067b97cc3ce93d4b367.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_13,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>EFL转化为二进制：0000001000010010（能看到AF为1）<br><strong>2、奇偶标志PF</strong><br>用于反映运算结果中“1”的个数的奇偶性。如果“1”的个数为偶数，则PF的值为1，否则其值为0.<br><img src="https://img-blog.csdnimg.cn/f5f4cf0e3d934f47ae44051d8f6ef0d2.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_14,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>现在总数为6二进制就是0110，两个“1”是偶数，所以右边的p为1.<br><strong>3、辅助进位标志AF</strong><br>    在发生下列情况时，辅助进位标志AF的值变为1，否则为0<br>    （1）在字操作时，发生低字节向高字节进位或借位时；<br>    （2）在字节操作时，发生低4位向高4位进位或借位时；<br>    FFFF<strong>F</strong>FFF   FF<strong>F</strong>F   F<strong>F</strong>（也就是加粗的位置发生进位，AF就会变为1）<br>    <strong>4、零标志位ZF</strong><br>    用来反映运算结果是否为0。为0则ZF=1，反之为0<br>    XOR：异或，用XOR EAX,EAX 可以达到清零的作用<br>    MOV EAX,0也可以<br>    但是区别在于：MOV指令不修改寄存器的值,且不影响标志寄存器<br>    <strong>5、符号表示SF</strong><br>    反映运算结果的符号位，它与运算结果的最高位相同<br>    <strong>6、溢出标志OF</strong><br>    有符号数的溢出用OF，无符号数的溢出用CF<br>    溢出主要给有符号运算使用的，在有符号运算中，规律如下：<br>    正 + 正 = 正 如果结果有负数，说明溢出。<br>    负 + 负 = 负 如果结果有正数，说明溢出。<br>    正 + 负  永远都不会溢出<br>    <strong>ADC指令（带进位加法）</strong><br>格式：ADC R/M，R/M/IMM（R是寄存器M是内存IMM是立即数，两边不能都是内存，且宽度要一样）<br>也就是ADC X，Y结果为：X=X+Y+CF<br><img src="https://img-blog.csdnimg.cn/aa68ceff8b0544f0bbfba3942d25e08a.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>执行指令之后为B也就是9+1+1（CF）=B<br><strong>SBB指令（带借位减法）</strong><br>格式：SBB    R/M,R/M/IMM（两边不能都是内存，且宽度要一样）<br>SBB X，Y结果为X=X-Y-CF<br><strong>XCHG指令（交换指令）</strong><br>格式：XCHG R/M,R/M（两边不能都是内存，且宽度要一样）<br><strong>MOVS指令（移动数据）</strong><br>MOVS BYTE PTR DS:[EDI],BYTE PTR DS:[ESI] 简写：MOVSB<br>MOVS WORD PTR DS:[EDI],WORD PTR DS:[ESI] 简写：MOVSW<br>MOVS DWORD PTR DS:[EDI],DWORD PTR DS:[ESI] 简写：MOVSD<br><strong>7、方向标志DF</strong><br>当DF为0的时候：MOVS WORD PTR DS:[EDI],WORD PTR DS:[ESI],这两个寄存器的值各自加2。<br>当DF为1的时候：MOVS WORD PTR DS:[EDI],WORD PTR DS:[ESI],这两个寄存器的值各自减2.（DWORD的时候是-4或者+4）<br><strong>STOS指令</strong><br>将AL/AX/EAX的值存储到[EDI]指定的内存单元<br>STOS BYTE PTR ES:[EDI]    简称为STOSB<br>STOS WORD PTR ES:[EDI]    简称为STOSW<br>STOS DWORD PTR ES:[EDI]    简称为STOSD<br><strong>REP指令</strong><br>按计数寄存器（ECX）中指定的次数重复执行字符串命令<br>REP STOSD（不停的向EDI中存储EAX的值，+4或者-4每次存完都会向上或向下移动栈，DF=0就是加，反之减）<br><strong>JMP指令</strong><br>修改eip。只影响eip。<br>mov eip，寄存器/立即数  简写为 jmp 寄存器。立即数<br><strong>CALL指令</strong><br>我们执行一个：call 0x776bb82a<br><img src="https://img-blog.csdnimg.cn/d0fad0a17abc473c8f79ee67862ce2ba.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_19,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/60eaf3be085f4c12a6613c996c1b9991.png" alt="在这里插入图片描述"><br>执行完后我们发现堆栈窗口里所要执行的下一个指令正是反汇编窗口call指令下面的指令（776bb17）（那为什么是17呢，12+5才是17，这从哪里来的呢，答：看12里面E8 13 00 00 00 一共五个字节，所以是12+5=17）17下面的18也是这个道理。<br><img src="https://img-blog.csdnimg.cn/968d57a8e25748cea343aba953790116.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>JMP和CALL相同点：都会改变eip的值<br>不同点：call会把下一行的指令的地址压到栈里<br>call指令就是出去旅游，还会回来（有返回地址<br>jm指令就是云游，可能不回来了<br>ret相当于pop eip<br><img src="https://img-blog.csdnimg.cn/677543ff9918464eb46bc95722fedc56.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br><strong>下断点：F2</strong><br><strong>CMP指令</strong><br>比较两个操作数，相当于sub指令，但是相减的结果不保存到第一个操作数中，而是根据相减的结果改变零标志位，所以当两个操作数相等时，零标志位是1（Z位为1）第一个操作数小于第二个观察S位<br>指令格式：CMP R/M，R/M/IMM（R是寄存器M是内存IMM是立即数，不能同时为内存）<br>CMP只修改标志寄存器的值<br><strong>TEST指令</strong><br>指令格式：TEST R/M，R/M/IMM<br>一定程度上与CMP指令相似，两个数值进行与操作，结果不保存，但会改变相应标志位<br>常见用法：查看某寄存器里的值是否为0<br><strong>JCC只认识标志寄存器</strong><br>1、JZ，JE（jump if equal）  结果为零则跳转（相等时跳转  ZF=1<br>2、JNE，JNZ（jump not zero）  结果不为零则跳转（不相等时跳转 ZF=0<br>3、JS 结果为负则跳转  SF=1<br>4、JNS 结果不为负则跳转  SF=0<br>5、JP，JPE  结果中1的个数为偶数则跳转  PF=1<br>6、JNP、JP0<br>7、JO    结果溢出了则跳转    OF=1<br>8、JNO  结果没有溢出则跳转  OF=0<br>9、JB、JNAE  小于则跳转（无符号数）   CF=1<br>10、JNB、JAE   大于等于则跳转（无符号数）  CF=0<br>11、JBE、JNA  小于等于则跳转（无符号数）  CF=1 or ZF=1<br>12、JNBE、JA  大于则跳转（无符号数）    CF=0 and ZF=0<br>13、JL、JNGE  小于则跳转（有符号数）   SF ≠ OF<br>14、JNL、JGE  大于等于则跳转（有符号数） SF=OF<br>15、JLE、JNG  小于等于则跳转（有符号数） ZF=1 or SF≠OF<br>16、 JNLB、JG  大于则跳转（有符号数）  ZF=0 and SF=OF</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://dl.stream.qqmusic.qq.com/C400001OUQ6M2WeMRO.m4a?guid=8163272410&vkey=C6BFF6D45012D604172E87D65FF2374E512C935275765A15128BE77C8FB1CA7110313E815EB620C046DDFA4D4580F98DAE74B533BA12DACE&uin=1552804588&fromtag=120002"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#pushad%E6%8C%87%E4%BB%A4"><span class="toc-number">1.</span> <span class="toc-text">pushad指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%87%E5%BF%97%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-number">2.</span> <span class="toc-text">标志寄存器</span></a></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/live2d-widget-model-koharu/assets/koharu.model.json"},"display":{"superSample":2,"width":200,"height":400,"position":"left","hOffset":5,"vOffset":-84},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- Google Analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=zhishaomang"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'zhishaomang');
+</script>
+<!-- End Google Analytics -->
+
+
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+<!--单击显示文字-->
+<script type="text/javascript" src="/js/click_show_text.js"></script>
+<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+<script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+<script type="text/javascript" src="/js/fireworks.js"></script>
+<!--浏览器搞笑标题-->
+<script type="text/javascript" src="/js/FunnyTitle.js"></script>

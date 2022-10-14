@@ -1,0 +1,208 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ReW_p - 少莽</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="zhishaomang,"> 
+    <meta name="description" content="经典exe：v18是我们输入的；v5是那一串带点的；v0是我们输入的字符串长度；看函数sub_4116c7：每三个一组，取前六位、取后两位、取前两位，和0x30、f、3f进行与操作。这么熟悉的操作，,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="少莽" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="ReW_p - 少莽"/>
+    <meta name="twitter:description" content="经典exe：v18是我们输入的；v5是那一串带点的；v0是我们输入的字符串长度；看函数sub_4116c7：每三个一组，取前六位、取后两位、取前两位，和0x30、f、3f进行与操作。这么熟悉的操作，,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="少莽"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="ReW_p - 少莽"/>
+    <meta property="og:description" content="经典exe：v18是我们输入的；v5是那一串带点的；v0是我们输入的字符串长度；看函数sub_4116c7：每三个一组，取前六位、取后两位、取前两位，和0x30、f、3f进行与操作。这么熟悉的操作，,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">少莽</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">ReW_p</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">ReW_p</h1>
+        <div class="stuff">
+            <span>六月 04, 2022</span>
+            
+
+        </div>
+        <div class="content markdown">
+            <h2 id="经典exe"><a href="#经典exe" class="headerlink" title="经典exe"></a>经典exe</h2><p>：<br><img src="https://img-blog.csdnimg.cn/2ff636f3e7ed480587769338ef3cafff.png" alt="在这里插入图片描述"><br>v18是我们输入的；v5是那一串带点的；v0是我们输入的字符串长度；<br><strong>看函数sub_4116c7：</strong><br><img src="https://img-blog.csdnimg.cn/8ceed8e35af24fe3884d27dc20ae00bd.png" alt="在这里插入图片描述"><br>每三个一组，取前六位、取后两位、取前两位，和0x30、f、3f进行与操作。这么熟悉的操作，想起了base64加密。再看看加密字符串：</p>
+<p><img src="https://img-blog.csdnimg.cn/c00e4661412e4e6189d112a4733b876d.png" alt="在这里插入图片描述"><br>能够确定，是base64加密<br>然后往下看<br>v1是加密后字符串的长度；<br><strong>然后进入函数sub_411389：</strong><br><img src="https://img-blog.csdnimg.cn/50efa9a81d074c1b9fd061e9ebc1ce10.png" alt="在这里插入图片描述"><br>依旧是加密，只不过表的最后两位给换了。<br>往下看函数sub_411023：<br><img src="https://img-blog.csdnimg.cn/96361a31bc2a48e3adf9eeafd419bd86.png" alt="在这里插入图片描述"><br>就是给加密后的字符串加点，加到第一位:a2的第一位是点，然后a2的第二位是a1的第一位，然后依次换位。<br>接下来的函数也是加点，只不过加到了第22位上<br>接下来的函数运用的是爆破思想：<br>个人理解：首先是可见字符串的ASCII码值，x代表ASCII码值，a代表数组1，b代表数组2，c代表数组3<br>如果a的第一位的x对应b的第一位，那么就让c的第一位赋值为x<br>脚本：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> Str[<span class="number">100</span>];</span><br><span class="line">    <span class="keyword">int</span> a[<span class="number">100</span>];</span><br><span class="line">    <span class="keyword">char</span> a1[]=<span class="string">&quot;.W1BqthGbfGBqoXBmVZRQd.W5VoXNJcMR6XNBxoM5FoFDucMWyWNfBpXNAoF0.&quot;</span>;</span><br><span class="line">    <span class="keyword">int</span> a2 = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">int</span> len = <span class="built_in">strlen</span>(a1);</span><br><span class="line">     <span class="keyword">for</span> ( <span class="keyword">int</span> i = <span class="number">0</span>;i&lt;len ; i++ )</span><br><span class="line">  &#123;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>;j &lt; <span class="number">128</span>;j++)&#123;</span><br><span class="line">            a[i] = j;</span><br><span class="line">    <span class="keyword">if</span> ( a[i] &lt; <span class="number">65</span> || a[i] &gt; <span class="number">90</span> )<span class="comment">//如果a[i]的值小于65或者大于90进去继续</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">if</span> ( a[i] &gt;= <span class="number">97</span> &amp;&amp; a[i] &lt;= <span class="number">122</span> )<span class="comment">//如果值在（97,122）之间正好是25小于26，那么ASCII值加上97，变成大写的26个字母其中之一</span></span><br><span class="line">        a[i] = (a[i] + a2 - <span class="number">97</span>) % <span class="number">26</span> + <span class="number">97</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">      a[i] = (a[i] + a2 - <span class="number">65</span>) % <span class="number">26</span> + <span class="number">65</span>;<span class="comment">//如果值在（65,90）之间正好是25小于26，那么ASCII值加上65，变成小写的26个字母其中之一</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>((<span class="keyword">char</span>)a[i] == a1[i])&#123;</span><br><span class="line">        Str[i] = j;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>,Str[i]);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/d381124f973c483c88dfb93126a87580.png" alt="在这里插入图片描述"></p>
+<p>解出来的字符串去点然后进行两次的base64解密即可</p>
+<h2 id="经典base"><a href="#经典base" class="headerlink" title="经典base"></a>经典base</h2><p><img src="https://img-blog.csdnimg.cn/a8efe5c504994831920037e2f407207d.png" alt="在这里插入图片描述"><br>查看伪代码，我们发现有一个base58加密（Base58 采用数字、大写字母、小写字母，去除歧义字符 0（零）、O（大写字母 O）、I（大写字母i）、l（小写字母L），总计58个字符作为编码的字母表也就是：123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz）<br>那我们直接用icyberchef：<br><img src="https://img-blog.csdnimg.cn/d3e09797e1b24334bcc3a03df8e09a22.png" alt="在这里插入图片描述"><br>从base58转换为字符串</p>
+<h2 id="经典re1"><a href="#经典re1" class="headerlink" title="经典re1"></a>经典re1</h2><p>用x64dbg打开之后，运行，然后右键&gt;搜索&gt;当前区域&gt;字符串，然后ctrl+f搜索flag找到<br><img src="https://img-blog.csdnimg.cn/c3b40f27c24d415b961f8e391eb0f683.png" alt="在这里插入图片描述"></p>
+<h2 id="经典re2"><a href="#经典re2" class="headerlink" title="经典re2"></a>经典re2</h2><p>用ida打开<br><img src="https://img-blog.csdnimg.cn/cdc8b55069aa443d9c1d7cc7f5794df4.png" alt="在这里插入图片描述"><br>首先我们输入v7，然后将v7的值赋给v10，然后进入while循环，过程是把v7的值每一个都与7异或，然后退出循环，如果v8和那个unk函数里的值一样就是yes<br>那么我们要做的就是找到unk函数里的值，然后再每个值异或7即可<br>然后进入unk函数<br><img src="https://img-blog.csdnimg.cn/8d31c00ed3d642ac81f8f3a69c28249c.png" alt="在这里插入图片描述"><br>发现什么都没有，这需要动态调试了，unk的值应该是程序运行到某个地方然后才会跑出来值<br>关于ida的动调：首先找一个合适的调试器<br><img src="https://img-blog.csdnimg.cn/3551ce172537404bb758d280c8b60163.png" alt="在这里插入图片描述"><br>然后文件目录下找到dbgsrv<br><img src="https://img-blog.csdnimg.cn/e69a157fd90847a280c1a6362588a0a0.png" alt="在这里插入图片描述"><br>我们用的是64位的<br><img src="https://img-blog.csdnimg.cn/81ee2668222247ec8ed42c47c03f1752.png" alt="在这里插入图片描述"><br>把端口、ip填进去<br><img src="https://img-blog.csdnimg.cn/d53419bcc1414309885e54c866adc249.png" alt="在这里插入图片描述"><br>开始调试<br><img src="https://img-blog.csdnimg.cn/bc30f144537e44e8b1b42309291e40d2.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/33d2f0efad854cd59953ef8da78ea36b.png" alt="在这里插入图片描述"><br>找到这一串字符串，发现是他们进入到unk函数里<br>在ida里面，进入unk函数<br><img src="https://img-blog.csdnimg.cn/f60d1679b7cd41d8ae11cda8bc2df325.png" alt="在这里插入图片描述"><br>可以发现mov了很多值进入函数里，我们用f5查看代码<br><img src="https://img-blog.csdnimg.cn/b0eaf4ffdd574d30a88a5fad95ece6e4.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/9766577d82664b89abe0234787bfef73.png" alt="在这里插入图片描述"><br>但不造我为啥后面没有字符串。。。。。<br>然后写一个简简单单的脚本得到flag<br><img src="https://img-blog.csdnimg.cn/949001b8287541e0a8feba881f02998a.png" alt="在这里插入图片描述"></p>
+<h2 id="squid"><a href="#squid" class="headerlink" title="squid"></a>squid</h2><p>放到linux里面运行<br><img src="https://img-blog.csdnimg.cn/bc88ece3202a40458bc648d96e2bbe40.png" alt="在这里插入图片描述"><br>拉入ida，shift+f12查看字符串，发现有很多py开头的<br><img src="https://img-blog.csdnimg.cn/8c4faafa1a784db091c8438512bf2846.png" alt="在这里插入图片描述"><br>意味着是一个python文件被打包成了exe文件<br>用pyinstxtractor.py文件<br>通过readme.txt获得使用方法<br><img src="https://img-blog.csdnimg.cn/8dd42f1c3c7e44fdb590394609f368f6.png" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/aca929f2148e472fa18f7606e01a9d9c.png" alt="在这里插入图片描述"><br>成功解包<br><img src="https://img-blog.csdnimg.cn/3a9ccf8bd8c045ee9a03b4ee571771e4.png" alt="在这里插入图片描述"><br>捣鼓了半天，根据cmd里面的提示发现，说是要用python3.6去解包，于是我把python版本改为3.6,然后解包，PYZ-00.pyz_extracted文件夹里才有东西了。<br>之后把struct里面的文件头给pyc补充上，然后放到在线python反编译得到<br><img src="https://img-blog.csdnimg.cn/fc6940b7f09749fd802c46713a411c2a.png" alt="在这里插入图片描述"><br>打开PCcharm运行得到<br><img src="https://img-blog.csdnimg.cn/092839ff17804a2886e53e2662600690.png" alt="在这里插入图片描述"></p>
+<h2 id="cheems"><a href="#cheems" class="headerlink" title="cheems"></a>cheems</h2><p>先查壳<br><img src="https://img-blog.csdnimg.cn/baafb071a9f04f958bc39bf24cc9e13f.png" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/4dd5c15d87a44ae895d625a77eb00c58.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/ea416b5ccbaa40e28f89293c1e31bbe7.png" alt="在这里插入图片描述"><br>ida里面也找不到字符串和函数<br>然后可以看到是upx<br><img src="https://img-blog.csdnimg.cn/9f336b70c37f4a628517eb27264ce461.png" alt="在这里插入图片描述"><br>但放到010发现是cpx，怪了，手动改改<br><img src="https://img-blog.csdnimg.cn/0942132e06974ef2b1bd1e7403b2bb35.png" alt="在这里插入图片描述"><br>可以了<br>然后ida找字符串<br><img src="https://img-blog.csdnimg.cn/7147bda6cb714c52971be86b0ef2ee01.png" alt="在这里插入图片描述"></p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://dl.stream.qqmusic.qq.com/C400001OUQ6M2WeMRO.m4a?guid=8163272410&vkey=C6BFF6D45012D604172E87D65FF2374E512C935275765A15128BE77C8FB1CA7110313E815EB620C046DDFA4D4580F98DAE74B533BA12DACE&uin=1552804588&fromtag=120002"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%8F%E5%85%B8exe"><span class="toc-number">1.</span> <span class="toc-text">经典exe</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%8F%E5%85%B8base"><span class="toc-number">2.</span> <span class="toc-text">经典base</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%8F%E5%85%B8re1"><span class="toc-number">3.</span> <span class="toc-text">经典re1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%8F%E5%85%B8re2"><span class="toc-number">4.</span> <span class="toc-text">经典re2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#squid"><span class="toc-number">5.</span> <span class="toc-text">squid</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cheems"><span class="toc-number">6.</span> <span class="toc-text">cheems</span></a></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/live2d-widget-model-koharu/assets/koharu.model.json"},"display":{"superSample":2,"width":200,"height":400,"position":"left","hOffset":5,"vOffset":-84},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- Google Analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=zhishaomang"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'zhishaomang');
+</script>
+<!-- End Google Analytics -->
+
+
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+<!--单击显示文字-->
+<script type="text/javascript" src="/js/click_show_text.js"></script>
+<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+<script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+<script type="text/javascript" src="/js/fireworks.js"></script>
+<!--浏览器搞笑标题-->
+<script type="text/javascript" src="/js/FunnyTitle.js"></script>

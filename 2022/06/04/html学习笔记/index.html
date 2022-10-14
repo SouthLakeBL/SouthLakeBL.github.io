@@ -1,0 +1,415 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>css学习笔记 - 少莽</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="zhishaomang,"> 
+    <meta name="description" content="一 html是什么:超文本标记语言（Hyper Text Markup Language）
+通过一系列符合html的标签就可以在网页展示图像、声音、图形、文字、表格、链接等
+html文档又称为dom,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="少莽" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="css学习笔记 - 少莽"/>
+    <meta name="twitter:description" content="一 html是什么:超文本标记语言（Hyper Text Markup Language）
+通过一系列符合html的标签就可以在网页展示图像、声音、图形、文字、表格、链接等
+html文档又称为dom,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="少莽"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="css学习笔记 - 少莽"/>
+    <meta property="og:description" content="一 html是什么:超文本标记语言（Hyper Text Markup Language）
+通过一系列符合html的标签就可以在网页展示图像、声音、图形、文字、表格、链接等
+html文档又称为dom,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">少莽</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">css学习笔记</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">css学习笔记</h1>
+        <div class="stuff">
+            <span>六月 04, 2022</span>
+            
+
+        </div>
+        <div class="content markdown">
+            <h1 id="一-html是什么"><a href="#一-html是什么" class="headerlink" title="一 html是什么:"></a>一 html是什么:</h1><p>超文本标记语言（Hyper Text Markup Language）</p>
+<p>通过一系列符合html的标签就可以在网页展示图像、声音、图形、文字、表格、链接等</p>
+<p>html文档又称为dom文档 ：</p>
+<p><img src="https://img-blog.csdnimg.cn/a32630a1be62410d8860f590230aab2e.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p>由一组一组的标签组成的文档（有层级关系，包含关系）</p>
+<p> <img src="https://img-blog.csdnimg.cn/9e0ca3a39a044a0abdd9191d23250528.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_18,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p>head标签定义的是元信息（是描述信息的信息，给浏览器、搜索引擎看的，而不是给人看的-。-，body标签里面写的是给人看的）</p>
+<p>meta标签共有两个属性。</p>
+<p>1、http-equiv属性</p>
+<p>2、name属性</p>
+<p>其中name属性主要有五个参数:</p>
+<p>1、在移动端浏览器上禁用缩放功能，用户只能滚动观看。</p>
+<p>2、给搜索引擎看当前页面的主要内容。</p>
+<p>3、给搜索引擎看当前页面的关键词。</p>
+<p>4、告诉搜索引擎标注网站作者是谁。</p>
+<p>5、标注网站的版权信息</p>
+<h1 id="二-html标签"><a href="#二-html标签" class="headerlink" title="二 html标签:"></a>二 html标签:</h1><h2 id="keywords标签格式：meta-name-keywords-content-XXX"><a href="#keywords标签格式：meta-name-keywords-content-XXX" class="headerlink" title="keywords标签格式：meta name=keywords content=XXX"></a><strong>keywords标签格式：</strong>meta name=keywords content=XXX</h2><p>keywords就是关键词元信息，让搜索引擎看的，比如下图：</p>
+<p><img src="https://img-blog.csdnimg.cn/2026da9009bb4a82a1b2a7f8efc00fd7.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p> 微信的关键词就有：微信网页版&#44;weixin web&#44;wechat&#44;微信 pc&#44;微信电脑版&#44;wechat web&#44;微信 web&#44;微信电脑（在网页里搜索以上关键词就能找到这个网页）</p>
+<h2 id="description标签格式：meta-name-description-content-XXX"><a href="#description标签格式：meta-name-description-content-XXX" class="headerlink" title="description标签格式：meta name=description content=XXX"></a><strong>description标签格式：</strong>meta name=description content=XXX</h2><p><img src="https://img-blog.csdnimg.cn/f9e28f972d3a459c96983f7b88bdc43f.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p>description就是对当前网页的描述，告诉用户这个网页是干啥的。</p>
+<h2 id="video标签格式："><a href="#video标签格式：" class="headerlink" title="video标签格式："></a><strong>video标签格式：</strong></h2><p><img src="https://img-blog.csdnimg.cn/3459b2a134e34553b0fd7891ca8ae5c8.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<h2 id="audio标签格式："><a href="#audio标签格式：" class="headerlink" title="audio标签格式："></a><strong>audio标签格式：</strong></h2><p> <img src="https://img-blog.csdnimg.cn/fdc9b7c0879d4619854d066b3aa9b262.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_13,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p> 我们可以去网页上下载点音乐，比如找到网易云音乐，点开一首歌，右键找到检查。</p>
+<p><img src="https://img-blog.csdnimg.cn/c8017cd8939e4f14b2410dd50a24cb43.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p> 找到网络，ctrl+r刷新一下（音乐文件格式是mp4、mp3或者m4a，好像网易云普遍用的是m4a）</p>
+<p><img src="https://img-blog.csdnimg.cn/d39b75ac5ac347378b903b2489d65076.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p> 右键“在新标签页中打开”就能下载音乐了。</p>
+<p>（像qq音乐要vip的音乐，试听30s，而从这里下载可以听1分钟，也没啥大差好像。。）</p>
+<p> 将下载好的音乐文件名称改为”music.m4a”,然后就能运行了</p>
+<p><img src="https://img-blog.csdnimg.cn/964425d0607647eca48f8f932463cde2.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<h2 id="img标签"><a href="#img标签" class="headerlink" title="img标签:"></a><strong>img标签:</strong></h2><p> <strong>格式一:</strong><img src="https://img-blog.csdnimg.cn/6a6c94a092674ba0aec045f85124a327.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p> <img src="https://img-blog.csdnimg.cn/1fef0239db6f41b5a27a6ef609b4d66d.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_10,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p><img src="https://img-blog.csdnimg.cn/adc5416a1434482489c7bdadbe2b2533.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p> 图片已经是进入到网页里了,但就是没有设置大小.</p>
+<p><strong>格式二:</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/0f384c2a6b224bc58d89e2e93f26e4c6.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p> <img src="https://img-blog.csdnimg.cn/0ef90f0d348646c0af4200dd6caaa999.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_8,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p> 上图可以看出”..”代表”上一级目录”.</p>
+<p>具体作用如下图:</p>
+<p><img src="https://img-blog.csdnimg.cn/8546ff4f770442a1bccde05c358ba31b.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_5,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑    图片文档和html文档是平级,而在文档里的html需要用到在图片文档里的图片,那么就需要进入上一级(也就是桌面这一级,因为和html同级是没有图片文档的)也就是桌面上,才能找到图片文档,这样就能用图片文档里的图片了.</p>
+<p> <strong>格式三:</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/b4a488c3bc0b4ace8d14100890876bbc.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p> <img src="https://img-blog.csdnimg.cn/21c753f6d3ee4a14b6ffb907d937c602.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p> <img src="https://img-blog.csdnimg.cn/553b4b41d1a9465c8fc53e63a3999cec.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p> 然后我们右键打开”检查”,找到网络,ctrl+r刷新,找到我们所引用的网络图片,在其标头上我们就能看到此图片的url地址:</p>
+<p><img src="https://img-blog.csdnimg.cn/90f92df465054e7987a611acd5fe5349.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p><strong>格式四:</strong></p>
+<p> <img src="https://img-blog.csdnimg.cn/21ed1a957a6041889d2d9991df3a8f7d.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_17,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p> 那么什么是图片的绝对路径呢?   很简单我们上面除了格式三,其他的都是相对路径,所以:</p>
+<p><img src="https://img-blog.csdnimg.cn/f975e44ca4474bd3850f08db7fb29824.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_15,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p> 绝对路径就是图片属性里面的位置.(不过在位置里面的单斜杠<strong>建议</strong>用两个<strong>单斜杠</strong>或者一个<strong>反斜杠</strong>)</p>
+<p> 用本地绝对路径我们还可以写成:<strong><img src="file:///C:\Users\hua'wei\Desktop"></strong></p>
+<p>file(协议名)后面的第三个”/“表示定位.</p>
+<p> <strong>格式五:</strong></p>
+<p> <img src="https://img-blog.csdnimg.cn/34c765463636446eb9720a573a2a0723.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_14,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p>这样做的益处是:你想给别人一个网页,网页中还有图片,但是图片需要别人下载才或者自己指定一个网址,而这种方法就只需将图片转为base64码,cv到图片源里面就行.</p>
+<p>而这样做的缺点就是:图片不好维护,改图片大小什么的需要转为base64文本再去修改.</p>
+<h2 id="a标签-超链接"><a href="#a标签-超链接" class="headerlink" title="a标签,超链接:"></a><strong>a标签,超链接:</strong></h2><p><strong>前情提要:</strong></p>
+<p><a> 标签的 href 属性用于指定超链接目标的 URL。</p>
+<p>href 属性的值可以是任何有效文档的相对或绝对 URL，包括片段标识符和 JavaScript 代码段。如果用户选择了 <a> 标签中的内容，那么浏览器会尝试检索并显示 href 属性指定的 URL 所表示的文档，或者执行 JavaScript 表达式、方法和函数的列表。</p>
+<p><a> 标签中必须提供 href 属性或 name 属性。</p>
+<p><strong>格式一:</strong> </p>
+<p><img src="https://img-blog.csdnimg.cn/a2f741ffad13436e9107f0decaa1a278.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p> <img src="https://img-blog.csdnimg.cn/00f45036ff7e41ddb71018f27dac1f3d.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p> <img src="https://img-blog.csdnimg.cn/c9aa38d6666048e990883c2ec6e2cf94.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_12,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p> 这样是当前页面转出,我们可以加个target = “blank”,变为新建页面转出.</p>
+<p><img src="https://img-blog.csdnimg.cn/464f549a46944812bb876ede59eca5fd.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p><img src="https://img-blog.csdnimg.cn/58b4e8b9a2a94cf29da9ddb72ae4821f.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p> 也可以跳转进入本地的html文件中去:</p>
+<p><img src="https://img-blog.csdnimg.cn/e4a7202acd924f40a3a4046fe40f2869.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p><img src="https://img-blog.csdnimg.cn/5ddc64ea670e4557a9f4aeeda8fb5148.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p> <strong>格式二:</strong></p>
+<p> <img src="https://img-blog.csdnimg.cn/9bf9b51a6e1b4827a9554570e6988337.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p> <img src="https://img-blog.csdnimg.cn/6e2d7919f6b445b697fe6ef52667341b.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p> 这样就能发送文件了</p>
+<p><strong>格式三:</strong></p>
+<ol>
+<li><strong>HTML</strong> 定义了网页的内容</li>
+<li><strong>CSS</strong> 描述了网页的布局</li>
+<li><strong>JavaScript</strong> 控制了网页的行为</li>
+</ol>
+<p> 下面的Javascript就是网页的提醒信息.</p>
+<p> <img src="https://img-blog.csdnimg.cn/f22f2790c34f4c6f8cadf9ab443b474f.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p> <img src="https://img-blog.csdnimg.cn/41aad14ea38a4d00b50a42961bf16ff5.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p><strong>锚标记:</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/7dac21c0cb3a4f38b80d9cf5fb0c4c6d.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p>div标签简单来说就是显示文本的</p>
+<p>href里面有个#idtest,”#”的作用就是定位div里面id的内容,让用户能够轻易的找到div里的文本,所以我们点击网页里的”点我”,网页会自动找到”定位”这个文本.</p>
+<h2 id="h标签："><a href="#h标签：" class="headerlink" title="h标签："></a><strong>h标签：</strong></h2><p><img src="https://img-blog.csdnimg.cn/093d14f2c39c412dad2529bc581e7037.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p>下图网页效果：</p>
+<p>  <img src="https://img-blog.csdnimg.cn/cd1d0fbf9ed54bb096e696e22e3de1c5.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_7,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p> 每个h都是字的大小，最多到6，超过的h就是正常字的大小</p>
+<h2 id="meta-keywords标签："><a href="#meta-keywords标签：" class="headerlink" title="meta keywords标签："></a><strong>meta keywords标签：</strong></h2><p><img src="https://img-blog.csdnimg.cn/e9ab75ffd21c4151b1ab0e6f3f13287c.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p>意思为：在网页搜索有关content的内容，搜索引擎就会将这个网页给用户（排名那就另说了）</p>
+<h2 id="meta-description标签："><a href="#meta-description标签：" class="headerlink" title="meta description标签："></a>meta description标签：</h2><p> <img src="https://img-blog.csdnimg.cn/c4775cf9ad1d44db98f17ffe2c977293.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p><img src="https://img-blog.csdnimg.cn/90f14d8883f44927bfb1a76e5b156ee9.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p> description里的内容会显示在搜索的结果上</p>
+<h2 id="div标签："><a href="#div标签：" class="headerlink" title="div标签："></a><strong>div标签：</strong></h2><p> <img src="https://img-blog.csdnimg.cn/fa761fa011b54d689d8ca347168f4f46.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_10,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p> div标签就是输出文字等元素，用css的话就能更好的发挥其作用。</p>
+<p><img src="https://img-blog.csdnimg.cn/e5331f2b95b6490fb76f7071ad8f6a25.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p><img src="https://img-blog.csdnimg.cn/edbcdb5f433841c5a29f68916cf036f5.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_18,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p><img src="https://img-blog.csdnimg.cn/a208b932fba344f49ab869da989704c6.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑       等学过css就能更好的利用了</p>
+<h2 id="span标签："><a href="#span标签：" class="headerlink" title="span标签："></a><strong>span标签：</strong></h2><p> <img src="https://img-blog.csdnimg.cn/51049b24d2194780b66cedca0c4e3b48.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p> span标签用法几乎跟div标签一样，但span标签无法换行</p>
+<p> <img src="https://img-blog.csdnimg.cn/33bacccab7b34bafae93aae281e3260c.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p>span也能换颜色<img src="https://img-blog.csdnimg.cn/eb8c674fb4684a11bf7d3f8c37c0b90f.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑 </p>
+<h2 id="pre标签："><a href="#pre标签：" class="headerlink" title="pre标签："></a><strong>pre标签：</strong></h2><p>将里面的空格换行一个不落的显示出来， “&amp;nbsp；”在html里面是一个空格。</p>
+<p> <img src="https://img-blog.csdnimg.cn/d90a5a4d7a544401952e654652661c33.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p><img src="https://img-blog.csdnimg.cn/376a34fd3a774c789da461cf9456e2a9.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_7,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<h2 id="p标签："><a href="#p标签：" class="headerlink" title="p标签："></a><strong>p标签：</strong></h2><p>代表段落的意思，</br>是换行</p>
+<p><img src="https://img-blog.csdnimg.cn/2c7f0046b24a4635b9d78e775a127d33.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p><img src="https://img-blog.csdnimg.cn/1c6a899173fc4753b30b248d58bd4955.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_6,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<h2 id="centre标签："><a href="#centre标签：" class="headerlink" title="centre标签："></a>centre标签：</h2><p>就是让标签里的内容居中</p>
+<p><img src="https://img-blog.csdnimg.cn/279c57f65ac64d4dae28e824d31cce3c.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p> <img src="https://img-blog.csdnimg.cn/9afa5e37644d431fba7f6f01ca4cb863.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_18,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<h2 id="form标签："><a href="#form标签：" class="headerlink" title="form标签："></a><strong>form标签：</strong></h2><p><input type="text"/>:网页中会出现文本框<img src="https://img-blog.csdnimg.cn/99b2b48db70d4bf0b41e9e4f629d9d4b.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p><input type="button" value="我是按钮"/>：网页会出现一个按钮<img src="https://img-blog.csdnimg.cn/1959558fa0fe45daa49efd096e3baeb4.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p> <input type="submit" value="我也是按钮"/>：也会出现一个按钮<img src="https://img-blog.csdnimg.cn/4f9408fc027b4207965f329e6e5b85a5.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p> 而sunmit按钮在form标签里，点击之后，会自动将form表单里面所有内容提交给服务器。但如果是button，我们需要自己给button定义事件。</p>
+<p> 还有一种按钮<button>我还是按钮</button>：<img src="https://img-blog.csdnimg.cn/c4bb870f86c14c529a4501116ed53856.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_12,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p> 我们在浏览器中输入数据，它会显示在网址当中，这是get方式传参：<img src="https://img-blog.csdnimg.cn/90cf9ef954144f02a95f16d85f02a9ff.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p> <img src="https://img-blog.csdnimg.cn/b3c367e797c34c5dbac0f6ee21ff75f3.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p> 上图是搜索后的网址，问号前面是网址（url）后面是参数（参数名=参数值），参数之间用&amp;符号隔开，问号隔开url和参数。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;form&gt;</span><br><span class="line">action=&quot;https://www.baidu.com/s&quot;  method=&quot;get&quot;</span><br><span class="line">&lt;input type=&quot;text&quot;  name=&quot;wd&quot;/&gt;</span><br><span class="line">&lt;input type=&quot;submit&quot; value=&quot;点击访问百度&quot;/&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p><img src="https://img-blog.csdnimg.cn/b60e8c1d557e48abb462aeb2e6bfa533.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_12,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p> from标签里是以wd这个参数名用get方式传参传到百度里</p>
+<h2 id="其他标签："><a href="#其他标签：" class="headerlink" title="其他标签："></a><strong>其他标签：</strong></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;text&quot;  placeholder=&quot;请输入文字&quot;/&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p> <img src="https://img-blog.csdnimg.cn/c53fe1a16982442cb42942f1c1daa40b.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;password&quot;/&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p><img src="https://img-blog.csdnimg.cn/1cddd27a655d4cc1a776792bc3c826ee.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;hidden&quot;  value=&quot;你能看见我吗？？？&quot;/&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p><img src="https://img-blog.csdnimg.cn/7df5ecc469cb4111b9397aaa274c9180.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_18,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p> hidden的作用是隐藏域，后台传参，不想让用户看到，这样内存还在使用，用户也看不到。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;text&quot; type=&quot;hidden&quot; value=&quot;你能看见我吗？？？&quot;/&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p><img src="https://img-blog.csdnimg.cn/918d61475ca147668584ba16b5d747a7.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p> 两个相同类型的标签，只会显示第一个。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;checkbox&quot;/&gt; one</span><br><span class="line">&lt;input type=&quot;checkbos&quot;/&gt; two</span><br></pre></td></tr></table></figure>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p><img src="https://img-blog.csdnimg.cn/0206ed5293274ca3b2b1085e7fb38d62.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑     这是复选框</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;radio&quot; name=&quot;sex&quot;/&gt;male</span><br><span class="line">&lt;input type=&quot;radio&quot; name=&quot;sex/&gt;female</span><br></pre></td></tr></table></figure>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p><img src="https://img-blog.csdnimg.cn/fc414f652ef24695827ce66d569f8c49.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑   单选</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;radio&quot; name=&quot;sex&quot; checked /&gt;male</span><br><span class="line">&lt;input type=&quot;radio&quot; name=&quot;sex/&gt;female</span><br></pre></td></tr></table></figure>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p> 加一个checked，网页会默认选择加checked的选项。</p>
+<h2 id="select标签："><a href="#select标签：" class="headerlink" title="select标签："></a><strong>select标签：</strong></h2><p>下拉选择菜单 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;select&gt;</span><br><span class="line">&lt;option&gt;请选择&lt;/option&gt;</span><br><span class="line">&lt;option value=&quot;3&quot;&gt;1&lt;/option&gt;</span><br><span class="line">&lt;option value=&quot;4&quot;&gt;2&lt;/option&gt;</span><br><span class="line">&lt;option&gt;3&lt;/option&gt;</span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p> <img src="https://img-blog.csdnimg.cn/f21f061fcc5447caa292722fa71a5844.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_4,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑option之间的文本是给用户看的，而value是给网页看的，上传的是value里的内容</p>
+<p> textarea标签：文本域</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;textarea  rows=&quot;高度&quot; cols=”宽度“&gt;</span><br><span class="line">内容</span><br><span class="line">&lt;/textarea&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p><img src="https://img-blog.csdnimg.cn/f4ece654b93c462ba962117b6fd70f90.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_10,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑     右下交可以拖拉变换大小</p>
+<h2 id="ul标签："><a href="#ul标签：" class="headerlink" title="ul标签："></a>ul标签：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">&lt;li&gt;1&lt;/li&gt;</span><br><span class="line">&lt;li&gt;2&lt;/li&gt;</span><br><span class="line">&lt;li&gt;3&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p><img src="https://img-blog.csdnimg.cn/26956ad7a84a45998ce8d6a5ec093351.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑   <img src="https://img-blog.csdnimg.cn/d9670bc71d714815923f9b57309eb736.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑   <img src="https://img-blog.csdnimg.cn/5cf28852502a4ced8bb8df7ba1aef9b0.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑 可以改变圆点样式</p>
+<h2 id="table（表格）标签："><a href="#table（表格）标签：" class="headerlink" title="table（表格）标签："></a><strong>table（表格）标签：</strong></h2><p> thead是表头（可有可无），tbody是表格体（可有可无），tr是行，td是列，tfoot是表格脚， </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;table border=&quot;1&quot;&gt;</span><br><span class="line">&lt;tr&gt; &lt;td&gt; one&lt;/td&gt; </span><br><span class="line">     &lt;td&gt; two&lt;/td&gt; </span><br><span class="line">	 &lt;td&gt; 1&lt;/td&gt;</span><br><span class="line">&lt;/tr&gt;</span><br><span class="line">&lt;tr&gt; &lt;td&gt;three&lt;/td&gt;</span><br><span class="line">     &lt;td&gt;	four&lt;/td&gt;</span><br><span class="line">     &lt;td&gt;2&lt;/td&gt;</span><br><span class="line">&lt;/tr&gt;</span><br><span class="line"></span><br><span class="line">&lt;/table&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p> <img src="https://img-blog.csdnimg.cn/b6ea692182fd409aa77678c552a9a398.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑   </p>
+<p> colspan就是跨列，align是格式，有跨列也有跨行：rowspan。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;table border=&quot;1&quot;&gt;</span><br><span class="line">&lt;tr&gt; &lt;td  colspan=&quot;3&quot; align=&quot;center&quot;&gt; one&lt;/td&gt; </span><br><span class="line"></span><br><span class="line">&lt;/tr&gt;</span><br><span class="line">&lt;tr&gt; &lt;td&gt;three&lt;/td&gt;</span><br><span class="line">     &lt;td&gt;	four&lt;/td&gt;</span><br><span class="line">     &lt;td&gt;2&lt;/td&gt;</span><br><span class="line">&lt;/tr&gt;</span><br><span class="line"></span><br><span class="line">&lt;/table&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p><img src="https://img-blog.csdnimg.cn/2eff27aae337449ba0ca4c4e572a28c2.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<h2 id="frameset标签："><a href="#frameset标签：" class="headerlink" title="frameset标签："></a><strong>frameset标签：</strong></h2><p> 作用：让一个网页显示多个网页，cols（垂直划分）控制各个网页所占页面比例</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;frameset cols=&quot;25%,50%,25%&quot;&gt;</span><br><span class="line">&lt;frame src=&quot;1.html&quot;&gt;</span><br><span class="line">&lt;frame src=&quot;2.html&quot;&gt;</span><br><span class="line">&lt;frame src=&quot;3.html&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;/frameset&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p><img src="https://img-blog.csdnimg.cn/9f4a6d97dd734d85b3e799f7a231dd42.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p> 也有rows（水平划分），也有混合划分：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;frameset cols=&quot;50%,50%&quot;&gt;</span><br><span class="line">&lt;freme src=&quot;网页&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;fremeset rows=&quot;25%,75%&quot;&gt;</span><br><span class="line">    &lt;freme src=&quot;网页&quot;&gt;</span><br><span class="line">    &lt;freme src=&quot;网页&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;/fremeset&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<h2 id="iframe标签："><a href="#iframe标签：" class="headerlink" title="iframe标签："></a><strong>iframe标签：</strong></h2><p> 自己单独划分一个区域</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;iframe src=&quot;网址&quot; style=&quot;width:宽度 height:高度 frameborder=”边框“ scrolling=”拖动条“ &gt; &lt;/iframe&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p><img src="https://img-blog.csdnimg.cn/f0e949b42ab34bf5a2398cc85712098e.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_17,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<h2 id="hr标签："><a href="#hr标签：" class="headerlink" title="hr标签："></a><strong>hr标签：</strong></h2><p> 就是横线</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt; 我是第一行&lt;/p&gt;</span><br><span class="line">&lt;hr/&gt;</span><br><span class="line">&lt;p&gt;我是第二行&lt;/p&gt;</span><br><span class="line">&lt;hr/&gt;</span><br><span class="line">&lt;p&gt;我是第三行&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p> <img src="https://img-blog.csdnimg.cn/acd9307be924492e9b216fe0a6fe4a70.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_8,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<h1 id="三、属性"><a href="#三、属性" class="headerlink" title="三、属性"></a><strong>三、属性</strong></h1><p> 常见的属性：width，height，id（可以重复），name（不能重复），src（源），value（值），type，align（显示文本对齐方式的属性），style（规定元素的行内样式）等</p>
+<p>属性为html元素提供了更多的信息</p>
+<h2 id="四、html实体编码、转义及特殊符号"><a href="#四、html实体编码、转义及特殊符号" class="headerlink" title="四、html实体编码、转义及特殊符号"></a><strong>四、html实体编码、转义及特殊符号</strong></h2><p><strong>转义字符</strong>就是一个字符可以以另一种表现形式来显示。</p>
+<p><img src="https://img-blog.csdnimg.cn/e7879e250b2a435e899b9548cdd4d8ae.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p> 就比如在写html代码时，自己打的空格在网页里是无法显示的，这时候用转义字符&amp;nbsp，也比如想在网页中显示&lt;&gt;但是这个字符有具体的作用，那就可以用转义字符去显示。</p>
+<p><strong>实体编码</strong>就是用ascii编码来表示字母，符号。</p>
+<p>比如：“你好呀”转为实体符号</p>
+<p><img src="https://img-blog.csdnimg.cn/08345447d6b34e4b81b8e0272c7448e5.png" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p>​     <strong>url转码的作用：</strong>例如传参到网页中，#会被转码，转为 %23，如果不转的话，会变为其他的功能，如#id（自动寻找id）这样就不太合适。</p>
+<p>例如：在浏览器搜索中输入#，网页url会自动转码。</p>
+<p><img src="https://img-blog.csdnimg.cn/9507fe31de194970b7a1909c33e344e4.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_17,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑=x+rand()%y+1-x</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://dl.stream.qqmusic.qq.com/C400001OUQ6M2WeMRO.m4a?guid=8163272410&vkey=C6BFF6D45012D604172E87D65FF2374E512C935275765A15128BE77C8FB1CA7110313E815EB620C046DDFA4D4580F98DAE74B533BA12DACE&uin=1552804588&fromtag=120002"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80-html%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">1.</span> <span class="toc-text">一 html是什么:</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C-html%E6%A0%87%E7%AD%BE"><span class="toc-number">2.</span> <span class="toc-text">二 html标签:</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#keywords%E6%A0%87%E7%AD%BE%E6%A0%BC%E5%BC%8F%EF%BC%9Ameta-name-keywords-content-XXX"><span class="toc-number">2.1.</span> <span class="toc-text">keywords标签格式：meta name&#x3D;keywords content&#x3D;XXX</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#description%E6%A0%87%E7%AD%BE%E6%A0%BC%E5%BC%8F%EF%BC%9Ameta-name-description-content-XXX"><span class="toc-number">2.2.</span> <span class="toc-text">description标签格式：meta name&#x3D;description content&#x3D;XXX</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#video%E6%A0%87%E7%AD%BE%E6%A0%BC%E5%BC%8F%EF%BC%9A"><span class="toc-number">2.3.</span> <span class="toc-text">video标签格式：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#audio%E6%A0%87%E7%AD%BE%E6%A0%BC%E5%BC%8F%EF%BC%9A"><span class="toc-number">2.4.</span> <span class="toc-text">audio标签格式：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#img%E6%A0%87%E7%AD%BE"><span class="toc-number">2.5.</span> <span class="toc-text">img标签:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#a%E6%A0%87%E7%AD%BE-%E8%B6%85%E9%93%BE%E6%8E%A5"><span class="toc-number">2.6.</span> <span class="toc-text">a标签,超链接:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#h%E6%A0%87%E7%AD%BE%EF%BC%9A"><span class="toc-number">2.7.</span> <span class="toc-text">h标签：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#meta-keywords%E6%A0%87%E7%AD%BE%EF%BC%9A"><span class="toc-number">2.8.</span> <span class="toc-text">meta keywords标签：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#meta-description%E6%A0%87%E7%AD%BE%EF%BC%9A"><span class="toc-number">2.9.</span> <span class="toc-text">meta description标签：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#div%E6%A0%87%E7%AD%BE%EF%BC%9A"><span class="toc-number">2.10.</span> <span class="toc-text">div标签：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#span%E6%A0%87%E7%AD%BE%EF%BC%9A"><span class="toc-number">2.11.</span> <span class="toc-text">span标签：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pre%E6%A0%87%E7%AD%BE%EF%BC%9A"><span class="toc-number">2.12.</span> <span class="toc-text">pre标签：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#p%E6%A0%87%E7%AD%BE%EF%BC%9A"><span class="toc-number">2.13.</span> <span class="toc-text">p标签：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#centre%E6%A0%87%E7%AD%BE%EF%BC%9A"><span class="toc-number">2.14.</span> <span class="toc-text">centre标签：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#form%E6%A0%87%E7%AD%BE%EF%BC%9A"><span class="toc-number">2.15.</span> <span class="toc-text">form标签：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E6%A0%87%E7%AD%BE%EF%BC%9A"><span class="toc-number">2.16.</span> <span class="toc-text">其他标签：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#select%E6%A0%87%E7%AD%BE%EF%BC%9A"><span class="toc-number">2.17.</span> <span class="toc-text">select标签：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ul%E6%A0%87%E7%AD%BE%EF%BC%9A"><span class="toc-number">2.18.</span> <span class="toc-text">ul标签：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#table%EF%BC%88%E8%A1%A8%E6%A0%BC%EF%BC%89%E6%A0%87%E7%AD%BE%EF%BC%9A"><span class="toc-number">2.19.</span> <span class="toc-text">table（表格）标签：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#frameset%E6%A0%87%E7%AD%BE%EF%BC%9A"><span class="toc-number">2.20.</span> <span class="toc-text">frameset标签：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iframe%E6%A0%87%E7%AD%BE%EF%BC%9A"><span class="toc-number">2.21.</span> <span class="toc-text">iframe标签：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hr%E6%A0%87%E7%AD%BE%EF%BC%9A"><span class="toc-number">2.22.</span> <span class="toc-text">hr标签：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%B1%9E%E6%80%A7"><span class="toc-number">3.</span> <span class="toc-text">三、属性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81html%E5%AE%9E%E4%BD%93%E7%BC%96%E7%A0%81%E3%80%81%E8%BD%AC%E4%B9%89%E5%8F%8A%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7"><span class="toc-number">3.1.</span> <span class="toc-text">四、html实体编码、转义及特殊符号</span></a></li></ol></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/live2d-widget-model-koharu/assets/koharu.model.json"},"display":{"superSample":2,"width":200,"height":400,"position":"left","hOffset":5,"vOffset":-84},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- Google Analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=zhishaomang"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'zhishaomang');
+</script>
+<!-- End Google Analytics -->
+
+
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+<!--单击显示文字-->
+<script type="text/javascript" src="/js/click_show_text.js"></script>
+<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+<script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+<script type="text/javascript" src="/js/fireworks.js"></script>
+<!--浏览器搞笑标题-->
+<script type="text/javascript" src="/js/FunnyTitle.js"></script>

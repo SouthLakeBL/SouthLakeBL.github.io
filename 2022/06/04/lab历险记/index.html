@@ -1,0 +1,339 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>lab历险记 - 少莽</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="zhishaomang,"> 
+    <meta name="description" content=" 一、（bitXor）仅用~  (取反  )和&amp;amp;  (与)  实现x   ^(异或)   y
+
+^：异或
+
+按位异或的3个特点:(1) 0 ^ 0=0,0 ^ 1=1        0异或任,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="少莽" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="lab历险记 - 少莽"/>
+    <meta name="twitter:description" content=" 一、（bitXor）仅用~  (取反  )和&amp;amp;  (与)  实现x   ^(异或)   y
+
+^：异或
+
+按位异或的3个特点:(1) 0 ^ 0=0,0 ^ 1=1        0异或任,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="少莽"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="lab历险记 - 少莽"/>
+    <meta property="og:description" content=" 一、（bitXor）仅用~  (取反  )和&amp;amp;  (与)  实现x   ^(异或)   y
+
+^：异或
+
+按位异或的3个特点:(1) 0 ^ 0=0,0 ^ 1=1        0异或任,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">少莽</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">lab历险记</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">lab历险记</h1>
+        <div class="stuff">
+            <span>六月 04, 2022</span>
+            
+
+        </div>
+        <div class="content markdown">
+            <pre><code> 一、（bitXor）仅用~  (取反  )和&amp;  (与)  实现x   ^(异或)   y
+</code></pre>
+<p>^：异或</p>
+<blockquote>
+<p>按位异或的3个特点:<br>(1) 0 ^ 0=0,0 ^ 1=1        0异或任何数＝任何数<br>(2) 1 ^ 0=1,1 ^ 1=0        1异或任何数－任何数取反<br>(3) 任何数异或自己＝把自己置0</p>
+</blockquote>
+<p><strong>异或适用结合律和交换律</strong><br>例如：</p>
+<blockquote>
+<p>A ^ B = B ^ A<br>A ^ B ^ B = A ^ 0 = A</p>
+</blockquote>
+<p><strong>异或的应用：</strong><br>①异或可以快速比较两个数的值，例如：A ^ A = 0要比A - A = 0来的快<br>②汇编语言中经常用于将变量置0，例如：xor a，a；<br>③用异或使某个特定的位翻转，例如：翻转1001 1100的第4位，只需将他和0000 1000异或即可<br>④判断一个二进制数中1的数量是奇数还是偶数，例如：</p>
+<blockquote>
+<p>1001001：1 ^ 0 ^ 0 ^ 1 ^ 0 ^ 0 ^ 1 = 1<br>所以结果为1，是奇数，0是偶数</p>
+</blockquote>
+<p>⑤不使用其他空间，交换两个值</p>
+<blockquote>
+<p>①a  = a ^ b;<br>b = a ^ b;代入①式 a ^ b ^ b = a ^ 0 = a;<br>a = a ^ b;类推<br>运用结合律和交换律<br><img src="https://img-blog.csdnimg.cn/33e69a4ef4f2421e94f5d20ada5d9b45.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_17,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></p>
+</blockquote>
+<p>~：取反<br>是一元运算符，是将每个0变为1，将每个1变为0<br>。。。。。。。。。。。。。。。。。。。。。。。。。。。。<br>二进制的存储方式：计算机不直接存储二进制原码，而是存储二进制的补码。而正数的补码是原码，负数的补码是原码取反再加1.<br>那为什么输出-1的时候还是-1呢，而不是-1的补码呢<br>那是因为：</p>
+<blockquote>
+<p>-1原码为：1000 0001，原码取反码再加一：1111 1111（即补码<br>而负数输出时，计算机将补码逆向译成原码<br>记住这句话：原码取反码再加一得补码，补码减一取反得原码</p>
+</blockquote>
+<p>比如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a=<span class="number">7</span>；</span><br><span class="line"><span class="keyword">int</span> b=~a；</span><br></pre></td></tr></table></figure>
+<p>得到的结果是<br><img src="https://img-blog.csdnimg.cn/58b027a86f9c48cd92bfd2265bfd5cc2.png" alt="在这里插入图片描述"><br>计算的方式：<br>a=0000 0111<br>①先取反得到：1111 1000（为b的补码<br>②计算机判断为负数，则减一再取反，先减一：1111 0111<br>③减一后再取反：1000 1000</p>
+<blockquote>
+<p>有~n=-(n+1)</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/7140d70a856d4e6c8c6094c172183cb8.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></p>
+<p>|：或运算<br>一个1为1，两个1也为1<br><strong>做题思路：</strong><br>笔者思路较浅，只能定义算法：x=4，y=5<br>先把x，y的取反，x与y，都写出来，然后一个一个进行计算得到x异或y的将结果即可<br><img src="https://img-blog.csdnimg.cn/54ec6408fe7c481e83748e9093485e2c.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>最终结果：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">bitXor</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> ~(~x&amp;~y)&amp;~(x&amp;y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>正确答案：<br><img src="https://img-blog.csdnimg.cn/5a25598d2a1f49dabc4e84c8910ff2e3.png" alt="在这里插入图片描述"><br>。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。<br><strong>PS：进行位操作的时候是用补码操作的</strong><br><strong>因为在计算机系统中，数值一律用补码来表示和存储。</strong><br>。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。<br><strong>异或运算：a ^ b = ~a &amp; b | a &amp; ~b</strong></p>
+<blockquote>
+<p><strong>二、（tmin）返回补码整数的最小整数数值。</strong></p>
+</blockquote>
+<p>要求用到：! ~ &amp; ^ | + &lt;&lt; &gt;&gt;<br>做题前首先补充知识：<br><strong>位操作符（进行位操作前需要转化位二进制</strong></p>
+<blockquote>
+<p>|：按位或；作用：一真则真；<br>例如：a=4；//0100  b=5；//0101 c=a | b = 0101<br>&amp;：按位与；作用：一假则假；<br>例如：a=4；//0100 b=5；//0101 c=a &amp; b = 0100<br>^： 按位异或；作用：相同为0，不同为1；<br>例如：a=4；//0100  b=5；//0101 c=a ^ b = 0001<br>~：按位取反见上<br>&lt;&lt;:数据左移；作用：5&lt;&lt;2向左移动2位<br>例如：a=5；//0101 a=a&lt;&lt;2；//010100<br>|&gt;&gt;:数据右移；作用：5&gt;&gt;2向有移动2位<br>例如：a=5；//0101 a=a&gt;&gt;2；//0001    </p>
+</blockquote>
+<p><strong>逻辑操作符</strong></p>
+<blockquote>
+<p>&amp;&amp;：逻辑与；作用：两个操作数同时为真才为真，如果左边的操作数为假，则不会运行右边的操作数。<br>例如：    int a=1,b=2,c=3,m=0,d=0,x=0;<br>d=(m=a==b)&amp;&amp;(x=c);<br>printf(“%d %d %d”,m,d,x);<br>结果：0，0，0<br>||：逻辑或；作用：两个操作数同时位假才为假，如果左边为真，则右边不运行；</p>
+</blockquote>
+<p><strong>单目运算符</strong></p>
+<blockquote>
+<p>！：不为0则变0，为0则变1<br>例如：a=2，b=0；a=!a;b=!b;//a=0,b=1<br>&amp;：取变量的地址<br>例子：a=5,*p=&a;//p=5<br>*：取指针所指向变量的内容<br>例子：a=5,*p=&a;//p=5<br>在32位机器上，int型的最小值是0x7fffffff，也就是2,147,483,648，而最小值也就是-2,147,483,648</p>
+</blockquote>
+<p>做题思路：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i=(<span class="number">1</span>&lt;&lt;<span class="number">31</span>);</span><br><span class="line">    <span class="keyword">return</span> i; </span><br></pre></td></tr></table></figure>
+<p>因为是32位，所以最小值就是符号位为1，数值位为0；</p>
+<blockquote>
+<p><strong>三、（isTmax）如果x是最大的二进制补码，返回1；否则，返回0</strong></p>
+</blockquote>
+<p>只能用：! ~ &amp; ^ | +<br>最大的二进制补码是0x7fffffff，原码表示为-1</p>
+<p>判断相等用异或，则有max==~（max+1），但要排除0xffffffff</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> !(~(x^(x+<span class="number">1</span>)))&amp;!!(x +<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<p>不过我把int x改为了 unsigned int，因为无符号数的int，其0xffffffff也是最大值，有符号数的话，就是-1了。<br>&amp;号左边用异或判断是否为max<br>右边排除0xffffffff</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">**<span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">0xffffffff</span>;</span><br><span class="line">    <span class="keyword">int</span> b = <span class="number">0x7fffffff</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> j = <span class="number">0xffffffff</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%u\t %d\n&quot;</span>,a,a);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,b);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%u\n&quot;</span>,j);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,<span class="number">-1</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%u&quot;</span>,<span class="number">-1</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">**</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/987770b8abcb47bd8dbf294272d5a798.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_9,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></p>
+<blockquote>
+<p><strong>四、（allOddBits）判断一个二进制数奇数位是否全为1</strong></p>
+</blockquote>
+<p><strong>取反后用补码运算</strong><br>既然要判断奇数位全为1，那我们就要构造一个0xAAAAAAAA<br>就2 ^1、2 ^3是奇数位，不是在位置上数出来的</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> y=<span class="number">0xA</span>;</span><br><span class="line">y=y+(y&lt;&lt;<span class="number">4</span>);</span><br><span class="line">y=y+(y&lt;&lt;<span class="number">8</span>);</span><br><span class="line">y=y+(y&lt;&lt;<span class="number">16</span>);<span class="comment">//y的奇数位全为1</span></span><br><span class="line"><span class="keyword">return</span> !((x&amp;y)^y);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>五、（negate）计算-x</strong></p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> ~x+<span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>~x+1能够实现变号，所以有 ~x+1 = -x</strong>很有用</p>
+<blockquote>
+<p><strong>六、（isAsciiDigit）判断x是否可以是表示数字的Ascii码；<br>若0x30 &lt;= x &lt;= 0x39，返回1</strong></p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> !((x+(~<span class="number">0x30</span>+<span class="number">1</span>))&gt;&gt;<span class="number">31</span>) &amp; !((<span class="number">0x39</span>+(~x+<span class="number">1</span>))&gt;&gt;<span class="number">31</span>);</span><br></pre></td></tr></table></figure>
+<p>由第五题得知~x+1 = -x，所以我们用这个来实现减法运算，在判断符号位就行（大减小，若为true，得1，&amp;后return1）</p>
+<blockquote>
+<p><strong>七、（conditional）实现x?y:z</strong></p>
+</blockquote>
+<p>当x不为0时，!x=0，函数结果为y；当x不为0时，!x=0，函数结果为y</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123; <span class="comment">//这道题用到了三元运算符</span></span><br><span class="line">    <span class="keyword">int</span> x=<span class="number">0</span>,y=<span class="number">2</span>,z=<span class="number">3</span>;</span><br><span class="line">    <span class="keyword">int</span> a=x?y:z;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,a);  <span class="comment">//当x=0，输出3；x=1，输出2</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p>本题代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> ((!x+~<span class="number">1</span>+<span class="number">1</span>)&amp;y) | ((~!x+<span class="number">1</span>)&amp;z);</span><br></pre></td></tr></table></figure>
+<p>（补码运算不用转换，提醒自己）<br>|号左边，判断x是否等于1（让x-1）<br>右边判断是否为0</p>
+<blockquote>
+<p><strong>八、（isLessOrEqual）判断x&lt;y；如果x&lt;=y返回1否则返回0</strong></p>
+</blockquote>
+<p>先写出x和y的符号位，然后再符号位异或（判断是否相同（取反是为了能够最后return 1的值，因为异或相同为0），再来个y-x的符号位（也要取反，因为y-x&gt;0的符号位是0），当符号位相同时，且y-x的符号位为0，return个&amp;，就可以表示出1.第二个是判断x为正，y为负，直接可以返回0</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a=x&gt;&gt;<span class="number">31</span>;<span class="comment">//取x得符号位1</span></span><br><span class="line"><span class="keyword">int</span> b=y&gt;&gt;<span class="number">31</span>;<span class="comment">//取y得符号位</span></span><br><span class="line"><span class="keyword">int</span> c=!(a ^ b);<span class="comment">//符号位相同为1，不同为0</span></span><br><span class="line"><span class="keyword">int</span> d=!((y+(~x+<span class="number">1</span>))&gt;&gt;<span class="number">31</span>);<span class="comment">////取y-x得也就是大减小的符号位的相反，y&gt;x得1，y&lt;x得0</span></span><br><span class="line"><span class="keyword">return</span>  (d&amp;c) | (!c&amp;a);<span class="comment">//左边符号相同:y&gt;x返回1；右边符号不同:当x&lt;0时返回1，x&gt;0时返回0</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>九、（logicalNeg）实现！(按位非运算)就是使非0的数为0，为0的数为1.</strong></p>
+</blockquote>
+<p>~ （~x+1）和 ~ x，正好每个位都相反（非0时），&amp;后全为0，然后和1&amp;后，返回0.<br><img src="https://img-blog.csdnimg.cn/f1106c903a504b5b85a8858611e61fbe.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></p>
+<p>为0时：&amp;后为0x80000000，向右位移31位得到符号位，再和1&amp;返回1<br><img src="https://img-blog.csdnimg.cn/766c1848a72044c2af287aa1672bbe35.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>~x+1能够实现变号，所以有 ~x+1 = -x<br><img src="https://img-blog.csdnimg.cn/c63c69e8b118472293497934cc04cc5f.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_14,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/30459be4589547e8b2b448dc613a8b9e.png" alt="在这里插入图片描述"></p>
+</blockquote>
+<p> ~x 和  ~~x的原码位数值相反<br> <img src="https://img-blog.csdnimg.cn/806d8ea82dd444f4a27041901268bd70.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a=<span class="number">4</span>;</span><br><span class="line"><span class="keyword">int</span> b=~a&amp;~~a;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,b);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/f245781e096d4e22a3398c71f242db87.png" alt="在这里插入图片描述"><br>那为何不用 ~ x和 ~~ x进行&amp;运算呢，因为没法判断0（没法return 1）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> (((~x+<span class="number">1</span>)|x)&gt;&gt;<span class="number">31</span>)+<span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>十、（howManyBits）判断二进制补码的最小位数</strong></p>
+</blockquote>
+<p>使用二分法：每次取一半，判断高位是否有1，有则至少需要16位，没有则取低16位的一半再次分析，以此类推。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> y = x&gt;&gt;<span class="number">31</span>;</span><br><span class="line">  x =  (y &amp; ~x) | (~y &amp; x);<span class="comment">//x为正则不变，为负则按位取反</span></span><br><span class="line">  <span class="keyword">int</span> a = !!(x&gt;&gt;<span class="number">16</span>);<span class="comment">//</span></span><br><span class="line">  <span class="keyword">int</span> a1 = a&lt;&lt;<span class="number">4</span>;<span class="comment">//若高16位有1，则计数16</span></span><br><span class="line">  x &gt;&gt;=a1;<span class="comment">//x向右移位16，继续重复操作</span></span><br><span class="line">  <span class="keyword">int</span> b = !!(x&gt;&gt;<span class="number">8</span>);</span><br><span class="line">  <span class="keyword">int</span> b1 = b&lt;&lt;<span class="number">3</span>;</span><br><span class="line">  x &gt;&gt;=b1;</span><br><span class="line">  <span class="keyword">int</span> c = !!(x&gt;&gt;<span class="number">4</span>);</span><br><span class="line">  <span class="keyword">int</span> c1 = c&lt;&lt;<span class="number">2</span>;</span><br><span class="line">  x &gt;&gt;=c1;</span><br><span class="line">  <span class="keyword">int</span> d = !!(x&gt;&gt;<span class="number">2</span>);</span><br><span class="line">  <span class="keyword">int</span> d1 = d&lt;&lt;<span class="number">1</span>;</span><br><span class="line">  x &gt;&gt;=d1;</span><br><span class="line">  <span class="keyword">int</span> e = !!(x&gt;&gt;<span class="number">1</span>);</span><br><span class="line">  <span class="keyword">int</span> e1 = e;</span><br><span class="line">  x &gt;&gt;=e1;</span><br><span class="line">  <span class="keyword">int</span> f = !!x;</span><br><span class="line">  <span class="keyword">int</span> bits = a1 + b1 + c1 + d1 + e1 + f + <span class="number">1</span>;<span class="comment">//+1是符号位</span></span><br><span class="line">  <span class="keyword">return</span> bits;</span><br></pre></td></tr></table></figure>
+<p>如果是一个正数，则需要找到它最高的一位（假设是 n）是 1 的，再加上符号位，结果为 n+1；如果是一个负数，则需要知道其最高的一位是 0 的（例如 4 位的 1101 和三位的 101 补码表示的是一个值：-3，最少需要 3 位来表示，也需要+1）</p>
+<blockquote>
+<p><strong>十一、（floatScale2）功能：对于入参 unsigned uf，以 float 来解释其二进制位，若 uf 为 NaN 或 无穷大 则直接返回，否则计算 uf * 2 并返回。</strong></p>
+</blockquote>
+<p>将数字乘二的操作：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s = x&amp;（ <span class="number">1</span> &lt;&lt; <span class="number">31</span>）</span><br><span class="line">x &lt;&lt; <span class="number">1</span> | s</span><br></pre></td></tr></table></figure>
+<p>首先排除无穷小、0、无穷大和非数值 NaN</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> s,e,m;</span><br><span class="line">s = uf&amp;(<span class="number">1</span>&lt;&lt;<span class="number">31</span>);<span class="comment">//符号位</span></span><br><span class="line">e = (uf&amp;<span class="number">0x7f800000</span>)&gt;&gt;<span class="number">23</span>;<span class="comment">//阶码or指数</span></span><br><span class="line"><span class="keyword">if</span> (e==<span class="number">0</span>) <span class="keyword">return</span> uf &lt;&lt;<span class="number">1</span> | s;<span class="comment">//指数为0，直接返回乘二的值</span></span><br><span class="line"><span class="keyword">if</span> (e==<span class="number">255</span>) <span class="keyword">return</span> uf;<span class="comment">//无穷大直接返回</span></span><br><span class="line">e++;<span class="comment">//指数+1，相当于乘二</span></span><br><span class="line"><span class="keyword">if</span> (e==<span class="number">255</span>) <span class="keyword">return</span> <span class="number">0x7f800000</span>|s;<span class="comment">//指数+1后为255，返回</span></span><br><span class="line"><span class="keyword">return</span> (e&lt;&lt;<span class="number">23</span>) | (uf&amp;<span class="number">0x807fffff</span>);<span class="comment">//否则返回指数+1后的原符号数</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>十二、（floatFloat2Int）传入一个无符号整数 uf，把它当作单精度浮点数，返回它截断后的整数部分。也就是 (int)uf。如果出现溢出，则返回 0x80000000u</strong></p>
+</blockquote>
+<p>为什么要将小数根据阶码与23的大小进行左右移位：<br>若阶码大于23，则等式右边2 ^x的x是要大于23的，而小数位转换为int型后，最大也就2的23次方，所以，当阶数大于23时，需要小数位向左移位（阶码-23）位</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> s,e,x;</span><br><span class="line">s = uf &gt;&gt; <span class="number">31</span>;<span class="comment">//符号位</span></span><br><span class="line">e = ((uf &amp; <span class="number">0x7f800000</span>)&gt;&gt;<span class="number">23</span>)<span class="number">-127</span>;<span class="comment">//真正的指数</span></span><br><span class="line">x = (uf&amp;<span class="number">0x007fffff</span>)|<span class="number">0x00800000</span>;<span class="comment">//尾数且把省的1也加上了</span></span><br><span class="line"><span class="keyword">if</span>(!(uf&amp;<span class="number">0x7fffffff</span>)) <span class="keyword">return</span> <span class="number">0</span>;<span class="comment">//如果uf为0，则返回0</span></span><br><span class="line"><span class="keyword">if</span>(e &gt; <span class="number">31</span>) <span class="keyword">return</span> <span class="number">0x80000000</span>;<span class="comment">//如果真正的指数&gt;31，则返回溢出值</span></span><br><span class="line"><span class="keyword">if</span>(e &lt; <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;<span class="comment">//真正的指数小于零则返回零，因为0&lt;原数&lt;1</span></span><br><span class="line"><span class="keyword">if</span>(e &gt; <span class="number">23</span>) x &lt;&lt;= (e - <span class="number">23</span>);<span class="comment">//剩下考虑真正的指数和23的大小，进行移位</span></span><br><span class="line"><span class="keyword">else</span> x &gt;&gt;= (<span class="number">23</span> - e);</span><br><span class="line"><span class="keyword">if</span>(!((x &gt;&gt; <span class="number">31</span>)^s)) <span class="keyword">return</span> x;如果符号相同直接返回原值，</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (x&gt;&gt;<span class="number">31</span>) <span class="keyword">return</span> <span class="number">0x80000000</span>;<span class="comment">//如果为负（原来为正），返回溢出值</span></span><br><span class="line"><span class="keyword">else</span> <span class="keyword">return</span> ~x + <span class="number">1</span>;如果为正（原来为负），返回相反数</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>十三、（floatPower2）计算浮点数2.0^x；若结果太小返回0，太大返回 +INF</strong></p>
+</blockquote>
+<p>2.0的x方=（1.0x2的一次方）的x次方=1.0 x 2的x次方<br>所以 x 就当做真正的指数。<br>然后再考虑两个极端：①阶码&lt;-127（导致0&lt;num&lt;1）②阶码&gt;128（导致溢出）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> <span class="built_in">exp</span> = x + <span class="number">127</span>;<span class="comment">//把x当作真指数</span></span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">exp</span> &lt;= <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;<span class="comment">//此时0&lt;原数&lt;1，结果返回0</span></span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">exp</span> &gt;= <span class="number">255</span>) <span class="keyword">return</span> <span class="number">0x7f800000</span>;<span class="comment">//此时溢出</span></span><br><span class="line"><span class="keyword">return</span> <span class="built_in">exp</span> &lt;&lt; <span class="number">23</span>;<span class="comment">//否则x作为正常的指数</span></span><br></pre></td></tr></table></figure>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://dl.stream.qqmusic.qq.com/C400001OUQ6M2WeMRO.m4a?guid=8163272410&vkey=C6BFF6D45012D604172E87D65FF2374E512C935275765A15128BE77C8FB1CA7110313E815EB620C046DDFA4D4580F98DAE74B533BA12DACE&uin=1552804588&fromtag=120002"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+				
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/live2d-widget-model-koharu/assets/koharu.model.json"},"display":{"superSample":2,"width":200,"height":400,"position":"left","hOffset":5,"vOffset":-84},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- Google Analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=zhishaomang"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'zhishaomang');
+</script>
+<!-- End Google Analytics -->
+
+
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+<!--单击显示文字-->
+<script type="text/javascript" src="/js/click_show_text.js"></script>
+<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+<script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+<script type="text/javascript" src="/js/fireworks.js"></script>
+<!--浏览器搞笑标题-->
+<script type="text/javascript" src="/js/FunnyTitle.js"></script>

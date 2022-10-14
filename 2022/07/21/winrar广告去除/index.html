@@ -5,13 +5,17 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>祝大哥 - 少莽</title>
+    <title> - 少莽</title>
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate" />
     <meta name="keywords" content="zhishaomang,"> 
-    <meta name="description" content="祝大哥你好呀！！！
-"> 
+    <meta name="description" content="打开winrar，看广告
+然后打开spyxx看广告的窗口叫啥名字，叫这个：RarReminder
+
+进入x64gdb查找字符串
+
+先进入第一个，然后再call函数下个断点，看广告窗口是不是在这个函数,"> 
     <meta name="author" content="John Doe"> 
     <link rel="alternative" href="atom.xml" title="少莽" type="application/atom+xml"> 
     <link rel="icon" href="/img/favicon.png"> 
@@ -19,18 +23,26 @@
     
     
     <meta name="twitter:card" content="summary"/>
-    <meta name="twitter:title" content="祝大哥 - 少莽"/>
-    <meta name="twitter:description" content="祝大哥你好呀！！！
-"/>
+    <meta name="twitter:title" content=" - 少莽"/>
+    <meta name="twitter:description" content="打开winrar，看广告
+然后打开spyxx看广告的窗口叫啥名字，叫这个：RarReminder
+
+进入x64gdb查找字符串
+
+先进入第一个，然后再call函数下个断点，看广告窗口是不是在这个函数,"/>
     
     
     
     
     <meta property="og:site_name" content="少莽"/>
     <meta property="og:type" content="object"/>
-    <meta property="og:title" content="祝大哥 - 少莽"/>
-    <meta property="og:description" content="祝大哥你好呀！！！
-"/>
+    <meta property="og:title" content=" - 少莽"/>
+    <meta property="og:description" content="打开winrar，看广告
+然后打开spyxx看广告的窗口叫啥名字，叫这个：RarReminder
+
+进入x64gdb查找字符串
+
+先进入第一个，然后再call函数下个断点，看广告窗口是不是在这个函数,"/>
     
 <link rel="stylesheet" href="/css/diaspora.css">
 
@@ -44,7 +56,7 @@
     <div class="bar" style="width: 0;"></div>
     <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
     <div title="播放/暂停" class="iconfont icon-play"></div>
-    <h3 class="subtitle">祝大哥</h3>
+    <h3 class="subtitle"></h3>
     <div class="social">
         <div>
             <div class="share">
@@ -59,14 +71,21 @@
     <div class="section">
         <div class="article">
     <div class='main'>
-        <h1 class="title">祝大哥</h1>
+        <h1 class="title"></h1>
         <div class="stuff">
-            <span>六月 04, 2022</span>
+            <span>七月 21, 2022</span>
             
 
         </div>
         <div class="content markdown">
-            <p>祝大哥你好呀！！！</p>
+            <p>打开winrar，看广告</p>
+<p>然后打开spyxx看广告的窗口叫啥名字，叫这个：RarReminder</p>
+<p><img src="C:\Users\hua'wei\AppData\Roaming\Typora\typora-user-images\image-20220721195420033.png" alt="image-20220721195420033"></p>
+<p>进入x64gdb查找字符串</p>
+<p><img src="C:\Users\hua'wei\AppData\Roaming\Typora\typora-user-images\image-20220721195504837.png" alt="image-20220721195504837"></p>
+<p>先进入第一个，然后再call函数下个断点，看广告窗口是不是在这个函数出现的</p>
+<p><img src="C:\Users\hua'wei\AppData\Roaming\Typora\typora-user-images\image-20220721195542470.png" alt="image-20220721195542470"></p>
+<p>好了，广告就是在call之后出现的，那么直接nop掉，然后补丁修补即可</p>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">

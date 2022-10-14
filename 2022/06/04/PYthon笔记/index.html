@@ -10,7 +10,10 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate" />
     <meta name="keywords" content="zhishaomang,"> 
-    
+    <meta name="description" content="print函数print函数可以输出含有运算符的表达式
+也可以将内容输出到目的地（显示器、文件）如：
+``
+123fp = open(&amp;#x27;D:/text.txt&amp;#x27;, &amp;#x27;a,"> 
     <meta name="author" content="John Doe"> 
     <link rel="alternative" href="atom.xml" title="少莽" type="application/atom+xml"> 
     <link rel="icon" href="/img/favicon.png"> 
@@ -19,7 +22,10 @@
     
     <meta name="twitter:card" content="summary"/>
     <meta name="twitter:title" content="PYthon笔记 - 少莽"/>
-    
+    <meta name="twitter:description" content="print函数print函数可以输出含有运算符的表达式
+也可以将内容输出到目的地（显示器、文件）如：
+``
+123fp = open(&amp;#x27;D:/text.txt&amp;#x27;, &amp;#x27;a,"/>
     
     
     
@@ -27,7 +33,10 @@
     <meta property="og:site_name" content="少莽"/>
     <meta property="og:type" content="object"/>
     <meta property="og:title" content="PYthon笔记 - 少莽"/>
-    
+    <meta property="og:description" content="print函数print函数可以输出含有运算符的表达式
+也可以将内容输出到目的地（显示器、文件）如：
+``
+123fp = open(&amp;#x27;D:/text.txt&amp;#x27;, &amp;#x27;a,"/>
     
 <link rel="stylesheet" href="/css/diaspora.css">
 
@@ -63,7 +72,139 @@
 
         </div>
         <div class="content markdown">
-            
+            <h1 id="print函数"><a href="#print函数" class="headerlink" title="print函数"></a>print函数</h1><p>print函数可以输出含有运算符的表达式</p>
+<p>也可以将内容输出到目的地（显示器、文件）如：</p>
+<p>``</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fp = <span class="built_in">open</span>(<span class="string">&#x27;D:/text.txt&#x27;</span>, <span class="string">&#x27;a+&#x27;</span>)（如果文件不存在就创建，存在就继续写。指定路径）</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;helloworld&#x27;</span>, file = fp)（写入）</span><br><span class="line">fp.close()（关闭文件）</span><br></pre></td></tr></table></figure>
+
+<h1 id="转义字符"><a href="#转义字符" class="headerlink" title="转义字符"></a>转义字符</h1><p>\n:newline(换行)</p>
+<p>\t:回车(占四个制表位)如：hello\t：后面有三个空格，因为hell是四个，\t本来是四个，加上o就有三个了</p>
+<p>\b往后退一个格，比如<code>hello\bworld&gt;&gt;&gt;hellworld</code></p>
+<p>\r对前面进行覆盖：比如<code>hello\rworld&gt;&gt;&gt;world</code></p>
+<p>\\:运行的时候只会输出一个\</p>
+<p>原字符：不希望字符串中的转义字符起作用，就使用原字符，在字符串之前加上r</p>
+<p><code>print(r&#39;hello\nworld&#39;)</code></p>
+<p>最后一个字符串不能是反斜杠，但可以是两个：<code>print(&#39;helloworld\\&#39;)</code></p>
+<h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><p>整数类型：默认的是十进制；0b开头是二进制；0o开头是八进制；0x开头是十六进制</p>
+<p><code>print(0b10010)</code></p>
+<p>浮点类型：由于计算机使用二进制进行计算，所以结果可能出现小数位数不确定的情况</p>
+<p>``</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">n1 = 1.1</span><br><span class="line">n2 = 2.2</span><br><span class="line">print(n1+n2)（结果为3.3000000000000003）</span><br></pre></td></tr></table></figure>
+
+<p>那么解决的方案就是导入模块decimal（from decimal impory Decimal）</p>
+<h1 id="数据类型转换"><a href="#数据类型转换" class="headerlink" title="数据类型转换"></a>数据类型转换</h1><p><code>print(name + age)</code>（其中，str类型不能和int型一起输出，要将int通过str函数转换为str型）</p>
+<p><code>print(name + str(age))</code></p>
+<p>str()函数：将其他类型转换为str类型</p>
+<p>int()函数：文字类和小数类字符串无法转换，浮点数转化成整数抹零取整</p>
+<p>float()函数：文字类无法转成整数，整数转化为浮点数，末尾为 .0</p>
+<h1 id="输入函数input"><a href="#输入函数input" class="headerlink" title="输入函数input"></a>输入函数input</h1><p>input()函数的输出类型是整数，故我们如有需求需要用到类型转换函数如：int(),float()</p>
+<h1 id="算数运算符"><a href="#算数运算符" class="headerlink" title="算数运算符"></a>算数运算符</h1><p>//：整除运算，11 // 2 = 5 而不是 5.5</p>
+<p>（一正一负的整除运算，向下取整如：<code>-5 // 3 = -2</code>）</p>
+<p>%：取余运算符，5%3 = 2</p>
+<p>（一正一负运算：9% -4  余数 = 被除数 - 除数*商 <code>9 - -4 * -3 = -3</code>）</p>
+<p>*<em>：幂运算符，2</em> * * 2  = 4</p>
+<h1 id="range函数"><a href="#range函数" class="headerlink" title="range函数"></a>range函数</h1><p>range（start）：默认从[0-start)，步长为1</p>
+<p>range（start，stop）：从[start，stop]，步长为1</p>
+<p>range（start，stop，step）：从[start，stop]，步长为step</p>
+<p>range通常会作为循环遍历的对象</p>
+<h1 id="for-in循环"><a href="#for-in循环" class="headerlink" title="for_in循环"></a>for_in循环</h1><p><code>for item in &#39;Python&#39;</code>(第一次取出来P，将P赋值给item，将item的值输出)</p>
+<p>如果不需要用到自定义变量（上式中item就是自定义变量），可以用“_”代替，如：</p>
+<p><code>for _ in range(5)</code>：接下来的表达式会重复五次</p>
+<h1 id="continue"><a href="#continue" class="headerlink" title="continue"></a>continue</h1><p>结束循环，进行下一次循环</p>
+<p>经常跟if联用</p>
+<h1 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h1><p>创建的方式①使用[]：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="string">&#x27;hello&#x27;</span>,<span class="string">&#x27;world&#x27;</span>,<span class="number">12</span>]</span><br><span class="line"><span class="built_in">print</span>(a)</span><br></pre></td></tr></table></figure>
+
+<p>②使用内置函数list()</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b = <span class="built_in">list</span>([<span class="string">&#x27;hell&#x27;</span>,<span class="string">&#x27;god&#x27;</span>])</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\hua'wei\AppData\Roaming\Typora\typora-user-images\image-20220621120536390.png" alt="image-20220621120536390"></p>
+<p>可以通过索引去打印列表中的数据，如</p>
+<p><img src="C:\Users\hua'wei\AppData\Roaming\Typora\typora-user-images\image-20220621120755277.png" alt="image-20220621120755277"></p>
+<h2 id="列表的判断和遍历"><a href="#列表的判断和遍历" class="headerlink" title="列表的判断和遍历"></a>列表的判断和遍历</h2><p>用来判断是否存在，如</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;a&#x27;</span> <span class="keyword">in</span> <span class="string">&#x27;abc&#x27;</span>) <span class="comment">#结果为true</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;a&#x27;</span> <span class="keyword">not</span> <span class="keyword">in</span> <span class="string">&#x27;abc&#x27;</span>)<span class="comment">#结果为false</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>列表的遍历:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">b = [<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>]</span><br><span class="line"><span class="keyword">for</span> a <span class="keyword">in</span> b:</span><br><span class="line">	<span class="built_in">print</span>(a)</span><br></pre></td></tr></table></figure>
+
+<h2 id="列表的添加"><a href="#列表的添加" class="headerlink" title="列表的添加"></a>列表的添加</h2><p>append()：在末尾添加一个元素</p>
+<p>extend()：在末尾至少添加一个元素</p>
+<p>insert(位置，元素)：在任意位置添加一个元素</p>
+<p>切片：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>]</span><br><span class="line">b = [<span class="string">&#x27;d&#x27;</span>,<span class="string">&#x27;e&#x27;</span>,<span class="string">&#x27;f&#x27;</span>]</span><br><span class="line">a[<span class="number">1</span>:] = b</span><br><span class="line"><span class="built_in">print</span>(a)<span class="comment">#结果为[&#x27;a&#x27;, &#x27;d&#x27;, &#x27;e&#x27;, &#x27;f&#x27;]</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="列表的添加-1"><a href="#列表的添加-1" class="headerlink" title="列表的添加"></a>列表的添加</h2><p>remove():一次删除一个；重复元素只删除第一个；元素不存在输出value error</p>
+<p>pop():删除一个指定位置上的元素；指定位置不存在元素，输出index error；如果不指定位置，删除最后一个</p>
+<p>切片：一次至少删除一个</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>,<span class="string">&#x27;d&#x27;</span>,<span class="string">&#x27;e&#x27;</span>,<span class="string">&#x27;f&#x27;</span>]</span><br><span class="line">a =a[<span class="number">1</span>:<span class="number">3</span>]</span><br><span class="line">prnit(a)<span class="comment">#切片是前开后闭区间，结果为：[&#x27;b&#x27;, &#x27;c&#x27;]，也就是1-2留下来</span></span><br></pre></td></tr></table></figure>
+
+<p>clear():清空列表</p>
+<p>del:删除列表</p>
+<h2 id="列表元素的修改"><a href="#列表元素的修改" class="headerlink" title="列表元素的修改"></a>列表元素的修改</h2><p>直接</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a [<span class="number">1</span>] = 新元素</span><br></pre></td></tr></table></figure>
+
+<p>或者切片</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>,<span class="string">&#x27;d&#x27;</span>]</span><br><span class="line">a[<span class="number">1</span>:<span class="number">2</span>] = [<span class="string">&#x27;e&#x27;</span>,<span class="string">&#x27;f&#x27;</span>,<span class="string">&#x27;g&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(a)<span class="comment">#结果为[&#x27;a&#x27;, &#x27;e&#x27;, &#x27;f&#x27;, &#x27;g&#x27;, &#x27;c&#x27;, &#x27;d&#x27;]，也就是把1换走</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="列表的排序"><a href="#列表的排序" class="headerlink" title="列表的排序"></a>列表的排序</h2><p><strong>sort()：升序排列</strong></p>
+<p><strong>通过关键字降序排列</strong></p>
+<p>sort(reverse = True)</p>
+<p>那么reverse = False 就是升序</p>
+<p><strong>使用内置函数sorted()，使产生新的列表对象</strong></p>
+<p>也可以在sorted函数里使用关键字</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b = <span class="built_in">sorted</span>(a,reverse = <span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="生成列表的公式"><a href="#生成列表的公式" class="headerlink" title="生成列表的公式"></a>生成列表的公式</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = [表达式 <span class="keyword">for</span> 自定义变量 <span class="keyword">in</span> <span class="built_in">range</span>()]<span class="comment">#表达式的变量使用自定义变量：如</span></span><br><span class="line">a = [b * b <span class="keyword">for</span> b <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">9</span>)]</span><br><span class="line"><span class="built_in">print</span>(a)<span class="comment">#结果为[1, 4, 9, 16, 25, 36, 49, 64]</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h1><p>字典是Python内置的数据结构之一，与列表一样是一个可变序列，以键值对的方式存数据，字典是一个无序的序列，如：</p>
+<p><img src="C:\Users\hua'wei\AppData\Roaming\Typora\typora-user-images\image-20220702204735879.png" alt="image-20220702204735879"></p>
+<h2 id="字典的实现原理"><a href="#字典的实现原理" class="headerlink" title="字典的实现原理"></a>字典的实现原理</h2><p>与查字典类似，我们用key值（也就是键）去寻找值的位置</p>
+<h2 id="字典的创建"><a href="#字典的创建" class="headerlink" title="字典的创建"></a>字典的创建</h2><p>常用：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scores=&#123;<span class="string">&#x27;&#x27;</span>a:<span class="number">1</span>,<span class="string">&#x27;b&#x27;</span>:<span class="number">2</span>,<span class="string">&#x27;c&#x27;</span>=<span class="number">3</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用内置函数dict()</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">dict</span>(name = <span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;age&#x27;</span> = <span class="number">18</span>)</span><br></pre></td></tr></table></figure>
+
+<p>还有空字典</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d = &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="字典的常用操作"><a href="#字典的常用操作" class="headerlink" title="字典的常用操作"></a>字典的常用操作</h2><p><strong>获取字典中的值：</strong></p>
+<p>第一种：使用 []</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(scores[<span class="string">&#x27;a&#x27;</span>])</span><br></pre></td></tr></table></figure>
+
+<p>第二种：使用get方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(scores.get(<span class="string">&#x27;a&#x27;</span>))</span><br></pre></td></tr></table></figure>
+
+<p>第一种：如果key是错误的，那么会报错：key error；第二种输出None</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(scores.get(<span class="string">&#x27;g&#x27;</span>,<span class="number">123</span>))</span><br></pre></td></tr></table></figure>
+
+<p>这个g是找不到的，但是会输出123；找不到就会输出设定的默认值</p>
+<p><strong>key的判断</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;a&#x27;</span> <span class="keyword">in</span> scores)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;a&#x27;</span> <span class="keyword">not</span> <span class="keyword">in</span> scores)</span><br></pre></td></tr></table></figure>
+
+<p><strong>字典元素的删除</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">del</span> scores[<span class="string">&#x27;a&#x27;</span>]<span class="comment">#删除指定的key和value对</span></span><br><span class="line">scores.clear()<span class="comment">#清空</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>字典元素的新增</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scores[<span class="string">&#x27;g&#x27;</span>]=<span class="number">123</span><span class="comment">#也可以用这个方法修改</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="获取字典视图"><a href="#获取字典视图" class="headerlink" title="获取字典视图"></a>获取字典视图</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">keys()<span class="comment">#获取字典中所有的key</span></span><br><span class="line">values()<span class="comment">#获取字典中所有的value</span></span><br><span class="line">items()<span class="comment">#获取字典中所有key和value</span></span><br><span class="line">输出如：</span><br><span class="line">keys = scores.keys()</span><br><span class="line"><span class="built_in">print</span>(keys)</span><br></pre></td></tr></table></figure>
+
+<p><strong>字典元素的遍历</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> scores:</span><br><span class="line">    <span class="built_in">print</span>(item,scores[item],scores.get(item))</span><br></pre></td></tr></table></figure>
+
+<p><strong>字典的特点</strong></p>
+<p>①字典中的元素都是一个key和value对，key不允许重复，value可以重复</p>
+<p>②字典中的元素是无序的</p>
+<p>③字典中的key必须是不可变动对象</p>
+<p>④字典也可以根据需要动态的伸缩（不需要分配多大的空间）</p>
+<p>⑤字典会浪费较大的内存，是一种使用空间换时间的数据结构</p>
+<p><strong>字典生成式</strong></p>
+<p>使用内置函数zip()</p>
+<p>用于将可迭代的对象作为参数，将对象中对应的元素打包成一个元组，然后返回由这些元组组成的列表</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">key = [<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>]</span><br><span class="line">value = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]<span class="comment">#值多值少，只会跟元素少的组成字典</span></span><br><span class="line">v1 = &#123;key:value <span class="keyword">for</span> key,value <span class="keyword">in</span> <span class="built_in">zip</span>(key,value)&#125;</span><br><span class="line"><span class="built_in">print</span>(v1)</span><br></pre></td></tr></table></figure>
+
+
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
                 <source type="audio/mpeg" src="">
@@ -94,7 +235,7 @@
     </div>
     
         <div class="side">
-				
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#print%E5%87%BD%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">print函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BD%AC%E4%B9%89%E5%AD%97%E7%AC%A6"><span class="toc-number">2.</span> <span class="toc-text">转义字符</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.</span> <span class="toc-text">数据类型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-number">4.</span> <span class="toc-text">数据类型转换</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E5%87%BD%E6%95%B0input"><span class="toc-number">5.</span> <span class="toc-text">输入函数input</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AE%97%E6%95%B0%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">6.</span> <span class="toc-text">算数运算符</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#range%E5%87%BD%E6%95%B0"><span class="toc-number">7.</span> <span class="toc-text">range函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#for-in%E5%BE%AA%E7%8E%AF"><span class="toc-number">8.</span> <span class="toc-text">for_in循环</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#continue"><span class="toc-number">9.</span> <span class="toc-text">continue</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%97%E8%A1%A8"><span class="toc-number">10.</span> <span class="toc-text">列表</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%97%E8%A1%A8%E7%9A%84%E5%88%A4%E6%96%AD%E5%92%8C%E9%81%8D%E5%8E%86"><span class="toc-number">10.1.</span> <span class="toc-text">列表的判断和遍历</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%97%E8%A1%A8%E7%9A%84%E6%B7%BB%E5%8A%A0"><span class="toc-number">10.2.</span> <span class="toc-text">列表的添加</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%97%E8%A1%A8%E7%9A%84%E6%B7%BB%E5%8A%A0-1"><span class="toc-number">10.3.</span> <span class="toc-text">列表的添加</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%97%E8%A1%A8%E5%85%83%E7%B4%A0%E7%9A%84%E4%BF%AE%E6%94%B9"><span class="toc-number">10.4.</span> <span class="toc-text">列表元素的修改</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%97%E8%A1%A8%E7%9A%84%E6%8E%92%E5%BA%8F"><span class="toc-number">10.5.</span> <span class="toc-text">列表的排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E5%88%97%E8%A1%A8%E7%9A%84%E5%85%AC%E5%BC%8F"><span class="toc-number">10.6.</span> <span class="toc-text">生成列表的公式</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%97%E5%85%B8"><span class="toc-number">11.</span> <span class="toc-text">字典</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E5%85%B8%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="toc-number">11.1.</span> <span class="toc-text">字典的实现原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E5%85%B8%E7%9A%84%E5%88%9B%E5%BB%BA"><span class="toc-number">11.2.</span> <span class="toc-text">字典的创建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E5%85%B8%E7%9A%84%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C"><span class="toc-number">11.3.</span> <span class="toc-text">字典的常用操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%AD%97%E5%85%B8%E8%A7%86%E5%9B%BE"><span class="toc-number">11.4.</span> <span class="toc-text">获取字典视图</span></a></li></ol></li></ol>	
         </div>
     
 </div>

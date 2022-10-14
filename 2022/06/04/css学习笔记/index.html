@@ -1,0 +1,269 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>css学习笔记 - 少莽</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="zhishaomang,"> 
+    <meta name="description" content="一、什么是css​    样式表，一种用来表现html、xml等内容样式的计算机语言。css不仅可以静态地修饰网页，还可以配合各种脚本动态的对网页各元素进行格式化。
+css能够对网页中元素位置的排版,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="少莽" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="css学习笔记 - 少莽"/>
+    <meta name="twitter:description" content="一、什么是css​    样式表，一种用来表现html、xml等内容样式的计算机语言。css不仅可以静态地修饰网页，还可以配合各种脚本动态的对网页各元素进行格式化。
+css能够对网页中元素位置的排版,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="少莽"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="css学习笔记 - 少莽"/>
+    <meta property="og:description" content="一、什么是css​    样式表，一种用来表现html、xml等内容样式的计算机语言。css不仅可以静态地修饰网页，还可以配合各种脚本动态的对网页各元素进行格式化。
+css能够对网页中元素位置的排版,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">少莽</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">css学习笔记</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">css学习笔记</h1>
+        <div class="stuff">
+            <span>六月 04, 2022</span>
+            
+
+        </div>
+        <div class="content markdown">
+            <h1 id="一、什么是css"><a href="#一、什么是css" class="headerlink" title="一、什么是css"></a><strong>一、什么是css</strong></h1><p>​    <strong>样式表</strong>，一种用来<strong>表现html、xml</strong>等内容<strong>样式的计算机语言</strong>。css不仅<strong>可以静态地修饰网页</strong>，还可以<strong>配合</strong>各种<strong>脚本动态的</strong>对网页<strong>各元素进行格式化</strong>。</p>
+<p>css能够对网页中元素位置的排版进行像素级精确控制，支持几乎所有的字体字号样式，<strong>拥有对网页对象和模型样式编辑的能力。</strong></p>
+<p>通俗来讲：html就是人，而css就是化妆品、衣服，让人变得好看。</p>
+<h1 id="二、样式"><a href="#二、样式" class="headerlink" title="二、样式"></a><strong>二、样式</strong></h1><h2 id="1、行内样式（内嵌样式）"><a href="#1、行内样式（内嵌样式）" class="headerlink" title="1、行内样式（内嵌样式）"></a><strong>1、行内样式（内嵌样式）</strong></h2><p> 写在html标签里的style属性里，就比如下段代码，css代码写在了html的div标签里，然后用style属性去修饰html标签。</p>
+<p>在这里面可以通过右键检查来改变文本的样式，包括方框大小等，也可以在代码中改变。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;div style=&quot;position:absolute;</span><br><span class="line">	left: 25%;</span><br><span class="line">	top: 30%;</span><br><span class="line">	font-size: 30px;</span><br><span class="line">	font-style: italic;</span><br><span class="line">	font-family: cursive;</span><br><span class="line">	text-align: right;</span><br><span class="line">	color: #ff0000;</span><br><span class="line">	width: 500px;</span><br><span class="line">	height: 400px;</span><br><span class="line">	broder-color:blue;</span><br><span class="line">	border-style: dashed;&quot;&gt;</span><br><span class="line">我孤身一人</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<h2 id="编辑"><a href="#编辑" class="headerlink" title="编辑"></a><img src="https://img-blog.csdnimg.cn/2f56cbfa49ea4cde8ce3196a03c48be2.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</h2><h2 id="编辑-2、内部样式"><a href="#编辑-2、内部样式" class="headerlink" title="*编辑* 2、内部样式"></a><strong><em>*<img src="https://img-blog.csdnimg.cn/4426526dbd864392b6d5b16ca9a89103.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑*</em> 2、内部样式</strong></h2><p>​    内部样式定义在**<style type="text/css"> </style><strong>标签内，一般写在</strong><head>标签内<strong>，定义方式为：</strong>1、<strong>标签选择器，</strong>2、<strong>id选择器，</strong>3、**类选择器。</p>
+<p>​    <strong>内部样式</strong>不像<strong>行内样式</strong>，它单独用css写style标签，然后html只是引用css代码。就是ccs和html两个分开了。</p>
+<h3 id="1）标签选择器"><a href="#1）标签选择器" class="headerlink" title="1）标签选择器"></a>1）标签选择器</h3><p><strong>作用与范围内的所有同类型标签</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;head&gt;</span><br><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">div&#123;            /*定义此样式作用与本页面所有的div标签 */</span><br><span class="line">XXXXXXXX</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p>而/**/是css的注释方法，这跟html的<!-- -->不一样。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">       &lt;head&gt;</span><br><span class="line">               &lt;meta name=&quot;utf-8&quot;&gt;</span><br><span class="line">               &lt;title&gt;  测试 &lt;/title&gt;</span><br><span class="line">			   &lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">			   div&#123;</span><br><span class="line">			   position:absolute;</span><br><span class="line">			   left:50%;</span><br><span class="line">			   top:40%;</span><br><span class="line">			   font-size:30px;</span><br><span class="line">			   font-style:italic</span><br><span class="line">			   font-family:cursive;</span><br><span class="line">			   text-align:right;</span><br><span class="line">			   color:red;</span><br><span class="line">			   width:500px;</span><br><span class="line">			   height:500px;</span><br><span class="line">			   border-color:blue;</span><br><span class="line">			   border-style:dashed;</span><br><span class="line">			   </span><br><span class="line">			   &#125;</span><br><span class="line">			   &lt;/style&gt;</span><br><span class="line">       &lt;/head&gt;</span><br><span class="line">&lt;div&gt;</span><br><span class="line">你好，靓仔！</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">        &lt;/body&gt;</span><br><span class="line">  &lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p><img src="https://img-blog.csdnimg.cn/81bc81aae9f84b0f9c96074c5dbd007a.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p> 但是行内样式的优先级比内部样式高（就好比内部样式是普通会员，行内样式是高级会员，肯定高级会员会优先显示出来）</p>
+<h3 id="2）id选择器"><a href="#2）id选择器" class="headerlink" title="2）id选择器"></a>2）id选择器</h3><p> 通过#+名字，在html标签中使用id=“名字”（感觉挺像c语言里的函数调用）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;head&gt;	</span><br><span class="line">		       &lt;style type=&quot;text/css&quot;    &gt;</span><br><span class="line">               #shuaige&#123;</span><br><span class="line">			   position:absolute;</span><br><span class="line">			   left:50%;</span><br><span class="line">			   top:40%;</span><br><span class="line">			   font-size:30px;</span><br><span class="line">			   font-style:italic</span><br><span class="line">			   font-family:cursive;</span><br><span class="line">			   text-align:right;</span><br><span class="line">			   color:red;</span><br><span class="line">			   width:500px;</span><br><span class="line">			   height:500px;</span><br><span class="line">			   border-color:blue;</span><br><span class="line">			   border-style:dashed;</span><br><span class="line">			   </span><br><span class="line">			   &#125;</span><br><span class="line">			 &lt;/style&gt;</span><br><span class="line">       &lt;/head&gt;</span><br><span class="line">&lt;div id=&quot;shuaige&quot;&gt;</span><br><span class="line">你好，靓仔！</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p>效果和内部样式一样 </p>
+<p>css代码也可以放到body里面，但建议放到head标签里，是因为：浏览器会先加载css，后面的html代码就会直接显示出效果。反之，网速慢得话可能先加载html后加载css</p>
+<h3 id="3）类选择器"><a href="#3）类选择器" class="headerlink" title="3）类选择器"></a>3）类选择器</h3><p> 通过.名字{XXXX}，在html标签中使用“class=名字”来使用css</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">       &lt;head&gt;</span><br><span class="line">               &lt;meta name=&quot;utf-8&quot;&gt;</span><br><span class="line">               &lt;title&gt;  测试 &lt;/title&gt;</span><br><span class="line">			   &lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">			   .shuaige&#123;</span><br><span class="line">			   position:absolute;</span><br><span class="line">			   left:50%;</span><br><span class="line">			   top:40%;</span><br><span class="line">			   font-size:30px;</span><br><span class="line">			   font-style:italic</span><br><span class="line">			   font-family:cursive;</span><br><span class="line">			   text-align:right;</span><br><span class="line">			   &#125;</span><br><span class="line">			   .dashuaige&#123;	   color:red;</span><br><span class="line">			   width:500px;</span><br><span class="line">			   height:500px;</span><br><span class="line">			   border-color:blue;</span><br><span class="line">			   border-style:dashed;&#125;</span><br><span class="line">			   &lt;/style&gt;</span><br><span class="line">       &lt;/head&gt;</span><br><span class="line">&lt;div class=&quot;shuaige dashuaige &quot; &gt;</span><br><span class="line">你好，靓仔！</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">        &lt;/body&gt;</span><br><span class="line">  &lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p><strong>使用多个类选择器，在class里面要使用空格隔开</strong></p>
+<p>但是如果两个类选择器里面的属性重复了，会怎么样？？？</p>
+<p>答：会优先选择在class后面的类选择器，当然也可以手动选择，比如：在属性后面加一个！important，就会优先显示这个属性。</p>
+<p><strong>用法：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1、p.center&#123;text-align:center;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p>使得所有p标签的位置居中，而其他html标签用class=“center”就无法生效。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2、[title]&#123; color:blue;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p>所有有title属性的元素都会生效，比如：<h1 title="XXXX"> hello</h1>.  <a title="XXXX" > XXXX</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3、[title=giegie]</span><br></pre></td></tr></table></figure>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p>缩小了范围，只有对title=”giegie“属性的标签才有用。像title=”XXX“就没用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">4、input[type=&quot;button&quot;]&#123;XXXx&#125;</span><br><span class="line">   input[type=&quot;text&quot;]&#123;XXX&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p>对所有的input进行了定义，但只有对属性type=”button“和type=”text“的才会生效。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">5、&lt;style&gt;</span><br><span class="line">a:link&#123;XXX&#125;/* 未访问链接时的样式 */</span><br><span class="line">a:visit&#123;XXX&#125;/* 已访问链接时的样式 */</span><br><span class="line">a:hover&#123;XX&#125;/* 鼠标移动到上面时的样式 */</span><br><span class="line">a:active&#123;XXX&#125;/* 鼠标点击时的样式 */</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p>这是对a标签的css定义</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">6、&lt;style&gt;</span><br><span class="line">p:first-child</span><br><span class="line">&#123;</span><br><span class="line">color:red;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p>这只对html标签里面第一个p标签生效</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">7、&lt;style&gt;</span><br><span class="line">p &gt; i:first-child</span><br><span class="line">&#123;</span><br><span class="line">XXXXXXX</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p>对p标签里面的i标签的第一个生效</p>
+<p>比如：<p> 我是　　　＜i＞　一个　＜／i＞　　　＜i＞　好人　＜／i＞</p></p>
+<p>其中只有”一个“会生效。 </p>
+<h2 id="3，外部样式"><a href="#3，外部样式" class="headerlink" title="3，外部样式"></a><strong>3，外部样式</strong></h2><p>把css单独写进一个后缀为.css的文件中，在html中引入css文件，则其中定义的css会对html元素生效。</p>
+<p><img src="https://img-blog.csdnimg.cn/a4688400d02149dc901f001b0b1bf7d4.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_10,color_FFFFFF,t_70,g_se,x_16" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动">编辑</p>
+<p> 一个html文件，一个css文件。</p>
+<p>在html文件的head里写：,&lt;link rel=”stylesgeet” href=”css.css”</p>
+<p>就可以引用css文件了。 </p>
+<p><strong>可以改变网页小图标:</strong></p>
+<link rel="shortcut icon" href="图标地址" type="image/x-icon"> 
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://dl.stream.qqmusic.qq.com/C400001OUQ6M2WeMRO.m4a?guid=8163272410&vkey=C6BFF6D45012D604172E87D65FF2374E512C935275765A15128BE77C8FB1CA7110313E815EB620C046DDFA4D4580F98DAE74B533BA12DACE&uin=1552804588&fromtag=120002"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AFcss"><span class="toc-number">1.</span> <span class="toc-text">一、什么是css</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%A0%B7%E5%BC%8F"><span class="toc-number">2.</span> <span class="toc-text">二、样式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E8%A1%8C%E5%86%85%E6%A0%B7%E5%BC%8F%EF%BC%88%E5%86%85%E5%B5%8C%E6%A0%B7%E5%BC%8F%EF%BC%89"><span class="toc-number">2.1.</span> <span class="toc-text">1、行内样式（内嵌样式）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%BE%91"><span class="toc-number">2.2.</span> <span class="toc-text">编辑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%BE%91-2%E3%80%81%E5%86%85%E9%83%A8%E6%A0%B7%E5%BC%8F"><span class="toc-number">2.3.</span> <span class="toc-text">*编辑* 2、内部样式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%EF%BC%89%E6%A0%87%E7%AD%BE%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-number">2.3.1.</span> <span class="toc-text">1）标签选择器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%EF%BC%89id%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-number">2.3.2.</span> <span class="toc-text">2）id选择器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%EF%BC%89%E7%B1%BB%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-number">2.3.3.</span> <span class="toc-text">3）类选择器</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">3.</span> <span class="toc-text"> hello</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3%EF%BC%8C%E5%A4%96%E9%83%A8%E6%A0%B7%E5%BC%8F"><span class="toc-number">3.1.</span> <span class="toc-text">3，外部样式</span></a></li></ol></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/live2d-widget-model-koharu/assets/koharu.model.json"},"display":{"superSample":2,"width":200,"height":400,"position":"left","hOffset":5,"vOffset":-84},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- Google Analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=zhishaomang"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'zhishaomang');
+</script>
+<!-- End Google Analytics -->
+
+
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+<!--单击显示文字-->
+<script type="text/javascript" src="/js/click_show_text.js"></script>
+<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+<script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+<script type="text/javascript" src="/js/fireworks.js"></script>
+<!--浏览器搞笑标题-->
+<script type="text/javascript" src="/js/FunnyTitle.js"></script>

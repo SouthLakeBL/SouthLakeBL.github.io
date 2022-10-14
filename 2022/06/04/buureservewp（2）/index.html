@@ -1,0 +1,278 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>buureservewp（2） - 少莽</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="zhishaomang,"> 
+    <meta name="description" content="[GUET-CTF2019]re这道题挺简单的查壳，upx，然后脱壳，用shift+f12找字符串，找到主函数发现correct的条件与sub_4009ae函数有关，点进去
+123456789101,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="少莽" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="buureservewp（2） - 少莽"/>
+    <meta name="twitter:description" content="[GUET-CTF2019]re这道题挺简单的查壳，upx，然后脱壳，用shift+f12找字符串，找到主函数发现correct的条件与sub_4009ae函数有关，点进去
+123456789101,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="少莽"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="buureservewp（2） - 少莽"/>
+    <meta property="og:description" content="[GUET-CTF2019]re这道题挺简单的查壳，upx，然后脱壳，用shift+f12找字符串，找到主函数发现correct的条件与sub_4009ae函数有关，点进去
+123456789101,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">少莽</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">buureservewp（2）</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">buureservewp（2）</h1>
+        <div class="stuff">
+            <span>六月 04, 2022</span>
+            
+
+        </div>
+        <div class="content markdown">
+            <h2 id="GUET-CTF2019-re"><a href="#GUET-CTF2019-re" class="headerlink" title="[GUET-CTF2019]re"></a>[GUET-CTF2019]re</h2><p>这道题挺简单的<br>查壳，upx，然后脱壳，用shift+f12找字符串，找到主函数<br><img src="https://img-blog.csdnimg.cn/2881affd928a4e09948511c207e9b2b2.png" alt="在这里插入图片描述"><br>发现correct的条件与sub_4009ae函数有关，点进去</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">1629056</span> * *a1 != <span class="number">166163712</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">6771600</span> * a1[<span class="number">1</span>] != <span class="number">731332800</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">3682944</span> * a1[<span class="number">2</span>] != <span class="number">357245568</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">10431000</span> * a1[<span class="number">3</span>] != <span class="number">1074393000</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">3977328</span> * a1[<span class="number">4</span>] != <span class="number">489211344</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">5138336</span> * a1[<span class="number">5</span>] != <span class="number">518971936</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">7532250</span> * a1[<span class="number">7</span>] != <span class="number">406741500</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">5551632</span> * a1[<span class="number">8</span>] != <span class="number">294236496</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">3409728</span> * a1[<span class="number">9</span>] != <span class="number">177305856</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">13013670</span> * a1[<span class="number">10</span>] != <span class="number">650683500</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">6088797</span> * a1[<span class="number">11</span>] != <span class="number">298351053</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">7884663</span> * a1[<span class="number">12</span>] != <span class="number">386348487</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">8944053</span> * a1[<span class="number">13</span>] != <span class="number">438258597</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">5198490</span> * a1[<span class="number">14</span>] != <span class="number">249527520</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">4544518</span> * a1[<span class="number">15</span>] != <span class="number">445362764</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">3645600</span> * a1[<span class="number">17</span>] != <span class="number">174988800</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">10115280</span> * a1[<span class="number">16</span>] != <span class="number">981182160</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">9667504</span> * a1[<span class="number">18</span>] != <span class="number">493042704</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">5364450</span> * a1[<span class="number">19</span>] != <span class="number">257493600</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">13464540</span> * a1[<span class="number">20</span>] != <span class="number">767478780</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">5488432</span> * a1[<span class="number">21</span>] != <span class="number">312840624</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">14479500</span> * a1[<span class="number">22</span>] != <span class="number">1404511500</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">6451830</span> * a1[<span class="number">23</span>] != <span class="number">316139670</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">6252576</span> * a1[<span class="number">24</span>] != <span class="number">619005024</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">7763364</span> * a1[<span class="number">25</span>] != <span class="number">372641472</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">7327320</span> * a1[<span class="number">26</span>] != <span class="number">373693320</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">8741520</span> * a1[<span class="number">27</span>] != <span class="number">498266640</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">8871876</span> * a1[<span class="number">28</span>] != <span class="number">452465676</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">4086720</span> * a1[<span class="number">29</span>] != <span class="number">208422720</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">9374400</span> * a1[<span class="number">30</span>] == <span class="number">515592000</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">5759124</span> * a1[<span class="number">31</span>] == <span class="number">719890500</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0LL</span>;</span><br></pre></td></tr></table></figure>
+<p>发现这么多数字都是v4数组里面的，不过关键少了个a1[6],然后a1[17]跟a1[16]位置反了，写个脚本吧：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a[<span class="number">31</span>] = &#123;<span class="number">166163712</span>,<span class="number">731332800</span>,<span class="number">357245568</span>,<span class="number">1074393000</span>,<span class="number">489211344</span>,<span class="number">518971936</span>,<span class="number">406741500</span>,<span class="number">294236496</span>,<span class="number">177305856</span>,<span class="number">650683500</span>,<span class="number">298351053</span>,<span class="number">386348487</span>,<span class="number">438258597</span>,<span class="number">249527520</span>,<span class="number">445362764</span>,<span class="number">981182160</span>,<span class="number">174988800</span>,<span class="number">493042704</span>,<span class="number">257493600</span>,<span class="number">767478780</span>,<span class="number">312840624</span>,<span class="number">1404511500</span>,<span class="number">316139670</span>,<span class="number">619005024</span>,<span class="number">372641472</span>,<span class="number">373693320</span>,<span class="number">498266640</span>,<span class="number">452465676</span>,<span class="number">208422720</span>,<span class="number">515592000</span>,<span class="number">719890500</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span> b[<span class="number">31</span>] = &#123;<span class="number">1629056</span>,<span class="number">6771600</span>,<span class="number">3682944</span>,<span class="number">10431000</span>,<span class="number">3977328</span>,<span class="number">5138336</span>,<span class="number">7532250</span>,<span class="number">5551632</span>,<span class="number">3409728</span>,<span class="number">13013670</span>,<span class="number">6088797</span>,<span class="number">7884663</span>,<span class="number">8944053</span>,<span class="number">5198490</span>,<span class="number">4544518</span>,<span class="number">10115280</span>,<span class="number">3645600</span>,<span class="number">9667504</span>,<span class="number">5364450</span>,<span class="number">13464540</span>,<span class="number">5488432</span>,<span class="number">14479500</span>,<span class="number">6451830</span>,<span class="number">6252576</span>,<span class="number">7763364</span>,<span class="number">7327320</span>,<span class="number">8741520</span>,<span class="number">8871876</span>,<span class="number">4086720</span>,<span class="number">9374400</span>,<span class="number">5759124</span>&#125;;</span><br><span class="line">    <span class="keyword">char</span> flag[<span class="number">31</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">31</span>;i++)&#123;</span><br><span class="line">        flag[i] = a[i] / b[i];</span><br><span class="line">    &#125;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">31</span>;i++)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>,flag[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>然后最终的flag，少了第六位的值，那就一个数字一个字母的试呗，最终得到flag<br><img src="https://img-blog.csdnimg.cn/7cf16349982440338df73e0f76612711.png" alt="在这里插入图片描述"><br>e跟6之间加一个1就对了</p>
+<h2 id="WUSTCTF2020-level1"><a href="#WUSTCTF2020-level1" class="headerlink" title="[WUSTCTF2020]level1"></a>[WUSTCTF2020]level1</h2><p>这一题也挺简单的<br>ida里面，shift + f12查看字符串，找到flag，进入函数<br><img src="https://img-blog.csdnimg.cn/449b7845f7ea475d985bfe69f60adb67.png" alt="在这里插入图片描述"><br>可以看到是有20次循环，然后打开给出的txt文本，发现只有19个数字，那么第一位给0</p>
+<blockquote>
+<p>0，198,232,816,200,1536,300,6144,984,51200,570,92160,1200,565248,756,1474560,800,6291456,1782,65536000</p>
+</blockquote>
+<p>然后看着伪代码，写成c语言的形式：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a[<span class="number">20</span>] = &#123;<span class="number">0</span>,<span class="number">198</span>,<span class="number">232</span>,<span class="number">816</span>,<span class="number">200</span>,<span class="number">1536</span>,<span class="number">300</span>,<span class="number">6144</span>,<span class="number">984</span>,<span class="number">51200</span>,<span class="number">570</span>,<span class="number">92160</span>,<span class="number">1200</span>,<span class="number">565248</span>,<span class="number">756</span>,<span class="number">1474560</span>,<span class="number">800</span>,<span class="number">6291456</span>,<span class="number">1782</span>,<span class="number">65536000</span>&#125;;</span><br><span class="line">    <span class="keyword">char</span> flag[<span class="number">19</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">19</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i&amp;<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>,(a[i]&gt;&gt;i));</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>,(a[i]/i));</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/daaefcb4416c4f7ba3d72278556cb7a3.png" alt="在这里插入图片描述"></p>
+<h2 id="SUCTF2019-SignIn"><a href="#SUCTF2019-SignIn" class="headerlink" title="[SUCTF2019]SignIn"></a>[SUCTF2019]SignIn</h2><p>进入ida找到main函数<br><img src="https://img-blog.csdnimg.cn/5297c15b3f644157b367797744647ad0.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>__gmpz_init_set_str 函数：<br>*<em>int mpz_init_set_str (mpz_t rop, const char <em>str, int base) [Function]</em></em><br>作用就是将 str 字符数组以 base 指定的进制解读成数值并写入 rop 所指向的内存。该程序通过调用这个函数来实现数据的初始化赋值。<br>__gmpz_powm 函数：<br><strong>void mpz_powm (mpz_t rop, const mpz_t base, const mpz_t exp, const mpz_t mod) [Function]</strong><br>计算 base 的 exp 次方，并对 mod 取模，最后将结果写入 rop 中<br>这种计算跟rsa一样</p>
+</blockquote>
+<p>我们需要理解一下rsa的加密解密过程</p>
+<p><img src="https://img-blog.csdnimg.cn/b3b94ddeaff04c2fb1fcbedef66b5666.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>图中的E是公钥（E和 φ(N)互为质数），N是公共模数（质数 P 、Q相乘得到N），MOD就是模运算</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/7a5b0fc962e64c3aa32f379dc9dc85a5.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>图中的D是私钥（私钥由这个公式计算得出E * D % φ(N) = 1），N是公共模数（质数 P<br>、Q相乘得到N），MOD就是模运算，φ(N)是欧拉函数（由这个公式计算得出φ(N) = (P-1)(Q-1)）。</p>
+</blockquote>
+<p>所以：</p>
+<blockquote>
+<p>密文：ad939ff59f6e70bcbfad406f2494993757eee98b91bc244184a377520d06fc35<br>N:103461035900816914121390101299049044413950405173712170434161686539878160984549<br>e：65537</p>
+</blockquote>
+<p>然后根据N求出q和p<br><img src="https://img-blog.csdnimg.cn/3ab751bc6e95408788efbba0cb0aadc9.png" alt="在这里插入图片描述"><br>再用工具求出d<br><img src="https://img-blog.csdnimg.cn/20abccea6e034b7fa1d8bd4056829b32.png" alt="在这里插入图片描述"><br>然后写python代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 无注释</span></span><br><span class="line"><span class="comment"># 因为你啥都不会，快去学！！！</span></span><br><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line"><span class="keyword">import</span> libnum</span><br><span class="line">c = <span class="number">0xad939ff59f6e70bcbfad406f2494993757eee98b91bc244184a377520d06fc35</span></span><br><span class="line">n = <span class="number">103461035900816914121390101299049044413950405173712170434161686539878160984549</span></span><br><span class="line">d = <span class="number">91646299298871237857836940212608056141193465208586711901499120163393577626813</span></span><br><span class="line">m = gmpy2.powmod(c,d,n)</span><br><span class="line"><span class="built_in">print</span>(libnum.n2s(<span class="built_in">int</span>(m)))</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/bfc654d5997a42a5a0df9d48a8eca07f.png" alt="在这里插入图片描述"><br>也可以先把m的值转为十六进制，再把十六进制转为字符串</p>
+<blockquote>
+<p>m=185534734614696481020381637136165435809958101675798337848243069<br>十六进制：73756374667b50776e5f405f68756e647265645f79656172737d<br>字符串：suctf{Pwn_@_hundred_years}<br>因为函数一开始就是把输入的字符串转为十六进制的，然后算出来的又是十进制，所以就逆回去</p>
+</blockquote>
+<p> <em><strong>libnum库：</strong></em><br> 数字型（不论是十六进制还是十进制）与字符串之间的转换：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">import</span> libnum</span><br><span class="line">s=<span class="string">&quot;flag&#123;52Hertz_is_caiji&#125;&quot;</span></span><br><span class="line"><span class="built_in">print</span>(libnum.s2n(s))</span><br><span class="line"><span class="comment">#164587995846501346531234137103678929624631014312713866001802621</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> libnum</span><br><span class="line">n=<span class="number">0x666c61677b54656c6c4772696e5f69735f636169446f5f38657d</span></span><br><span class="line"><span class="built_in">print</span> (libnum.n2s(n))</span><br><span class="line"><span class="comment">#flag&#123;TellGrin_is_caiD_o8e&#125;</span></span><br></pre></td></tr></table></figure>
+<p>还有二进制与字符串的转换：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> libnum</span><br><span class="line">s=<span class="string">&#x27;TellGrin&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(libnum.s2b(s))</span><br><span class="line"><span class="comment">#0101010001100101011011000110110001000111011100100110100101101110</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> libnum</span><br><span class="line">s = <span class="string">&#x27;0101010001100101011011000110110001000111011100100110100101101110&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(libnum.b2s(s))</span><br><span class="line"><span class="comment">#TellGrin</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="MRCTF2020-Transform"><a href="#MRCTF2020-Transform" class="headerlink" title="[MRCTF2020]Transform"></a>[MRCTF2020]Transform</h2><p>这题也挺简单的<br>看主函数：<br><img src="https://img-blog.csdnimg.cn/95a83af5871540aeab23ce42668a1de0.png" alt="在这里插入图片描述"><br>首先flag长度为33.<br>byte_414040数组的值已经知道了，然后跟dword_40F040数组进行异或。<br>然后以dword_40F040数组为flag数组的下标等于byte_414040数组，就能解出来了<br>脚本：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> flag[<span class="number">33</span>];</span><br><span class="line">    <span class="keyword">char</span> a[<span class="number">33</span>] = &#123;<span class="number">0x67</span>,<span class="number">0x79</span>,<span class="number">0x7B</span>,<span class="number">0x7F</span>,<span class="number">0x75</span>,<span class="number">0x2B</span>,<span class="number">0x3C</span>,<span class="number">0x52</span>,<span class="number">0x53</span>,<span class="number">0x79</span>,<span class="number">0x57</span>,<span class="number">0x5E</span>,</span><br><span class="line">		<span class="number">0x5D</span>,<span class="number">0x42</span>,<span class="number">0x7B</span>,<span class="number">0x2D</span>,<span class="number">0x2A</span>,<span class="number">0x66</span>,<span class="number">0x42</span>,<span class="number">0x7E</span>,<span class="number">0x4C</span>,<span class="number">0x57</span>,<span class="number">0x79</span>,<span class="number">0x41</span>,<span class="number">0x6B</span>,</span><br><span class="line">		<span class="number">0x7E</span>,<span class="number">0x65</span>,<span class="number">0x3C</span>,<span class="number">0x5C</span>,<span class="number">0x45</span>,<span class="number">0x6F</span>,<span class="number">0x62</span>,<span class="number">0x4D</span>&#125;;</span><br><span class="line">    <span class="keyword">char</span> b[<span class="number">33</span>] = &#123;<span class="number">0x9</span>, <span class="number">0x0A</span>, <span class="number">0x0F</span>, <span class="number">0x17</span>, <span class="number">0x7</span>, <span class="number">0x18</span>, <span class="number">0x0C</span>, <span class="number">0x6</span>, <span class="number">0x1</span>, <span class="number">0x10</span>, <span class="number">0x3</span>, <span class="number">0x11</span>, <span class="number">0x20</span>,</span><br><span class="line">		<span class="number">0x1D</span>, <span class="number">0x0B</span>, <span class="number">0x1E</span>, <span class="number">0x1B</span>, <span class="number">0x16</span>, <span class="number">0x4</span>, <span class="number">0x0D</span>, <span class="number">0x13</span>, <span class="number">0x14</span>, <span class="number">0x15</span>, <span class="number">0x2</span>, <span class="number">0x19</span>,</span><br><span class="line">	<span class="number">0x5</span>, <span class="number">0x1F</span>, <span class="number">0x8</span>, <span class="number">0x12</span>, <span class="number">0x1A</span>, <span class="number">0x1C</span>, <span class="number">0x0E</span>&#125;;</span><br><span class="line">    <span class="keyword">char</span> c[<span class="number">33</span>] = <span class="string">&quot;gy&#123;u+&lt;RSyW^]B&#123;-*fB~LWyAk~e&lt;\EobM&quot;</span>;</span><br><span class="line">    <span class="keyword">char</span> d[<span class="number">33</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">33</span>;i++)&#123;</span><br><span class="line">        d[i] = a[i] ^ b[i];</span><br><span class="line">        flag[b[i]] = d[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">33</span>;i++)&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s&quot;</span>,flag);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="WUSTCTF2020-level2"><a href="#WUSTCTF2020-level2" class="headerlink" title="[WUSTCTF2020]level2"></a>[WUSTCTF2020]level2</h2><p>这道题。。。。。。怎么说呢。。。。。<br>脱完壳，看ida，我以为是个陷阱，没想到就直接是个flag<br>好吧，没想到，反正主函数我也没找到。。。。。。。<br><img src="https://img-blog.csdnimg.cn/12f9c29f9c564b668463dfdd3c4aab7f.png" alt="在这里插入图片描述"></p>
+<h2 id="ACTF新生赛2020-usualCrypt"><a href="#ACTF新生赛2020-usualCrypt" class="headerlink" title="[ACTF新生赛2020]usualCrypt"></a>[ACTF新生赛2020]usualCrypt</h2><p>看主函数<br><img src="https://img-blog.csdnimg.cn/25df850448844e2f9b0e9ffe95bc0ebd.png" alt="在这里插入图片描述"><br>byte_40E0E4：输入的字符串经过加密后进行比较，是则对<br><img src="https://img-blog.csdnimg.cn/c8b5e255cfa5416ba72e451ceaaa201c.png" alt="在这里插入图片描述"><br>进入加密函数，发现是base64加密，再看看密码表<br><img src="https://img-blog.csdnimg.cn/b03d70153f3e409a828a48e1a6840ed7.png" alt="在这里插入图片描述"><br>加密的开始，有个关于密码表的函数，看一下<br><img src="https://img-blog.csdnimg.cn/de8074fd8d644826a1efd20f3941a4c2.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>首先两个数组，看后俩位，简单记作【AA，A0】<br>v1 = aa的第六位<br>aa第六位=a0第六位<br>a0第六位=v1<br>=================<br>v1 = aa的第七位<br>aa第七位=a0第七位<br>a0第七位=v1<br> 最后那个while语句控制循环次数，交换到第14位停止</p>
+</blockquote>
+<p>然后看两个密码表：</p>
+<blockquote>
+<p>a0：ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/<br>aa：LMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/<br>如果a0不接着aa的话，那么位数不足<br>那么两个交换的也就是：GHIJKLMNO跟QRSTUVWXY换<br>最后的密码表：<br>ABCDEFQRSTUVWXYPGHIJKLMNOZabcdefghijklmnopqrstuvwxyz0123456789+/</p>
+</blockquote>
+<p>变化的密码表知道了，然后解密之后的字符串还会经历一个函数：大小写转换函数：<br>sub_401030<br><img src="https://img-blog.csdnimg.cn/d706a2759236452e9e1cb5e6c2f417b8.png" alt="在这里插入图片描述"><br>大小写转换的伪代码，分析：</p>
+<blockquote>
+<p>在区间（97，122）小写字母会-32，变成大写<br>在区间（65，90）大写字母会+32，变成小写<br>我觉得第二个if语句少了个else，不然我就能理解的更快了。。。。（LOBYTE前边）加个else</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/5c265e95379046cbaf5d9cd7943bc073.png" alt="在这里插入图片描述"><br>然后跟一个数组进行一对一比较，而那个数组也给了<br><img src="https://img-blog.csdnimg.cn/df1442decc21429dac4cb9a5658f06c3.png" alt="在这里插入图片描述"><br>那么思路来了：</p>
+<blockquote>
+<p>①先大小写转换<br>②再解密</p>
+</blockquote>
+<p>脚本①：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> a[<span class="number">35</span>]=<span class="string">&quot;zMXHz3TIgnxLxJhFAdtZn2fFk3lYCrtPC2l9&quot;</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">0</span>;i&lt;<span class="number">35</span>;i++)&#123;</span><br><span class="line">    <span class="keyword">if</span> ( a[i] &lt; <span class="number">97</span> || a[i] &gt; <span class="number">122</span> )</span><br><span class="line">      &#123;	</span><br><span class="line">    <span class="keyword">if</span> ( a[i] &lt; <span class="number">65</span> || a[i] &gt; <span class="number">90</span> )&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">else</span> a[i] = a[i] + <span class="number">32</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">      &#123;</span><br><span class="line">        a[i] = a[i] - <span class="number">32</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s&quot;</span>,a);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//ZmxhZ3tiGNXlXjHfaDTzN2FfK3LycRTpc2L9</span></span><br></pre></td></tr></table></figure>
+<p>脚本②：最后用了别人的base64，换了个表，懒得自己弄了。。。。。<br><img src="https://img-blog.csdnimg.cn/c3abfc99f4c34b45aaf7c5804ac1c49e.png" alt="在这里插入图片描述"><br>至于最后为什么解密字符串第一个多了一个Z：<br><img src="https://img-blog.csdnimg.cn/8b156f3d66124e3ebd3980c2910ab516.png" alt="在这里插入图片描述"><br>原理跟上面那个AA和A0数组的情况一样，7A的文本是：z<br>上下两个数组连起来的，所以多了一个z，也就是Z。。。。。。。</p>
+<h2 id="Youngter-drive"><a href="#Youngter-drive" class="headerlink" title="Youngter-drive"></a>Youngter-drive</h2><p>脱壳，打开ida查看main函数<br><img src="https://img-blog.csdnimg.cn/cd87687731454aa498a7d10a11e0fbb7.png" alt="在这里插入图片描述"><br>这是一个多线程，首先有两个线程：hObject和v2<br>先进入hObject：<br><img src="https://img-blog.csdnimg.cn/ead34e0df7fd436ab3fcc9356ad305a3.png" alt="在这里插入图片描述"><br>一个函数和一个减减<br>先看函数：<br><img src="https://img-blog.csdnimg.cn/4b4f30dcc1724c61afe33013ec5e60a4.png" alt="在这里插入图片描述"><br>首先排除不是26个字母的范围了<br>再看减减：<br>1D是29，我猜flag长度30<br><img src="https://img-blog.csdnimg.cn/2a899ec9fe4e47bba6cb2c1e9a0e064f.png" alt="在这里插入图片描述"><br>再进入第二个线程：<br><img src="https://img-blog.csdnimg.cn/37381685c99d447e9d67e737d8e8e047.png" alt="在这里插入图片描述"><br>只有一个减减<br>继续往下看，还有一个sub_411190函数：<br><img src="https://img-blog.csdnimg.cn/fd5b5cefd355472584b3d6045661a126.png" alt="在这里插入图片描述"><br>估计就是经过加密后的函数跟off_418004数组进行对比，相同则输出，且是30的长度，那就确定了，falg长度是30，但上面那个是29，感觉。。。。。。不妙<br>目前出现过两个数组：off_418000和off_418004，找出来：<br><img src="https://img-blog.csdnimg.cn/af0a6a4a4b8f4bc2a23c9c4ac67727d1.png" alt="在这里插入图片描述"><br>所以，总结一下：</p>
+<blockquote>
+<p>两个线程，一个加密然后减减，一个只减减，而减的数字是29<br>说明只有奇数进行加密，偶数不变<br>加密函数：<br>先判断输入的值是否是大小写<br>判断之后，匹配两个数组的值是否一样，如果004数组的值跟000数组的值一样，找000数组那个值的下标<br>如果是大写：下标+96，小写：下标+38<br>为什么在脚本里是大写+96，而伪代码里面是大写+38，那是因为，脚本里面判断大小写的是a数组（加密过后的），伪代码里面是flag，还没有加密过，所以反了</p>
+</blockquote>
+<p>脚本（因为没有除26个字母之外的字符，所以就简化了）：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">char</span> flag[<span class="number">29</span>];</span><br><span class="line">    <span class="keyword">char</span> a []=<span class="string">&quot;TOiZiZtOrYaToUwPnToBsOaOapsyS&quot;</span>;</span><br><span class="line">    <span class="keyword">char</span> b[]=<span class="string">&quot;QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm&quot;</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">29</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> j=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span>(i % <span class="number">2</span> == <span class="number">0</span>)&#123;</span><br><span class="line">            flag[i] = a[i];</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(a[i]!= b[j])&#123;</span><br><span class="line">            j++;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">if</span> ( a[i] &gt;= <span class="number">65</span> &amp;&amp; a[i] &lt;= <span class="number">90</span> )&#123;</span><br><span class="line">        flag[i] = j + <span class="number">96</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">      &#123;</span><br><span class="line">        flag[i] = j + <span class="number">38</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    <span class="comment">//for(int i =0;i&lt;30;i++)&#123;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//&#125;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s&quot;</span>,flag);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>最后给了一个长度位29的flag，少了一位，猜出来是E<br>中间有个堆栈不平衡的知识点：<br>F5 sub_411940函数失败<br><img src="https://img-blog.csdnimg.cn/2c61e504a35644caa135d4784a52257d.png" alt="在这里插入图片描述"><br>我们点击菜单栏&gt;&gt;Options&gt;&gt;General&gt;&gt;勾选Stack points<br><img src="https://img-blog.csdnimg.cn/16716b93fe9a41278d853e0aeb450441.png" alt="在这里插入图片描述"><br>发现飘红的上方的sp值都是负的，我们用Alt+K改为正的值或者改为0x00<br><img src="https://img-blog.csdnimg.cn/d385e3301e754e67b13bcd07da5aaef7.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/6ff3bd6be61e4886828958f4a1a8b344.png" alt="在这里插入图片描述"><br>就能查看伪代码了<br>之后关于加密函数我又分析了一波，不想让自己半知半解</p>
+<blockquote>
+<p>a = b[flag[1]-38]<br>逆向求flag：<br>先求出来 b = a Ascii值的那一位，然后位数+38<br>自己太菜了，这么简单的逻辑还有想半天哎~😓</p>
+</blockquote>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://dl.stream.qqmusic.qq.com/C400001OUQ6M2WeMRO.m4a?guid=8163272410&vkey=C6BFF6D45012D604172E87D65FF2374E512C935275765A15128BE77C8FB1CA7110313E815EB620C046DDFA4D4580F98DAE74B533BA12DACE&uin=1552804588&fromtag=120002"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#GUET-CTF2019-re"><span class="toc-number">1.</span> <span class="toc-text">[GUET-CTF2019]re</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WUSTCTF2020-level1"><span class="toc-number">2.</span> <span class="toc-text">[WUSTCTF2020]level1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SUCTF2019-SignIn"><span class="toc-number">3.</span> <span class="toc-text">[SUCTF2019]SignIn</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MRCTF2020-Transform"><span class="toc-number">4.</span> <span class="toc-text">[MRCTF2020]Transform</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WUSTCTF2020-level2"><span class="toc-number">5.</span> <span class="toc-text">[WUSTCTF2020]level2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ACTF%E6%96%B0%E7%94%9F%E8%B5%9B2020-usualCrypt"><span class="toc-number">6.</span> <span class="toc-text">[ACTF新生赛2020]usualCrypt</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Youngter-drive"><span class="toc-number">7.</span> <span class="toc-text">Youngter-drive</span></a></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/live2d-widget-model-koharu/assets/koharu.model.json"},"display":{"superSample":2,"width":200,"height":400,"position":"left","hOffset":5,"vOffset":-84},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- Google Analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=zhishaomang"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'zhishaomang');
+</script>
+<!-- End Google Analytics -->
+
+
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+<!--单击显示文字-->
+<script type="text/javascript" src="/js/click_show_text.js"></script>
+<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+<script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+<script type="text/javascript" src="/js/fireworks.js"></script>
+<!--浏览器搞笑标题-->
+<script type="text/javascript" src="/js/FunnyTitle.js"></script>

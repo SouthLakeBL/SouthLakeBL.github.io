@@ -1,0 +1,257 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>周报2 - 少莽</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="zhishaomang,"> 
+    <meta name="description" content="ACTFeasyre先查壳，是简单的upx脱壳然后放入ida分析主要找这个函数得出：让if语句里面的条件，左边的等于右边即可，那么v4+i是已知的，就剩下右边的_data_start__了，点进去看,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="少莽" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="周报2 - 少莽"/>
+    <meta name="twitter:description" content="ACTFeasyre先查壳，是简单的upx脱壳然后放入ida分析主要找这个函数得出：让if语句里面的条件，左边的等于右边即可，那么v4+i是已知的，就剩下右边的_data_start__了，点进去看,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="少莽"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="周报2 - 少莽"/>
+    <meta property="og:description" content="ACTFeasyre先查壳，是简单的upx脱壳然后放入ida分析主要找这个函数得出：让if语句里面的条件，左边的等于右边即可，那么v4+i是已知的，就剩下右边的_data_start__了，点进去看,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">少莽</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">周报2</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">周报2</h1>
+        <div class="stuff">
+            <span>六月 04, 2022</span>
+            
+
+        </div>
+        <div class="content markdown">
+            <h2 id="ACTFeasyre"><a href="#ACTFeasyre" class="headerlink" title="ACTFeasyre"></a>ACTFeasyre</h2><p>先查壳，是简单的upx脱壳<br>然后放入ida分析<br><img src="https://img-blog.csdnimg.cn/2e6cef15f6324e24bae4cfbc3c54950e.png" alt="在这里插入图片描述"><br>主要找这个函数<br><img src="https://img-blog.csdnimg.cn/8ff84e9091d04b43a402affc9e8446f3.png" alt="在这里插入图片描述"><br>得出：让if语句里面的条件，左边的等于右边即可，那么v4+i是已知的，就剩下右边的_data_start__了，点进去<br><img src="https://img-blog.csdnimg.cn/fd015f03688d4aebad3c430f7c32d2c6.png" alt="在这里插入图片描述"><br>看见字符串</p>
+<blockquote>
+<p>b =  ‘~}|{zyxwvutsrqponmlkjihgfedcba`_^][ZYXWVUTSRQPONMLKJIHGFEDCBA@?&gt;=&lt;;:9876543210/.-,+*)(&#39;&amp;%$# !”‘<br>还有<br>a = 42,70,39,34,78,44,34,40,73,63,43,64</p>
+</blockquote>
+<p>看ASCII码，v19 = A，HIBYTEv19 = C，v20 = T，v21 = F，v22 = {，v23 = }，那么我猜flag的内容就在v16，17，18，23，24，25里，但是为啥是互相等…….<br>有点明白了：<br>a中的ascii码是flag内容的ascii码-1的值<br>所以代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 无注释</span></span><br><span class="line"><span class="comment"># 因为你啥都不会，快去学！！！</span></span><br><span class="line">arr = [<span class="number">42</span>,<span class="number">70</span>,<span class="number">39</span>,<span class="number">34</span>,<span class="number">78</span>,<span class="number">44</span>,<span class="number">34</span>,<span class="number">40</span>,<span class="number">73</span>,<span class="number">63</span>,<span class="number">43</span>,<span class="number">64</span>]</span><br><span class="line">flag = <span class="string">&#x27;&#x27;</span></span><br><span class="line">crr = <span class="string">&#x27;&#x27;</span></span><br><span class="line">brr = <span class="string">&#x27;~&#125;|&#123;zyxwvutsrqponmlkjihgfedcba`_^]\[ZYXWVUTSRQPONMLKJIHGFEDCBA@?&gt;=&lt;;:9876543210/.-,+*)(\&#x27;&amp;%$# !&quot;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> arr:</span><br><span class="line">    flag += <span class="built_in">chr</span>(brr.find(<span class="built_in">chr</span>(i)) + <span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span>(flag)</span><br></pre></td></tr></table></figure>
+
+<h2 id="rsa"><a href="#rsa" class="headerlink" title="rsa"></a>rsa</h2><p>题目提示四位数字密码，那么直接爆破<br>得到两个文件<br><img src="https://img-blog.csdnimg.cn/c56d709afa4a471e8623a815f2c0409e.png" alt="在这里插入图片描述"><br>题目是rsa，那就说明pub文件里面有钥匙，010打开<img src="https://img-blog.csdnimg.cn/4735600d9aaf4de6be239bf1509080d4.png" alt="在这里插入图片描述"><br>得到公钥，放到网站里去<br><img src="https://img-blog.csdnimg.cn/a2637d453e3e4bd7a247615dfb80d6eb.png" alt="在这里插入图片描述"><br>得到n，那么用n去求解q和p<br><img src="https://img-blog.csdnimg.cn/38c9533fb68e4b8a96dfaa6df657fb2e.png" alt="在这里插入图片描述"></p>
+<p>拿出工具求解d<br>d = 81176168860169991027846870170527607562179635470395365333547868786951080991441<br>那么写一个Python脚本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 无注释</span></span><br><span class="line"><span class="comment"># 因为你啥都不会，快去学！！！</span></span><br><span class="line"><span class="keyword">import</span> rsa</span><br><span class="line">e = <span class="number">65537</span></span><br><span class="line">p = <span class="number">285960468890451637935629440372639283459</span></span><br><span class="line">q = <span class="number">304008741604601924494328155975272418463</span></span><br><span class="line">n = <span class="number">86934482296048119190666062003494800588905656017203025617216654058378322103517</span></span><br><span class="line">d = <span class="number">81176168860169991027846870170527607562179635470395365333547868786951080991441</span></span><br><span class="line">key = rsa.PrivateKey(n, e, d, q, p)</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;E:/CTF/暴力破解/flag.txt&#x27;</span>,<span class="string">&#x27;rb&#x27;</span>) <span class="keyword">as</span> flag:</span><br><span class="line">    flag = flag.read()</span><br><span class="line">    <span class="built_in">print</span>(rsa.decrypt(flag,key))</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>注意key = 这一行，里面的nepdq的顺序不能有错<br>得出flag<br><img src="https://img-blog.csdnimg.cn/6c6da4f893e341b2b54b55645aabe8c7.png" alt="在这里插入图片描述"></p>
+<h2 id="ACTF新生赛2020-rome"><a href="#ACTF新生赛2020-rome" class="headerlink" title="[ACTF新生赛2020]rome"></a>[ACTF新生赛2020]rome</h2><p>看题：<br><img src="https://img-blog.csdnimg.cn/f45cc7a670b046759801462e01cf34bc.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/7305103b0dcd4ecb9d2b2d0bd4f76017.png" alt="在这里插入图片描述"><br>显然，v5—v9是actf{，然后v14是}，那么内容就在v1234，v10、11、12、13、14里，也可能是我ida版本不行，这里反正咋看咋不对，但不影响写题。<br>首先有</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> b[] = &#123;<span class="number">81</span>,<span class="number">115</span>,<span class="number">119</span>,<span class="number">51</span>,<span class="number">115</span>,<span class="number">106</span>,<span class="number">95</span>,<span class="number">108</span>,<span class="number">122</span>,<span class="number">52</span>,<span class="number">95</span>,<span class="number">85</span>,<span class="number">106</span>,<span class="number">119</span>,<span class="number">64</span>,<span class="number">108</span>,<span class="number">0</span>&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>从后面看，让v1+i = v15 + i，就是让经过前面两个if之后的a[i]的ascii值等于b[i]的值即可，就是爆破思想，强行从可见字符串里面找到flag。<br>所以前面两个if直接在脚本里照抄就行。然后字符串长度是16.<br>就加个在128个字符串中，一个一个赋值，然后进行两个if语句，然后再和b数组进行==判断，最后赋值给flag数组，然后输出<br>脚本：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> Str[<span class="number">16</span>];</span><br><span class="line">    <span class="keyword">int</span> b[] = &#123;<span class="number">81</span>,<span class="number">115</span>,<span class="number">119</span>,<span class="number">51</span>,<span class="number">115</span>,<span class="number">106</span>,<span class="number">95</span>,<span class="number">108</span>,<span class="number">122</span>,<span class="number">52</span>,<span class="number">95</span>,<span class="number">85</span>,<span class="number">106</span>,<span class="number">119</span>,<span class="number">64</span>,<span class="number">108</span>,<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="keyword">char</span> flag[<span class="number">16</span>];</span><br><span class="line">    <span class="keyword">int</span> a[<span class="number">16</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">16</span>;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>;j &lt; <span class="number">128</span>;j++)&#123;</span><br><span class="line">            a[i] = j;</span><br><span class="line">        <span class="keyword">if</span>(a[i]&gt;<span class="number">64</span> &amp;&amp; a[i]&lt;=<span class="number">90</span>)&#123;</span><br><span class="line">            a[i] = (a[i] - <span class="number">51</span>)%<span class="number">26</span>+<span class="number">65</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(a[i]&gt;<span class="number">96</span> &amp;&amp; a[i]&lt;=<span class="number">122</span>)&#123;</span><br><span class="line">            a[i] = (a[i] - <span class="number">79</span>)%<span class="number">26</span>+<span class="number">97</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">16</span>;i++)&#123;</span><br><span class="line">              <span class="keyword">if</span>(a[i] == b[i])&#123;</span><br><span class="line">        Str[i] = j;</span><br><span class="line">        &#125;</span><br><span class="line">        &#125;</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">16</span>;i++)&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>,Str[i]);</span><br><span class="line">&#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/1a8dbcfb62ee44b8b63cf1411ee21d49.png" alt="在这里插入图片描述"></p>
+<h2 id="crackRTF"><a href="#crackRTF" class="headerlink" title="crackRTF"></a>crackRTF</h2><p>先查壳，32位无壳<br>用shift+f12查找字符串找到主函数<br><img src="https://img-blog.csdnimg.cn/a8cec4909bf843f88411ed173df2e0dd.png" alt="在这里插入图片描述"></p>
+<p>大致一看，这个程序是需要输入两个密码，并且有两个函数对密码由操作<br>进入第一个函数<br><img src="https://img-blog.csdnimg.cn/eb44b98176154c7b9c056cdd9e4d3191.png" alt="在这里插入图片描述"><br>看到了0x8004u，那是标识码，不同的标识码代表不同的加密方式，标识符代表加密方式。<br>这个是sha1加密<br><img src="https://img-blog.csdnimg.cn/ffbdac4653be413b8cf1de28962545fa.png" alt="在这里插入图片描述"><br>第二个函数是0x8003u是md5加密<br>上网查阅资料：</p>
+<blockquote>
+<p>SHA1对任意长度明文的预处理和MD5的过程是一样的，即预处理完后的明文长度是512位的整数倍，但是有一点不同，那就是SHA1的原始报文长度不能超过2的64次方，然后SHA1生成160位的报文摘要。SHA1算法简单而且紧凑，容易在计算机上实现。</p>
+</blockquote>
+<p>所以我就想：直接把加密后需要对比的字符串进行MD5解密不就得到密码了吗<br><img src="https://img-blog.csdnimg.cn/10319dcd11a641fda1ba3a41a95fdaf5.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>123321是第一个密码<br>~!3a@0是第二个密码</p>
+</blockquote>
+<p>程序内输入得到rtf文件</p>
+<p><img src="https://img-blog.csdnimg.cn/0ab41f574bae4f63afda33cd3615ad69.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/4ba1c005365943e4ac7ea32127133120.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/71eabfe86dfc47aaa50347bc96078d53.png" alt="在这里插入图片描述"><br>打开得到flag<br>但实际上做没这么简单，属于是抄近道了<br>第一个函数是sha1加密，直接python用hashlib包，进行爆破</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line">flag2=<span class="string">&#x27;@DBApp&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">100000</span>,<span class="number">999999</span>):</span><br><span class="line">     h2 = hashlib.sha1((<span class="built_in">str</span>(i)+flag2).encode(<span class="string">&quot;utf-8&quot;</span>))</span><br><span class="line">     flags = h2.hexdigest()</span><br><span class="line">     <span class="keyword">if</span> <span class="string">&quot;6e32d0943418c2c33385bc35a1470250dd8923a9&quot;</span> == flags:</span><br><span class="line">              <span class="built_in">print</span> (<span class="built_in">str</span>(i)+flag2)</span><br><span class="line">              <span class="built_in">print</span>(flags)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>第二个是md5加密，但是没有给范围，上一个函数是给了范围，数字大于10000<br>那就往下看<br><img src="https://img-blog.csdnimg.cn/1e3e754889af434c92951e2f766aa17c.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>FindResourceA：找到模块中的资源，这句话是找到AAA类型的叫0x65的资源<br>SizeRecource：根据名字也容易知道函数返回的是字节数<br>LockResource:返回资源地址<br>LoadResource：意思是装载指定资源到全局存储器。 函数功能:该函数装载指定资源到全局存储器。<br>CreateFileA：函数创建或打开下列对象，并返回一个可以用来访问这些对象的句柄。<br>WriteFile：将数据写入一个文件或者I/O设备。<br>CloseHandle：只是关闭了一个线程句柄对象，表示我不再使用该句柄，即不对这个句柄对应的线程做任何干预了。并没有结束线程。</p>
+</blockquote>
+<p>还有一个sub函数<br><img src="https://img-blog.csdnimg.cn/34b6795373004089924321d9ed9cd097.png" alt="在这里插入图片描述"><br>还像是要读取“AAA”文件里的数据然后跟我们输入的密码2传入sub函数，然后函数就是异或，那么我们逆过来也是异或，现在就是找“AAA”文件里的数据，然后因为我们输入的是六位密码，不出意外的话，“AAA”文件里的数据也应该是六位，启用Resource Hacker：<br><img src="https://img-blog.csdnimg.cn/4b5a515434ce4f79b29a3143dd1d8972.png" alt="在这里插入图片描述"><br>因为我们的数据需要通过WriteFile函数写入到文件里，然后产生rtf文件，那么写入什么会产生文件呢，我猜是文件头，于是打开一个rtf文件，取文件头前六位：{\rtf1<br>写脚本逆一下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 无注释</span></span><br><span class="line"><span class="comment"># 因为你啥都不会，快去学！！！</span></span><br><span class="line">res=[<span class="number">0x05</span>,<span class="number">0x7D</span>,<span class="number">0x41</span>,<span class="number">0x15</span>,<span class="number">0x26</span>,<span class="number">0x01</span>]</span><br><span class="line">rtft = <span class="string">&quot;&#123;\\rtf1&quot;</span></span><br><span class="line">flag=<span class="string">&quot;&quot;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(res)):</span><br><span class="line">    flag+=<span class="built_in">chr</span>(res[i]^<span class="built_in">ord</span>(rtft[i]))</span><br><span class="line"><span class="built_in">print</span>(flag)</span><br></pre></td></tr></table></figure>
+<p>得到密码2：~!3a@0</p>
+<h2 id="FlareOn4-login"><a href="#FlareOn4-login" class="headerlink" title="[FlareOn4]login"></a>[FlareOn4]login</h2><p>下载后得到一个html文件</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE Html /&gt;</span><br><span class="line"></span><br><span class="line">&lt;html&gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line">        &lt;title&gt;FLARE On <span class="number">2017</span>&lt;/title&gt;</span><br><span class="line">    &lt;/head&gt;</span><br><span class="line">    &lt;body&gt;</span><br><span class="line">        &lt;input type=<span class="string">&quot;text&quot;</span> name=<span class="string">&quot;flag&quot;</span> id=<span class="string">&quot;flag&quot;</span> value=<span class="string">&quot;Enter the flag&quot;</span> /&gt;</span><br><span class="line">        &lt;input type=<span class="string">&quot;button&quot;</span> id=<span class="string">&quot;prompt&quot;</span> value=<span class="string">&quot;Click to check the flag&quot;</span> /&gt;</span><br><span class="line">        &lt;script type=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><br><span class="line">            document.getElementById(<span class="string">&quot;prompt&quot;</span>).onclick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="keyword">var</span> flag = document.getElementById(<span class="string">&quot;flag&quot;</span>).value;</span><br><span class="line">                <span class="keyword">var</span> rotFlag = flag.replace(/[a-zA-Z]/g, <span class="function"><span class="keyword">function</span>(<span class="params">c</span>)</span>&#123;<span class="keyword">return</span> <span class="keyword">String</span>.fromCharCode((c &lt;= <span class="string">&quot;Z&quot;</span> ? <span class="number">90</span> : <span class="number">122</span>) &gt;= (c = c.charCodeAt(<span class="number">0</span>) + <span class="number">13</span>) ? c : c - <span class="number">26</span>);&#125;);</span><br><span class="line">                <span class="keyword">if</span> (<span class="string">&quot;PyvragFvqrYbtvafNerRnfl@syner-ba.pbz&quot;</span> == rotFlag) &#123;</span><br><span class="line">                    alert(<span class="string">&quot;Correct flag!&quot;</span>);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    alert(<span class="string">&quot;Incorrect flag, rot again&quot;</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &lt;/script&gt;</span><br><span class="line">    &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>关键：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> rotFlag = flag.replace(/[a-zA-Z]/g, <span class="function"><span class="keyword">function</span>(<span class="params">c</span>)</span>&#123;<span class="keyword">return</span> <span class="keyword">String</span>.fromCharCode((c &lt;= <span class="string">&quot;Z&quot;</span> ? <span class="number">90</span> : <span class="number">122</span>) &gt;= (c = c.charCodeAt(<span class="number">0</span>) + <span class="number">13</span>) ? c : c - <span class="number">26</span>);&#125;);</span><br></pre></td></tr></table></figure>
+<p>分三个部分吧：</p>
+<blockquote>
+<p>(① ? c : c - 26);<br>① =  ② &gt;= ③<br>② = (c &lt;= “Z” ? 90 : 122)<br>③ = (c = c.charCodeAt(0) + 13)<br>第一种：小于等于90且+13依旧，返回本身+13<br>第二种：小于等于90且+13大于90，本身-13<br>第三种：大于90且+13小于等于122，返回本身+13<br>第四种：大于90且+13大于122，本身-13<br>写出代码：</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> flag[<span class="number">37</span>];</span><br><span class="line">     <span class="keyword">char</span> a[<span class="number">37</span>] = <span class="string">&quot;PyvragFvqrYbtvafNerRnfl@syner-ba.pbz&quot;</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i&lt;<span class="number">37</span> ;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(a[i]&lt;=<span class="number">90</span> &amp;&amp; (a[i]+<span class="number">13</span>)&lt;=<span class="number">90</span> &amp;&amp; a[i] &gt;= <span class="number">65</span>)&#123;</span><br><span class="line">            flag[i] = a[i]+<span class="number">13</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(a[i]&lt;=<span class="number">90</span> &amp;&amp; (a[i]+<span class="number">13</span>)&gt;<span class="number">90</span> &amp;&amp; a[i] &gt;= <span class="number">65</span>)&#123;</span><br><span class="line">            flag[i] = a[i] - <span class="number">13</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(a[i]&gt;<span class="number">90</span> &amp;&amp; (a[i]+<span class="number">13</span>)&lt;=<span class="number">122</span>)&#123;</span><br><span class="line">            flag[i] = a[i]+<span class="number">13</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(a[i]&gt;<span class="number">90</span> &amp;&amp; (a[i]+<span class="number">13</span>)&gt;<span class="number">122</span>)&#123;</span><br><span class="line">            flag[i] = a[i]<span class="number">-13</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> flag[i] = a[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;flag&#123;%s&#125;&quot;</span>,flag);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/cecd50fa762d42bbad0b0a67253f43c7.png" alt="在这里插入图片描述"></p>
+<p>原本我写的前两个条件语句不含&gt;=65，结果我发现出来的@什么的符号都被改变了，看了看别人的wp发现他们都控制了最小ascii值得范围就是大于等于65，虽然对答案没有影响因为给了规范答案，但是还是不严谨，最后给加上了条件，我感觉就是没有闭区间才导致的不完整<br><em><strong>然后我发现这道题跟rot13一样：</strong></em><br><img src="https://img-blog.csdnimg.cn/ed3281e8fe664c498ce812c8a9782486.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/c614820cfcf341eaaa69449cac7f67ee.png" alt="在这里插入图片描述"></p>
+<h2 id="2019红帽杯-easyRE"><a href="#2019红帽杯-easyRE" class="headerlink" title="[2019红帽杯]easyRE"></a>[2019红帽杯]easyRE</h2><p>这一题对我来说很难，还是看很多大佬的wp才写出来的，还需要加油<br>拖入ida，shift+f12查看字符串，找到函数<br><img src="https://img-blog.csdnimg.cn/ee3f09175bc64455a51c6fca1aa956d8.png" alt="在这里插入图片描述"><br>出现continue，说明有阶段性的解密，那就先解出上面的加密，发现就是个异或，脚本：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> flag[<span class="number">36</span>];</span><br><span class="line"> <span class="keyword">char</span> a[<span class="number">36</span>] = &#123;<span class="number">73</span>,<span class="number">111</span>,<span class="number">100</span>,<span class="number">108</span>,<span class="number">62</span>,<span class="number">81</span>,<span class="number">110</span>,<span class="number">98</span>,<span class="number">40</span>,<span class="number">111</span>,<span class="number">99</span>,<span class="number">121</span>,<span class="number">127</span>,<span class="number">121</span>,<span class="number">46</span>,<span class="number">105</span>,<span class="number">127</span>,<span class="number">100</span>,<span class="number">96</span>,<span class="number">51</span>,<span class="number">119</span>,<span class="number">125</span>,<span class="number">119</span>,<span class="number">101</span>,<span class="number">107</span>,<span class="number">57</span>,<span class="number">123</span>,<span class="number">105</span>,<span class="number">121</span>,<span class="number">61</span>,<span class="number">126</span>,<span class="number">121</span>,<span class="number">76</span>,<span class="number">64</span>,<span class="number">69</span>,<span class="number">67</span>&#125;;</span><br><span class="line"> <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">36</span>;i++)&#123;</span><br><span class="line">     flag[i] = a[i] ^ i;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="built_in">printf</span>(<span class="string">&quot;%s&quot;</span>,flag);</span><br></pre></td></tr></table></figure>
+<p>结果：<br><img src="https://img-blog.csdnimg.cn/b739a048dc954512805a0bdb441a6b02.png" alt="在这里插入图片描述"><br>说明flag的前四位是flag。。。。。<br>接下去看<br><img src="https://img-blog.csdnimg.cn/25f33b06538943859a7cc8aebb464968.png" alt="在这里插入图片描述"><br>sub_400e44是典型的base64加密，调用了10次的base64加密，然后比较，那就解十次<br><img src="https://img-blog.csdnimg.cn/55ca0f9d62514c6f94368dde9798218d.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/a3995946c88949ed924e7922e8b0c23d.png" alt="在这里插入图片描述"><br>发现是个网站，进去有一部分是想方设法坑解题人的，好吧。<br>那问题来了，到底关键函数在哪里？<br><img src="https://img-blog.csdnimg.cn/08fb4f4c46204d82ba1cca9cacb2c860.png" alt="在这里插入图片描述"><br>在这里能看到，还有个函数，点进去<br><img src="https://img-blog.csdnimg.cn/25da28d8cae14133999e15cc3577f408.png" alt="在这里插入图片描述"><br>102是f，103是g，这里有在判断fg，感觉flag就住在这里<br>分两个部分：</p>
+<blockquote>
+<p>①利用byte_6CC0A0的前三位和byte_6CC0A3 的前一位，去和“flag”进行四次循环异或，作为下一个部分的条件，<br>②将全部25位与①的结果进行25次循环异或，不过①的序号需要%4</p>
+</blockquote>
+<p>代码</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> flag1[<span class="number">25</span>];</span><br><span class="line">    <span class="keyword">char</span> d[<span class="number">4</span>];</span><br><span class="line">    <span class="keyword">char</span> c[<span class="number">4</span>] = &#123;<span class="string">&#x27;f&#x27;</span>,<span class="string">&#x27;l&#x27;</span>,<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;g&#x27;</span>&#125;;</span><br><span class="line">    <span class="keyword">char</span> e[<span class="number">4</span>] = &#123;<span class="number">0x40</span>,<span class="number">0x35</span>,<span class="number">0x20</span>,<span class="number">0x56</span>&#125;;</span><br><span class="line">    <span class="keyword">char</span> b[<span class="number">25</span>] = &#123;<span class="number">0x40</span>,<span class="number">0x35</span>,<span class="number">0x20</span>,<span class="number">0x56</span>,<span class="number">0x5D</span>,<span class="number">0x18</span>,<span class="number">0x22</span>,<span class="number">0x45</span>,<span class="number">0x17</span>,<span class="number">0x2F</span>,<span class="number">0x24</span>,<span class="number">0x6E</span>,<span class="number">0x62</span>,<span class="number">0x3C</span>,<span class="number">0x27</span>,<span class="number">0x54</span>,<span class="number">0x48</span>,<span class="number">0x6C</span>,<span class="number">0x24</span>,<span class="number">0x6E</span>,<span class="number">0x72</span>,<span class="number">0x3C</span>,<span class="number">0x32</span>,<span class="number">0x45</span>,<span class="number">0x5B</span>&#125;;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">4</span>;i++)&#123;</span><br><span class="line">        d[i] = c[i] ^ e[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">25</span>;i++)&#123;</span><br><span class="line">        flag1[i] = b[i] ^ d[i%<span class="number">4</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s&quot;</span>,flag1);</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/f550f7ead7ce4b69abdaab90db664bbf.png" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/09ea3951b3d8445a9159eacaac02c4b2.png" alt="在这里插入图片描述"><br>这一步吧，我觉得对我来说疑点很大，就是判断出，v3是四位数组，且跟另一个数组异或后是“flag”，这个我感觉很关键，从而找出了v3<br>对这道题的部分代码做个解释：<br><img src="https://img-blog.csdnimg.cn/420d1d8d5c134a71a1c90c28610347bd.png" alt="在这里插入图片描述"><br>sub_4406E0：写入数据给v53<br>LODWORD(v1) = sub_424BA0((const __m128i *)v51)：将v53长度给v1<br><img src="https://img-blog.csdnimg.cn/fd8d09c987ee416bb37170e12e9b03b8.png" alt="在这里插入图片描述"><br>memset(&amp;v54, 0, 0x40uLL)：V54的值设置为零，memset通常是C/C++初始化函数，作用是将一块内存中的内容全部设置为指定的值，这个函数通常为新申请的内存做初始化工作<br><img src="https://img-blog.csdnimg.cn/044d278de3764152ac887a822aa12bb0.png" alt="在这里插入图片描述"><br>HIBYTE()函数的作用是获取高字节也就是数组的最后一位，同时还有BYTE()、BYTE1()、BYTE2()第一个是获取数组的第一位，第二个就是获取第二位，依次类推。<br><img src="https://img-blog.csdnimg.cn/22d4129edddd43bfa58543f1f269f0b8.png" alt="在这里插入图片描述"><br>这一段数据的话，是关键，但是要怎么发现呢？<br>出题人不会无缘无故给数据，就找找看，看看引用：<br><img src="https://img-blog.csdnimg.cn/4b85e79f1f6348eebf199ba6b4126049.png" alt="在这里插入图片描述"><br>这段数据被函数sub_400D35给用了而且函数的头头是fini段<br>fini段的解释：</p>
+<blockquote>
+<p>此节区包含了可执行的指令，是进程终止代码的一部分。程序正常退出时，系统将安排执行这里的代码。</p>
+</blockquote>
+<p>所以就很关键</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://dl.stream.qqmusic.qq.com/C400001OUQ6M2WeMRO.m4a?guid=8163272410&vkey=C6BFF6D45012D604172E87D65FF2374E512C935275765A15128BE77C8FB1CA7110313E815EB620C046DDFA4D4580F98DAE74B533BA12DACE&uin=1552804588&fromtag=120002"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ACTFeasyre"><span class="toc-number">1.</span> <span class="toc-text">ACTFeasyre</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rsa"><span class="toc-number">2.</span> <span class="toc-text">rsa</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ACTF%E6%96%B0%E7%94%9F%E8%B5%9B2020-rome"><span class="toc-number">3.</span> <span class="toc-text">[ACTF新生赛2020]rome</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#crackRTF"><span class="toc-number">4.</span> <span class="toc-text">crackRTF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FlareOn4-login"><span class="toc-number">5.</span> <span class="toc-text">[FlareOn4]login</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2019%E7%BA%A2%E5%B8%BD%E6%9D%AF-easyRE"><span class="toc-number">6.</span> <span class="toc-text">[2019红帽杯]easyRE</span></a></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/live2d-widget-model-koharu/assets/koharu.model.json"},"display":{"superSample":2,"width":200,"height":400,"position":"left","hOffset":5,"vOffset":-84},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- Google Analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=zhishaomang"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'zhishaomang');
+</script>
+<!-- End Google Analytics -->
+
+
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+<!--单击显示文字-->
+<script type="text/javascript" src="/js/click_show_text.js"></script>
+<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+<script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+<script type="text/javascript" src="/js/fireworks.js"></script>
+<!--浏览器搞笑标题-->
+<script type="text/javascript" src="/js/FunnyTitle.js"></script>

@@ -1,0 +1,204 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>upload-labs笔记 - 少莽</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="zhishaomang,"> 
+    <meta name="description" content="第一关js绕过  漏洞原理：Web应用系统虽然对用户上传的文件进行了校验，但是校验是通过前端javascript代码完成的。由于恶意用户可以对前端javascript进行修改或者是通过抓包软件篡改上,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="少莽" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="upload-labs笔记 - 少莽"/>
+    <meta name="twitter:description" content="第一关js绕过  漏洞原理：Web应用系统虽然对用户上传的文件进行了校验，但是校验是通过前端javascript代码完成的。由于恶意用户可以对前端javascript进行修改或者是通过抓包软件篡改上,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="少莽"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="upload-labs笔记 - 少莽"/>
+    <meta property="og:description" content="第一关js绕过  漏洞原理：Web应用系统虽然对用户上传的文件进行了校验，但是校验是通过前端javascript代码完成的。由于恶意用户可以对前端javascript进行修改或者是通过抓包软件篡改上,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">少莽</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">upload-labs笔记</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">upload-labs笔记</h1>
+        <div class="stuff">
+            <span>六月 04, 2022</span>
+            
+
+        </div>
+        <div class="content markdown">
+            <h2 id="第一关js绕过"><a href="#第一关js绕过" class="headerlink" title="第一关js绕过"></a>第一关js绕过</h2><p>  <strong>漏洞原理</strong>：Web应用系统虽然对用户上传的文件进行了校验，但是校验是通过前端javascript代码完成的。由于恶意用户可以对前端javascript进行修改或者是通过抓包软件篡改上传的文件，就会导致基于js的校验很容易被绕过。<br>1、上传一个php文件，发现没有流量产生，说明前端有js验证，存在js绕过漏洞<br><img src="https://img-blog.csdnimg.cn/7e766718c5884c0b9844f7da9a627fee.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>2、我们火狐+burp抓包的方法绕过js验证<br>不过我们要在解题之前做一下准备工作<br>①火狐设置里面，点击下图的设置，修改里面的选项<br><img src="https://img-blog.csdnimg.cn/51a24df1f7774411bf1bbdfe4a2dc683.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/00c58b979922450a8a4732b125dea04e.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>②打开burp在火狐浏览器里输入<a target="_blank" rel="noopener" href="http://burp点击ca下载证书/">http://burp点击CA下载证书</a><br><img src="https://img-blog.csdnimg.cn/5b2b5b61179e4ecc80b4716afff48622.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_9,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></p>
+<p>②下载完成后，在火狐的隐私与安全里找到证书，点击查看证书<br><img src="https://img-blog.csdnimg.cn/bd4608c428b9428eb4cb21a21c0a2d1d.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>导入刚才所下载的证书，接着信任证书即可<br>工作做好了，但是我打开phpstudy后，开始upload游戏却发现，我的burp不能抓包，原因是有软件占用了8080端口。然后我仔细一想，是我的upload网站占用了这个端口，所以我将这个网站的端口改为8081，问题就解决了。<br>我们把要上传的php文件的后缀改为可上传文件的后缀就比如png<br>然后打开火狐代理，打开burp的抓包<br><img src="https://img-blog.csdnimg.cn/8a992b638ce04d69927dd419e99f4d9a.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_19,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/31cec3a3b55144f3ac6b79ad1b5282fd.png" alt="在这里插入图片描述"><br>最后点击上传<br><img src="https://img-blog.csdnimg.cn/71db6c682f164922a20312fdd0bbe33b.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>3、抓到这个，把jpg后缀改为php，然后如下图操作<br><img src="https://img-blog.csdnimg.cn/a4a2e91010534eeea125e7ce6f941e29.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>4、最后右键图片新建标签查看图片进行测试<br><img src="https://img-blog.csdnimg.cn/997e79129a6340338abc6ccd05466dd8.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>文件夹中也能找到<br><img src="https://img-blog.csdnimg.cn/fcf5144e19df4b67b6ed18126b932a7e.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_18,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>链接蚁剑，我用的一句话木马是：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php @eval($_POST[<span class="string">&#x27;liangzai&#x27;</span>]); echo<span class="string">&quot;shuaige&quot;</span>; ?&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/3ca3b01d6dc64b97aedf1a805827a99b.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></p>
+<h2 id="第二关Content-Type（MIME）"><a href="#第二关Content-Type（MIME）" class="headerlink" title="第二关Content-Type（MIME）"></a>第二关Content-Type（MIME）</h2><p>查看源代码发现这一关是考content-type绕过<br><img src="https://img-blog.csdnimg.cn/8acc40b2de6a434781a365369291717a.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>MIME(Multipurpose Internet Mail Extensions)多用途互联网邮件扩展类型。是设定某种扩展名的文件用一种应用程序来打开的方式类型，当该扩展名文件被访问的时候，浏览器会自动使用指定应用程序来打开。多用于指定一些客户端自定义的文件名，以及一些媒体文件打开方式。（百度）</p>
+<p>常见的MIME类型<br>　　超文本标记语言文本 .html,.html text/html<br>　　普通文本 .txt text/plain<br>　　RTF文本 .rtf application/rtf<br>　　GIF图形 .gif image/gif<br>　　JPEG图形 .jpeg,.jpg image/jpeg<br>　　au声音文件 .au audio/basic<br>　　MIDI音乐文件 mid,.midi audio/midi,audio/x-midi<br>　　RealAudio音乐文件 .ra, .ram audio/x-pn-realaudio<br>　　MPEG文件 .mpg,.mpeg video/mpeg<br>　　AVI文件 .avi video/x-msvideo<br>　　GZIP文件 .gz application/x-gzip<br>　　TAR文件 .tar application/x-tar<br>代码会对上传的文件检测是否是属于image/jpeg image/png image/gif其中之一，是则上传成功，反之无法上传<br>1、我们在上传php文件的时候进行抓包，右键抓到的包，点击send to repeater。<br><img src="https://img-blog.csdnimg.cn/6fba4aec45bb4950ac98e8891e2ac18d.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>2、在repeater里面修改content type 为image/png，然后点击send，然后放包即可<br><img src="https://img-blog.csdnimg.cn/8b6f00048edf4bada8bde45d6a330a55.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_17,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>然后就能在文件夹里面看见了<br><img src="https://img-blog.csdnimg.cn/1b3e3d57997e40868ed1658a138c289f.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_12,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>蚁剑连接<br><img src="https://img-blog.csdnimg.cn/0a91eee6d51e4f94b7b40ab7ffd68bfd.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></p>
+<h2 id="第三关黑名单绕过"><a href="#第三关黑名单绕过" class="headerlink" title="第三关黑名单绕过"></a>第三关黑名单绕过</h2><p>查看源代码发现不允许上传.asp,.aspx,.php,.jsp后缀文件<br>允许上传.phtml .phps .php5 .pht后缀文件<br>在phptudy的设置里找到配置文件里面的<br><img src="https://img-blog.csdnimg.cn/2c7ed96fa08049949786a32969c650f6.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQkxfenNoYW9t,size_19,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>在里面添加：AddType application/x-httpd-php .php .phtml 可以解析phtml后缀（也可以添加.php5 .php4等后缀）<br>修改过后重启服务器<br><img src="https://img-blog.csdnimg.cn/123eba55e1c24f83b0677e6b733ca702.png" alt="在这里插入图片描述"><br>然后将要上传的php文件的后缀改为phtml<br>或者抓包，将后缀改为phtml就能够上传了</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://dl.stream.qqmusic.qq.com/C400001OUQ6M2WeMRO.m4a?guid=8163272410&vkey=C6BFF6D45012D604172E87D65FF2374E512C935275765A15128BE77C8FB1CA7110313E815EB620C046DDFA4D4580F98DAE74B533BA12DACE&uin=1552804588&fromtag=120002"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E5%85%B3js%E7%BB%95%E8%BF%87"><span class="toc-number">1.</span> <span class="toc-text">第一关js绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E5%85%B3Content-Type%EF%BC%88MIME%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">第二关Content-Type（MIME）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E5%85%B3%E9%BB%91%E5%90%8D%E5%8D%95%E7%BB%95%E8%BF%87"><span class="toc-number">3.</span> <span class="toc-text">第三关黑名单绕过</span></a></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/live2d-widget-model-koharu/assets/koharu.model.json"},"display":{"superSample":2,"width":200,"height":400,"position":"left","hOffset":5,"vOffset":-84},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- Google Analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=zhishaomang"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'zhishaomang');
+</script>
+<!-- End Google Analytics -->
+
+
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+<!--单击显示文字-->
+<script type="text/javascript" src="/js/click_show_text.js"></script>
+<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+<script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+<script type="text/javascript" src="/js/fireworks.js"></script>
+<!--浏览器搞笑标题-->
+<script type="text/javascript" src="/js/FunnyTitle.js"></script>

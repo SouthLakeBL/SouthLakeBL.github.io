@@ -1,0 +1,208 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>C语言进行base64加密PRO - 少莽</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="zhishaomang,"> 
+    <meta name="description" content="，‘。；浅谈base64加密
+
+将3个8位的数据分成4个6位的数据而不足3的整数的数据加密后就造成不足4的倍数的问题，解决方案就是后面加=，补成4的倍数。比如对a进行base64加密：0110 00,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="少莽" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="C语言进行base64加密PRO - 少莽"/>
+    <meta name="twitter:description" content="，‘。；浅谈base64加密
+
+将3个8位的数据分成4个6位的数据而不足3的整数的数据加密后就造成不足4的倍数的问题，解决方案就是后面加=，补成4的倍数。比如对a进行base64加密：0110 00,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="少莽"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="C语言进行base64加密PRO - 少莽"/>
+    <meta property="og:description" content="，‘。；浅谈base64加密
+
+将3个8位的数据分成4个6位的数据而不足3的整数的数据加密后就造成不足4的倍数的问题，解决方案就是后面加=，补成4的倍数。比如对a进行base64加密：0110 00,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">少莽</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">C语言进行base64加密PRO</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">C语言进行base64加密PRO</h1>
+        <div class="stuff">
+            <span>六月 04, 2022</span>
+            
+
+        </div>
+        <div class="content markdown">
+            <p>，‘。；浅谈base64加密</p>
+<blockquote>
+<p>将3个8位的数据分成4个6位的数据<br>而不足3的整数的数据加密后就造成不足4的倍数的问题，解决方案就是后面加=，补成4的倍数。<br>比如对a进行base64加密：0110 0001（从前往后取六位，剩下的两位当下一个六位的前两位就得到：011 000和010 000然后因为不是4的倍数，后后面加两个=）<br>就得到：YQ==</p>
+</blockquote>
+<p>——————————————————————————————<br>实例：<br>对a45进行base64加密<br>分为四个6位数据：<br>011000 010011 010000 110101<br>24          19          16         52<br>Y            T               Q             1<br>                 第一个：<br>0110 0001：97<br>0001 1000：左移两位后<br>0011 1001：要和0x3f与<br>0001 1000：与后<br>                 第二个：<br>0110 0001：97<br>0001 0000：右移四位后<br>0011 0000：要和0x30与<br>0001 0000：与后<br>如果i+1 &lt; 数据bite长度<br>0011 0010：52<br>0000 0011：右移四位<br>0000 1111：要和0x0f与<br>0000 0011：与后<br>0001 0000：进行或<br>0001 0011：得到第二个<br>否则超过数据bite长度<br>0001 0000：第二个直接用这个<br>后面加两个=，因为长度是4的整数<br>                 第三个：<br>0011 0100：52<br>1101 0000：左移两位后<br>0011 1100：要和0x3c与<br>0001 0000：与后<br>如果i + 2 &lt; 数据bite长度<br>0001 0000：52<br>0000 0000：要和进行或<br>0001 0000：或后<br>得到第三个<br>                 第四个：<br>0011 0101：53<br>0011 1111：要和0x3f与<br>0011 0101：与后<br>得到第四个<br>否则：<br>0001 0000：这个是第三个<br>再加一个=<br>——————————————————————————————<br>我们在表示byte时，不用char 而用 unsinged char<br>这是因为：<br>char与unsigned char都占用一个字节（8bit）的内存，unsigned char无符号位，byte也无符号位这一说法。但是将byte的值取出赋值给int，long等其它类型时，系统会最高位进行扩展。如果使用符号类型（char），则以符号位（最高位）扩展，会造成数据错误；如果使用无符号类型（unsigned char），则以零扩展，并不会造成数据错误。因此常用unsigned char常用来表示byte。<br>参考博客：<br><a target="_blank" rel="noopener" href="http://www.cnblogs.com/E-star/archive/2013/04/16/3024258.html">http://www.cnblogs.com/E-star/archive/2013/04/16/3024258.html</a><br>——————————————————————————————</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    char yihuo[128];</span><br><span class="line">    int a=0;</span><br><span class="line">    char base64[128];</span><br><span class="line">    char base64char[] = &quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&quot;;//base64的数据</span><br><span class="line">    char denghao = &#x27;=&#x27;;</span><br><span class="line">    unsigned char sourcedata[128];//利用unsigned char 表示 byte</span><br><span class="line">    unsigned char weishu = 0;</span><br><span class="line">    scanf(&quot;%s&quot;,&amp;sourcedata);</span><br><span class="line">    int l = strlen(sourcedata);</span><br><span class="line">    for(int i = 0;i&lt;l;i++)&#123;</span><br><span class="line">            a = sourcedata[i] + a;//计算输入字符串的ACSCII码值</span><br><span class="line">    &#125;</span><br><span class="line">    if(a &gt; 1000)&#123;</span><br><span class="line">    int j = 0;</span><br><span class="line">    int datalength = strlen(sourcedata);</span><br><span class="line">    for(int i=0;i&lt;datalength;i = i+3)&#123;//每三个一组进行加密</span><br><span class="line">        //第一个加密数据</span><br><span class="line">        weishu = ((sourcedata[i] &gt;&gt; 2) &amp; 0x3f);//取第一个字符的前六位</span><br><span class="line">        base64[j++] = base64char[weishu];</span><br><span class="line">        //第二个加密数据</span><br><span class="line">        weishu = ((sourcedata[i] &lt;&lt; 4) &amp; 0x30);//取第一个字符的后两位</span><br><span class="line">        if (i + 1 &lt; datalength)&#123;//如果i+1小于数据byte长度，则说明不用等号补</span><br><span class="line">            weishu |= ((sourcedata[i + 1] &gt;&gt; 4) &amp; 0x0f);//第一个字符的后两位和第二个字符的前四位或处理</span><br><span class="line">            base64[j++] = base64char[weishu];</span><br><span class="line">        &#125;else&#123;//如果i+1等于字符串长度，说明需要补上等号，弥补不足4的倍数的问题</span><br><span class="line">            base64[j++] = base64char[weishu];</span><br><span class="line">            base64[j++] = denghao;</span><br><span class="line">            base64[j++] = denghao;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">        //第三个加密数据</span><br><span class="line">        weishu = ((sourcedata[i + 1] &lt;&lt; 2) &amp; 0x3c);//取第二个数据的后四位</span><br><span class="line">        if (i + 2 &lt; datalength)&#123;//成立，加密两个。因为后面还有一个字符串提供后六位作为第四个加密数据</span><br><span class="line">            weishu |= ((sourcedata[i + 2] &gt;&gt; 6) &amp; 0x03);//和第三个字符串的前两位异或</span><br><span class="line">            base64[j++] = base64char[weishu];//第三个加密数据</span><br><span class="line"></span><br><span class="line">            weishu = sourcedata[i + 2] &amp; 0x3f;//取三个字符串的后六位</span><br><span class="line">            base64[j++] = base64char[weishu];//第四个</span><br><span class="line">        &#125;</span><br><span class="line">        else&#123;//没有下一个的前两位，后面补零，第四个加密数据补等号</span><br><span class="line">            base64[j++] = base64char[weishu];</span><br><span class="line"></span><br><span class="line">            base64[j++] = denghao;</span><br><span class="line"></span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    base64[j] = &#x27;\0&#x27;;//空字符，字符串结束标志，作为字符串数组的末尾</span><br><span class="line">    printf(&quot;%s&quot;,base64);</span><br><span class="line">    &#125;</span><br><span class="line">    else&#123;</span><br><span class="line">        for(int i = 0;i &lt; l;i++)&#123;//一个一个对应异或</span><br><span class="line">            yihuo[i] = sourcedata[i] ^ base64char[i];</span><br><span class="line">        &#125;</span><br><span class="line">        printf(&quot;%s&quot;,yihuo);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">        return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://dl.stream.qqmusic.qq.com/C400001OUQ6M2WeMRO.m4a?guid=8163272410&vkey=C6BFF6D45012D604172E87D65FF2374E512C935275765A15128BE77C8FB1CA7110313E815EB620C046DDFA4D4580F98DAE74B533BA12DACE&uin=1552804588&fromtag=120002"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+				
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/live2d-widget-model-koharu/assets/koharu.model.json"},"display":{"superSample":2,"width":200,"height":400,"position":"left","hOffset":5,"vOffset":-84},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- Google Analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=zhishaomang"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'zhishaomang');
+</script>
+<!-- End Google Analytics -->
+
+
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+<!--单击显示文字-->
+<script type="text/javascript" src="/js/click_show_text.js"></script>
+<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+<script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+<script type="text/javascript" src="/js/fireworks.js"></script>
+<!--浏览器搞笑标题-->
+<script type="text/javascript" src="/js/FunnyTitle.js"></script>
