@@ -1,0 +1,229 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>滴水逆向学习笔记 - 少莽</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="zhishaomang,"> 
+    <meta name="description" content="指针1：1，带有*的变量类型的标准写法，变量类型星号 变量名2，任何类型都可以带 星号，带上星号以后是新的类型3，星号可以任意多个4，带星号类型的宽度始终是4个字节5，赋值要转型char：一个字节；,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="少莽" type="application/atom+xml"> 
+    <link rel="icon" href="/img/111.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="滴水逆向学习笔记 - 少莽"/>
+    <meta name="twitter:description" content="指针1：1，带有*的变量类型的标准写法，变量类型星号 变量名2，任何类型都可以带 星号，带上星号以后是新的类型3，星号可以任意多个4，带星号类型的宽度始终是4个字节5，赋值要转型char：一个字节；,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="少莽"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="滴水逆向学习笔记 - 少莽"/>
+    <meta property="og:description" content="指针1：1，带有*的变量类型的标准写法，变量类型星号 变量名2，任何类型都可以带 星号，带上星号以后是新的类型3，星号可以任意多个4，带星号类型的宽度始终是4个字节5，赋值要转型char：一个字节；,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">少莽</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">滴水逆向学习笔记</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">滴水逆向学习笔记</h1>
+        <div class="stuff">
+            <span>十一月 25, 2022</span>
+            
+
+        </div>
+        <div class="content markdown">
+            <p>指针1：<br>1，带有*的变量类型的标准写法，变量类型星号 变量名<br>2，任何类型都可以带 星号，带上星号以后是新的类型<br>3，星号可以任意多个<br>4，带星号类型的宽度始终是4个字节<br>5，赋值要转型<br>char：一个字节；short：两个字节；int：四个字节<br>局部变量，不到四个字节，都是按照四个字节分的<br><img src="https://img-blog.csdnimg.cn/c601e5f329044a15b63f441fff365f43.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>此时的a++，b++，c++，得出的结果都是104，而去掉一个星号时，也就是char* a，结果却是 101，102，104.是因为判断++的时候是根据自身宽度类型+的。一个星号的时候就是char short int，两个星号的时候，就是带星号类型，宽度始终为4字节。</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/c8d108e8c7a94160a37fb14e27f05bc2.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>结果是105，110，120；加上类型宽度x5<br>减法一样<br>不能乘除（编译器决定的）</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/f3ce2bb8a99d4f5a84aadd4int9cc11c0de.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>结果是25（只有相同类型才能相减）；结果除自身宽度</p>
+</blockquote>
+<p>二：<br>&amp;：地址符。类型是其后面加一个星号，任何变量都可以使用&amp;来获取地址，但不能用在常量上<br>int</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a;</span><br><span class="line">&amp;a;得到的是a变量的地址，其类型是 <span class="keyword">int</span>*</span><br><span class="line">如：<span class="keyword">int</span> ***x=（<span class="keyword">int</span>***）<span class="number">10</span></span><br><span class="line">	<span class="keyword">int</span> ****y=&amp;x</span><br></pre></td></tr></table></figure>
+<p>每多一个星号就是多了四个字节<br><img src="https://img-blog.csdnimg.cn/9a41af33f8204c65afb112fb4366df40.png" alt="在这里插入图片描述"><br>星号px（带星的）给x1的是px里面存储的值，不像&amp;，给的是地址<br><img src="https://img-blog.csdnimg.cn/dd6b6a75326d4fabb474270a6d790604.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>①把10这个值给到了ebp-4这个地址里面（值放地址里<br>②把ebp-4的地址给到了eax的值里面（值的地址放值里<br>③eax的值给到了ebp-8的地址里（又是“值”【但这次是地址】放地址里<br>④ebp-8的地址给到ecx的值里（又是“值”的地址放值里<br>关键：⑤ecx里面地址指向的值给edx的值里（变成了值，不是地址了，edx里面是0A<br>⑥edx的值给ebp-0c的地址里（给了值，也就是0A</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> arr[<span class="number">5</span>] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">char</span>* p = arr;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">short</span> i=<span class="number">0</span>;i&lt;<span class="number">5</span>;i++)</span><br><span class="line">	&#123;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,*(p+i));</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">*(p+i):地址的遍历，每次都是+ix1</span><br><span class="line">如果换个类型</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">short</span> arr[<span class="number">5</span>] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">short</span>* p = arr;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">short</span> i=<span class="number">0</span>;i&lt;<span class="number">5</span>;i++)</span><br><span class="line">	&#123;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,*(p+i));</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">*(p+i):是p+ix2，<span class="keyword">for</span>循环不需要进行改变</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>三</p>
+<h2 id="CE："><a href="#CE：" class="headerlink" title="CE："></a>CE：</h2><p><img src="https://img-blog.csdnimg.cn/b41df0bd85d9481abff49f38f2fb68a1.png" alt="在这里插入图片描述"><br>黑的：可能在堆里，是局部变量（地址可能会发生变化）<br>绿的：基址，全局变量（地址不会变化）<br>内存中，高位低位是反着的，小端存储</p>
+<h2 id="内存寻址："><a href="#内存寻址：" class="headerlink" title="内存寻址："></a>内存寻址：</h2><p>一个字节遍历；</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> data[<span class="number">20</span>] = &#123;</span><br><span class="line">	<span class="number">0x00</span>,<span class="number">0x01</span>,<span class="number">0x02</span>,<span class="number">0x03</span>,<span class="number">0x04</span>,<span class="number">0x05</span>,<span class="number">0x06</span>,<span class="number">0x07</span>,<span class="number">0x08</span>,<span class="number">0x09</span>,</span><br><span class="line">	<span class="number">0x0A</span>,<span class="number">0x0B</span>,<span class="number">0x64</span>,<span class="number">0x0C</span>,<span class="number">0x0D</span>,<span class="number">0x0E</span>,<span class="number">0x0F</span>,<span class="number">0x01</span>,<span class="number">0x02</span>,<span class="number">0x03</span></span><br><span class="line">	&#125;;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">FindBloodAddr</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> p = data;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//printf(&quot;%x\n&quot;,p);</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(*(p+i) == <span class="number">0x64</span>)</span><br><span class="line">        &#123;</span><br><span class="line">         <span class="built_in">printf</span>(<span class="string">&quot;%x\n&quot;</span>,*(p+i));<span class="comment">//带星号是去地址指向的值，不带是值</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    FindBloodAddr();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>两个字节遍历：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> data[<span class="number">20</span>] = &#123;</span><br><span class="line">	<span class="number">0x00</span>,<span class="number">0x01</span>,<span class="number">0x02</span>,<span class="number">0x03</span>,<span class="number">0x04</span>,<span class="number">0x05</span>,<span class="number">0x06</span>,<span class="number">0x07</span>,<span class="number">0x08</span>,<span class="number">0x09</span>,</span><br><span class="line">	<span class="number">0x0A</span>,<span class="number">0x0B</span>,<span class="number">0x64</span>,<span class="number">0x0C</span>,<span class="number">0x0D</span>,<span class="number">0x0E</span>,<span class="number">0x0F</span>,<span class="number">0x01</span>,<span class="number">0x02</span>,<span class="number">0x03</span></span><br><span class="line">	&#125;;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">FindBloodAddr</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">short</span>* p = (<span class="keyword">short</span>*)data;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//printf(&quot;%x\n&quot;,p);</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">        <span class="comment">//if(*(p+i) == 0x64)</span></span><br><span class="line">        <span class="comment">//&#123;</span></span><br><span class="line">         <span class="built_in">printf</span>(<span class="string">&quot;%x\n&quot;</span>,*(p+i));</span><br><span class="line">        <span class="comment">//&#125;</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    FindBloodAddr();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>四个字节遍历：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> data[<span class="number">20</span>] = &#123;</span><br><span class="line">	<span class="number">0x00</span>,<span class="number">0x01</span>,<span class="number">0x02</span>,<span class="number">0x03</span>,<span class="number">0x04</span>,<span class="number">0x05</span>,<span class="number">0x06</span>,<span class="number">0x07</span>,<span class="number">0x08</span>,<span class="number">0x09</span>,</span><br><span class="line">	<span class="number">0x0A</span>,<span class="number">0x0B</span>,<span class="number">0x64</span>,<span class="number">0x0C</span>,<span class="number">0x0D</span>,<span class="number">0x0E</span>,<span class="number">0x0F</span>,<span class="number">0x01</span>,<span class="number">0x02</span>,<span class="number">0x03</span></span><br><span class="line">	&#125;;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">FindBloodAddr</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span>* p = (<span class="keyword">int</span>*)data;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//printf(&quot;%x\n&quot;,p);</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">        <span class="comment">//if(*(p+i) == 0x64)</span></span><br><span class="line">        <span class="comment">//&#123;</span></span><br><span class="line">         <span class="built_in">printf</span>(<span class="string">&quot;%x\n&quot;</span>,*(p+i));</span><br><span class="line">        <span class="comment">//&#125;</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    FindBloodAddr();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>以自己的理解写了一个内存寻址的逐个多字节遍历：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> data[<span class="number">20</span>] = &#123;</span><br><span class="line">	<span class="number">0x00</span>,<span class="number">0x01</span>,<span class="number">0x02</span>,<span class="number">0x03</span>,<span class="number">0x04</span>,<span class="number">0x05</span>,<span class="number">0x06</span>,<span class="number">0x07</span>,<span class="number">0x08</span>,<span class="number">0x09</span>,</span><br><span class="line">	<span class="number">0x0A</span>,<span class="number">0x0B</span>,<span class="number">0x64</span>,<span class="number">0x0C</span>,<span class="number">0x0D</span>,<span class="number">0x0E</span>,<span class="number">0x0F</span>,<span class="number">0x01</span>,<span class="number">0x02</span>,<span class="number">0x03</span></span><br><span class="line">	&#125;;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">FindBloodAddr</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">short</span>* p = (<span class="keyword">short</span>*)data;</span><br><span class="line">    <span class="keyword">char</span>* q = data;</span><br><span class="line">    <span class="comment">//printf(&quot;%x\n&quot;,p);</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">20</span>;i++)&#123;</span><br><span class="line">        q = data + i;</span><br><span class="line">        <span class="keyword">int</span> j=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        p = q ;</span><br><span class="line">        <span class="keyword">if</span>(j&lt;<span class="number">5</span>)</span><br><span class="line">        &#123;</span><br><span class="line">         <span class="comment">//   if(*(p+j) == 0x100)&#123;</span></span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;%x\n&quot;</span>,*(p+j));</span><br><span class="line">           <span class="comment">// &#125;</span></span><br><span class="line">           j++;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    FindBloodAddr();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>四</p>
+<h2 id="内存分布："><a href="#内存分布：" class="headerlink" title="内存分布："></a>内存分布：</h2><p><img src="https://img-blog.csdnimg.cn/79f4c5a8d3ed42a085aaef7dfc8d0862.png" alt="在这里插入图片描述"><br>这个变量（len）定义到函数里面，空间是在栈里分，如果定义到函数外面，则会在全局变量里分<br><img src="https://img-blog.csdnimg.cn/13e93cd3b54f43e8bf9cc9e7b9492b41.png" alt="在这里插入图片描述"></p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://dl.stream.qqmusic.qq.com/C400001cDx1l3NPcgS.m4a?guid=259698570&vkey=F9C88CD98B4F9BC38C40D2B42324A0A69D6DE105A165C10FE5B2066257DD50C21FECE1A41C1045259E5E3094FE9A1D5B0552C233C2CD21C9&uin=1552804588&fromtag=120032"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#CE%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">CE：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E5%AF%BB%E5%9D%80%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">内存寻址：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E5%88%86%E5%B8%83%EF%BC%9A"><span class="toc-number">3.</span> <span class="toc-text">内存分布：</span></a></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/live2d-widget-model-koharu/assets/koharu.model.json"},"display":{"superSample":2,"width":200,"height":400,"position":"left","hOffset":5,"vOffset":-84},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- Google Analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=zhishaomang"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'zhishaomang');
+</script>
+<!-- End Google Analytics -->
+
+
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+<!--单击显示文字-->
+<script type="text/javascript" src="/js/click_show_text.js"></script>
+<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+<script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+<script type="text/javascript" src="/js/fireworks.js"></script>
+<!--浏览器搞笑标题-->
+<script type="text/javascript" src="/js/FunnyTitle.js"></script>
